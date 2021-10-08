@@ -102,3 +102,21 @@ dist
 
 # TernJS port file
 .tern-port
+
+# IDE Junk
+.vs
+.idea
+.idea/
+.vscode
+.vscode/
+
+# Node Modules
+/node_modules
+/backend/node/.env
+/backend/node_modules
+/frontend/node_modules
+
+# OSX
+.DS_Store
+
+.eslintcache
