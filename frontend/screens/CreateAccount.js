@@ -1,8 +1,8 @@
 import React from "react";
-import {StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity} from  "react-native";
+import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity} from  "react-native";
 import {images} from "../constants/";
 
-const Login =  ({ navigation }) => {
+const CreateAccount =  ({ navigation }) => {
 
     const [text, onChangeText] = React.useState("This is a text");
     const [number, onChangeNumber] = React.useState(null);
@@ -28,18 +28,9 @@ const Login =  ({ navigation }) => {
             </View>
 
 
-            <TouchableOpacity style={styles.loginBtn}>
-                <Text style={styles.loginText}>LOGIN</Text>
+            <TouchableOpacity style={styles.createBtn}>
+                <Text style={styles.createText}>CREATE ACCOUNT</Text>
             </TouchableOpacity>
-            <View style={styles.actions}>
-                <TouchableOpacity style={{marginHorizontal: 15}}>
-                    <Text style={styles.forgot}>Forgot Password?</Text>
-                </TouchableOpacity>
-                <Pressable 
-                onPress={() => navigation.navigate('CreateAccount')}>
-              <Text style={styles.singUp}>Sign Up</Text>
-              </Pressable>
-            </View>
         </View>
     )
 }
@@ -80,9 +71,9 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "500",
   },
-  loginBtn:{
+  createBtn:{
     width:"80%",
-    backgroundColor:"#755293",
+    backgroundColor:"#F3E03F",
     borderRadius:25,
     height:50,
     alignItems:"center",
@@ -90,7 +81,7 @@ const styles = StyleSheet.create({
     marginTop:20,
     marginBottom:10
   },
-  loginText: {
+  createText: {
     color: "#ffffff",
     fontWeight: "800",
   },
@@ -111,4 +102,4 @@ const styles = StyleSheet.create({
     height: 170,
   }
 })
-export default Login;
+export default CreateAccount;

@@ -1,8 +1,8 @@
 import React from "react";
-import {StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity} from  "react-native";
+import {StyleSheet, View, Image, Text, TextInput, Pressable, TouchableOpacity} from  "react-native";
 import {images} from "../constants/";
 
-const Login =  ({ navigation }) => {
+const LoginDoctor =  ({navigation}) => {
 
     const [text, onChangeText] = React.useState("This is a text");
     const [number, onChangeNumber] = React.useState(null);
@@ -111,4 +111,4 @@ const styles = StyleSheet.create({
     height: 170,
   }
 })
-export default Login;
+export default LoginDoctor;

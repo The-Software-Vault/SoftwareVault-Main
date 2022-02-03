@@ -30,7 +30,13 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import { Landing } from "./screens";
 import { Login } from "./screens";
+import { LoginDoctor } from "./screens";
+import { CreateAccount } from "./screens";
+
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+const Stack = createNativeStackNavigator();
 
 const theme = {
     ...DefaultTheme,
@@ -48,10 +54,25 @@ const App  = () => {
     });
 
     return (
-        <NavigationContainer theme={theme}>
-            <View style ={{flex: 1}}>
-                <Login />
-            </View>
+        <NavigationContainer theme={theme} initialRouteName="Landing">
+           <Stack.Navigator>
+           <Stack.Screen
+        name="Landing"
+        component={Landing}
+        />
+        <Stack.Screen
+         name="Login"
+        component={Login}
+        />
+        <Stack.Screen
+         name="LoginDoctor"
+        component={LoginDoctor}
+        />
+        <Stack.Screen
+         name="CreateAccount"
+        component={CreateAccount}
+        />
+        </Stack.Navigator>
         </NavigationContainer>
     );
 };

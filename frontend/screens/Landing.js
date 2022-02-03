@@ -1,8 +1,8 @@
 import React from "react";
-import {StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity} from  "react-native";
+import {StyleSheet, View, Image, Text, Alert, Pressable, TextInput, Button, TouchableOpacity} from  "react-native";
 import {images} from "../constants/";
 
-const Login =  ({ navigation }) => {
+const Landing =  ({ navigation }) => {
 
     const [text, onChangeText] = React.useState("This is a text");
     const [number, onChangeNumber] = React.useState(null);
@@ -12,36 +12,20 @@ const Login =  ({ navigation }) => {
             <View style={styles.logoView}>
                 <Image source={images.logo} resizeMode="contain" style={styles.logo}/>
             </View>
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.inputText}
-                    placeholder="username"
-                    placeholderTextColor="#AFAFAF"
-                    onChangeText={text => onChangeText(text)}/>
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.inputText}
-                    placeholder="password"
-                    placeholderTextColor="#AFAFAF"
-                    onChangeText={text => onChangeText(text)}/>
-            </View>
-
-
-            <TouchableOpacity style={styles.loginBtn}>
-                <Text style={styles.loginText}>LOGIN</Text>
-            </TouchableOpacity>
-            <View style={styles.actions}>
-                <TouchableOpacity style={{marginHorizontal: 15}}>
-                    <Text style={styles.forgot}>Forgot Password?</Text>
-                </TouchableOpacity>
-                <Pressable 
+            <Pressable style={styles.loginBtn} 
+                onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.loginText}>PATIENT LOGIN</Text>
+            </Pressable>
+            <Pressable style={styles.loginBtn} 
+                onPress={() => navigation.navigate('LoginDoctor')}>
+            <Text style={styles.loginText}>DOCTOR LOGIN</Text>
+            </Pressable>
+            <Pressable style={styles.createBtn} 
                 onPress={() => navigation.navigate('CreateAccount')}>
-              <Text style={styles.singUp}>Sign Up</Text>
-              </Pressable>
-            </View>
+            <Text style={styles.createText}>CREATE AN ACCOUNT</Text>
+            </Pressable>
         </View>
-    )
+    ) 
 }
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +44,7 @@ const styles = StyleSheet.create({
 
   inputView:{
     width:"80%",
-    backgroundColor:"#EAEAEA",
+    backgroundColor:"#EBD200",
     borderRadius:25,
     height:50,
     marginBottom:20,
@@ -79,6 +63,20 @@ const styles = StyleSheet.create({
   forgot:{
     color: "black",
     fontWeight: "500",
+  },
+  createBtn:{
+    width:"80%",
+    backgroundColor:"#F3E03F",
+    borderRadius:25,
+    height:50,
+    alignItems:"center",
+    justifyContent:"center",
+    marginTop:20,
+    marginBottom:10
+  },
+  createText: {
+    color: "#ffffff",
+    fontWeight: "800",
   },
   loginBtn:{
     width:"80%",
@@ -111,4 +109,4 @@ const styles = StyleSheet.create({
     height: 170,
   }
 })
-export default Login;
+export default Landing;
