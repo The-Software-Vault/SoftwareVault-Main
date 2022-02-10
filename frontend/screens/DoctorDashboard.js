@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Alert, Pressable, TextInput, Button, FlatList, TouchableOpacity} from  "react-native";
 import {images} from "../constants/";
 
-const PatientDashboard =  ({ navigation }) => {
+const DoctorDashboard =  ({ navigation }) => {
 
     const [user, newUser] = React.useState([
 
@@ -30,7 +30,7 @@ const PatientDashboard =  ({ navigation }) => {
             <Pressable style={styles.profileImg}>
                     <Image style={styles.profileImg}
                     source={{uri: 'https://via.placeholder.com/150'}}/>
-                    <Text style={{alignSelf: "center"}}>John Doe</Text>
+                    <Text style={{alignSelf: "center"}}>Dr. Jane Doe</Text>
             </Pressable>
              </View>
 
@@ -67,6 +67,13 @@ const PatientDashboard =  ({ navigation }) => {
                     <Text style={styles.text_container}>Messages</Text>
             </Pressable>
              </View>
+             <View style={styles.card_template}>
+            <Pressable style={styles.card_image}>
+                    <Image style={styles.card_image}
+                    source={{uri: 'https://via.placeholder.com/150'}}/>
+                    <Text style={styles.text_container}>My Patients</Text>
+            </Pressable>
+             </View>
             </View>
         </ScrollView>
     </SafeAreaView>
@@ -94,7 +101,7 @@ const styles = StyleSheet.create({
   },
   profileSection: {
     width: '100%',
-    height: 200,
+    height: 250,
     marginBottom: 5,
     marginTop: 10,
     boxShadow: "10x 10px 17px -12px rgba(0,0,0,0.75)",
@@ -130,4 +137,4 @@ const styles = StyleSheet.create({
 
   }
 })
-export default PatientDashboard;
+export default DoctorDashboard;

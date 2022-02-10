@@ -28,9 +28,10 @@ const LoginDoctor =  ({navigation}) => {
             </View>
 
 
-            <TouchableOpacity style={styles.loginBtn}>
-                <Text style={styles.loginText}>LOGIN</Text>
-            </TouchableOpacity>
+            <Pressable style={styles.loginBtn} 
+                onPress={() => navigation.navigate('DoctorDashboard')}>
+              <Text style={styles.loginText}>Login</Text>
+              </Pressable>
             <View style={styles.actions}>
                 <TouchableOpacity style={{marginHorizontal: 15}}>
                     <Text style={styles.forgot}>Forgot Password?</Text>

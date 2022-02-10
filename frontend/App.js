@@ -25,18 +25,14 @@ import SplashScreen from  'react-native-splash-screen';
 import {
   Colors,
   DebugInstructions,
-  Header,
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Landing } from "./screens";
-import { Login } from "./screens";
-import { LoginDoctor } from "./screens";
-import { CreateAccount } from "./screens";
-import { PatientDashboard } from "./screens";
-import { Appointments } from "./screens";
-import { Messages} from "./screens";
+import { Landing, Login, LoginDoctor, CreateAccount, PatientDashboard, 
+    DoctorDashboard, Appointments, Messages} from "./screens";
+
+   // import { createDrawerNavigator } from 'react-navigation/drawer';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -55,7 +51,6 @@ const App  = () => {
     React.useEffect(() => {
         SplashScreen.hide();
     });
-
     return (
         <NavigationContainer theme={theme} initialRouteName="Landing">
         <Stack.Navigator>
@@ -67,32 +62,90 @@ const App  = () => {
         <Stack.Screen
          name="Login"
         component={Login}
-        options={{title: "Patient Login" }}
+        options={{title: "Patient Login",
+        headerStyle: {
+            backgroundColor: "#755293",
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'}, 
+        }}
         />
         <Stack.Screen
          name="LoginDoctor"
         component={LoginDoctor}
-        options={{title: "Doctor Login" }}
+        options={{title: "Doctor Login",
+        headerStyle: {
+            backgroundColor: "#755293",
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'}, 
+        }}
         />
         <Stack.Screen
          name="CreateAccount"
         component={CreateAccount}
-        options={{title: "Create an Account" }}
+        options={{title: "Create an Account",
+        headerStyle: {
+            backgroundColor: "#755293",
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'}, 
+        }}
         />
         <Stack.Screen
          name="PatientDashboard"
         component={PatientDashboard}
-        options={{title: "Your Dashboard" }}
+        options={{
+            headerTitle: "Home",
+            headerStyle: {
+              backgroundColor: "#755293",
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        <Stack.Screen
+         name="DoctorDashboard"
+        component={DoctorDashboard}
+        options={{
+            headerTitle: "Home",
+            headerStyle: {
+              backgroundColor: "#755293",
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
         />
          <Stack.Screen
          name="Appointments"
         component={Appointments}
-        options={{title: "Appointments" }}
+        options={{title: "Appointments",
+        headerStyle: {
+            backgroundColor: "#755293",
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'}, 
+        }}
         />
          <Stack.Screen
          name="Messages"
         component={Messages}
-        options={{title: "Messages" }}
+        options={{title: "Messages",
+        headerStyle: {
+            backgroundColor: "#755293",
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'}, 
+        }}
         />
         </Stack.Navigator>
         </NavigationContainer>
