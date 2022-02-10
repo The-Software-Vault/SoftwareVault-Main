@@ -27,7 +27,7 @@ const DoctorDashboard =  ({ navigation, route }) => {
                         <Pressable style={styles.profileImg}>
                             <Image style={styles.profileImg} source={{uri: 'https://via.placeholder.com/150'}}/>
                             {/*<Text style={{alignSelf: "center"}}>Dr. John Doe</Text>*/}
-                            <Text style={styles.text_container}>Welcome, {route.params.name}</Text>
+                            <Text style={{alignSelf: "center"}}>Welcome, {route.params.name}</Text>
                         </Pressable>
                     </View>
                     <View style={styles.card_template}>
