@@ -1,25 +1,19 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
 var mysql = require('mysql')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
-app.use(cors({origin: 'http://localhost:3001'}));
 
 //Connect to local mysql Database
-var con = mysql.createConnection({
+var db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "root"
+  password: "root",
+  database: "mobileUltrasound"
 });
 
-con.connect(function(err) {
+db.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 });
@@ -28,19 +22,51 @@ con.connect(function(err) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.post("/register", (req, res) => {
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
+  var email = req.body.email;
+  var password = req.body.password;
+  var isDoctor = req.body.isDoctor;
+  db.query("INSERT INTO Users (Email, Password, FirstName, LastName, IsDoctor) VALUES (?,?,?,?,?)", [email, password, firstName, lastName, isDoctor], (err, result) => {
+    if (err) console.log(err);
+    if(isDoctor){
+      var specialty = req.body.specialty;
+      db.query("INSERT INTO Doctors (UserId, Specialty) VALUES (?,?)", [result.insertId, specialty], (err, result) => {
+        if (err) console.log(err);
+      });
+    }else{
+      var sex = req.body.sex;
+      db.query("INSERT INTO Patients (UserId, Sex) VALUES (?,?)", [result.insertId, specialty], (err, result) => {
+        if (err) console.log(err);
+      });
+    }
+    res.send(JSON.stringify(result));
+  });
 });
+
+app.delete("/deregister", (req, res) => {
+  var email = req.body.email;
+  db.query("DELETE FROM Users WHERE Email=?", [email], (err, result) => {
+    if (err) console.log(err);
+    res.end(JSON.stringify(result));
+  });
+});
+
+app.get("/login", (req, res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+  db.query("SELECT * FROM Users WHERE Email=? AND Password=?", [email, password], (err, result) => {
+    if(err) console.log(err);
+    res.end(JSON.stringify(result));
+  });
+});
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -51,6 +77,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+const listener = app.listen("5000", () => {
+  console.log("The API is listening on port 5000");
 });
 
 module.exports = app;
