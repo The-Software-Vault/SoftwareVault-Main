@@ -4,7 +4,7 @@ module.exports = function user(app, logger) {
 
     // POST /user/register
     app.post('/user/register', (req, res) => {
-        console.log(req.body.email,req.body.password, req.body.first_name, req.body.last_name, req.body.userType_id);
+        console.log(req.body.email,req.body.password, req.body.first_name, req.body.last_name);
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
@@ -16,9 +16,8 @@ module.exports = function user(app, logger) {
                 var password = req.body.password
                 var first_name = req.body.first_name
                 var last_name = req.body.last_name
-                var userType_id = req.body.userType_id
                 // if there is no issue obtaining a connection, execute query
-                connection.query('INSERT INTO `swvault`.`user` (email, password, first_name, last_name, userType_id) VALUES(?, ?, ?, ?, ?)',[email, password, first_name, last_name, userType_id], function (err, rows, fields) {
+                connection.query('INSERT INTO `swvault`.`user` (email, password, first_name, last_name) VALUES(?, ?, ?, ?)',[email, password, first_name, last_name], function (err, rows, fields) {
                     if (err) { 
                         // if there is an error with the query, release the connection instance and log the error
                         connection.release()
@@ -40,7 +39,7 @@ module.exports = function user(app, logger) {
 
     // POST /user/login
     app.post('/user/login', (req, res) => {
-        console.log(req.body.username,req.body.password);
+        console.log(req.body.email,req.body.password);
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
@@ -70,7 +69,7 @@ module.exports = function user(app, logger) {
 
     // DELETE /user/delete-account
     app.delete('/user/delete-account', (req, res) => {
-        console.log(req.body.email);
+        console.log(req.body.email, req.body.password);
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
@@ -80,7 +79,8 @@ module.exports = function user(app, logger) {
             } else {
                 // if there is no issue obtaining a connection, execute query and release connection
                 var email = req.body.email;
-                connection.query("DELETE FROM `user` WHERE `user`.`email` = ?", [email], (err, rows) => {
+                var password = req.body.password
+                connection.query("DELETE FROM `user` u WHERE u.email = ? AND u.password = ?", [email, password], (err, rows) => {
                     // if there is an error with the query, release the connection instance and log the error
                     connection.release()
                     if (err) {
