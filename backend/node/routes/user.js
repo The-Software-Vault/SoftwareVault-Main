@@ -27,7 +27,7 @@ module.exports = function user(app, logger) {
                             "error": "MySQL error"
                         })
                     } else{
-                        res.status(200).json({
+                        res.status(201).json({
                             "data": rows
                         });
                     }
@@ -90,7 +90,7 @@ module.exports = function user(app, logger) {
                             "error": "MySQL error"
                         })
                     } else {
-                        res.status(200).json(rows)
+                        res.status(204).json(rows)
                     }
                 });
             }
