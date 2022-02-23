@@ -1,17 +1,16 @@
-USE mobileUltrasound;
+-- -----------------------------------------------------
+-- Initial database rules (init.sql)
+-- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS users (
-userId int PRIMARY KEY AUTO_INCREMENT,
-firstName varchar(100),
-lastName varchar(100),
-email varchar(100),
-password varchar(100)
-);
+-- Create user called `admin` with password `XXXXXX`
+CREATE USER 'admin'@'%' IDENTIFIED BY 'Password1!';
 
-CREATE TABLE IF NOT EXISTS users (
-userId int PRIMARY KEY AUTO_INCREMENT,
-firstName varchar(100),
-lastName varchar(100),
-email varchar(100),
-password varchar(100)
-);
+-- Give access to admin on db
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';
+GRANT ALL PRIVILEGES ON `swvault` TO 'admin'@'%';
+
+-- Set password method to native password for mysql workbench access (mysql 8 issue)
+ALTER USER 'admin'@'%' IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY 'Password1!';
+
+-- Flush them privileges
+FLUSH PRIVILEGES;
