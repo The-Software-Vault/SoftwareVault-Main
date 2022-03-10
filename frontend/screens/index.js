@@ -1,20 +1,10 @@
-import Landing from "./Landing";
-import Login from "./Login";
-import LoginDoctor from "./LoginDoctor";
-import CreateAccount from "./CreateAccount";
-import PatientDashboard from "./PatientDashboard";
-import DoctorDashboard from "./DoctorDashboard";
-import Appointments from "./Appointments";
-import Messages from "./Messages";
-import DoctorList from "./DoctorList";
-export {
-    Landing,
-    Login,
-    LoginDoctor,
-    CreateAccount,
-    PatientDashboard,
-    DoctorDashboard,
-    Appointments,
-    Messages,
-    DoctorList,
-}
+export Login from './Login/login';
+export Register from './Login/register';
+export DoctorDashboard  from './DoctorDashboard';
+export PatientDashboard  from './PatientDashboard';
+export Appointments from './PatientComps/appointments'
+export Messages from './PatientComps/messages'
+export PatientForm from './PatientComps/PatientForm'
+export ApptConfirmation from './PatientComps/ApptConfirmation'
+export DoctorList from "./DoctorList";
+

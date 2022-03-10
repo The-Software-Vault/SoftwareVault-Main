@@ -26,13 +26,14 @@ const PatientDashboard =  ({ navigation }) => {
       <ScrollView style={styles.scrollView}>
         <View style={styles.container}>
 
-        <View style={styles.profileSection}>
-            <Pressable style={styles.profileImg}>
-                    <Image style={styles.profileImg}
-                    source={{uri: 'https://via.placeholder.com/150'}}/>
-                    <Text style={{alignSelf: "center"}}>John Doe</Text>
-            </Pressable>
-             </View>
+                    <View style={styles.profileSection}>
+                        <Pressable style={styles.profileImg}>
+                            <Image style={styles.profileImg} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            {/*<Text style={{alignSelf: "center"}}>John Doe</Text>*/}
+                            <Text style={{alignSelf: "center"}}>Welcome, {route.params?.name}</Text>
+                        </Pressable>
+                    </View>
+
 
             <View style={styles.card_template}>
             <Pressable style={styles.card_image}

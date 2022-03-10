@@ -29,8 +29,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Landing, Login, LoginDoctor, CreateAccount, PatientDashboard, 
-    DoctorDashboard, Appointments, Messages, DoctorList} from "./screens";
+import { Login, Register, PatientDashboard, 
+    DoctorDashboard, Appointments, Messages, PatientForm, ApptConfirmation, DoctorList} from "./screens";
 
    // import { createDrawerNavigator } from 'react-navigation/drawer';
 
@@ -82,7 +82,25 @@ const App  = () => {
           headerTitleStyle: {
             fontWeight: 'bold'}, 
         }}
-        />
+ />
+  <Stack.Screen name="PatientForm" component={PatientForm} options={{title: "Appointment Form",
+        headerStyle: {
+            backgroundColor: "#755293",
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'}, 
+
+ }} />
+                <Stack.Screen name="DoctorDashboard" component={DoctorDashboard} options={{title: "Doctor Dashboard",
+        headerStyle: {
+            backgroundColor: "#755293",
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'}, 
+ }} />
+               
         <Stack.Screen
          name="CreateAccount"
         component={CreateAccount}
@@ -133,8 +151,13 @@ const App  = () => {
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold'}, 
-        }}
-        />
+
+ }} />
+                <Stack.Screen name="ApptConfirmation" component={ApptConfirmation} options={{title: "ApptConfirmation",
+          headerShown: false,
+
+ }} />
+                
          <Stack.Screen
          name="Messages"
         component={Messages}
