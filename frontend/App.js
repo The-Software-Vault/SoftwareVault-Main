@@ -25,17 +25,14 @@ import SplashScreen from  'react-native-splash-screen';
 import {
   Colors,
   DebugInstructions,
-  Header,
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Login } from "./screens";
-import { Register } from "./screens";
-import { DoctorDashboard } from "./screens";
-import { PatientDashboard } from "./screens";
-import { Appointments } from "./screens";
-import { Messages } from "./screens";
+import { Landing, Login, LoginDoctor, CreateAccount, PatientDashboard, 
+    DoctorDashboard, Appointments, Messages, DoctorList} from "./screens";
+
+   // import { createDrawerNavigator } from 'react-navigation/drawer';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -54,12 +51,18 @@ const App  = () => {
     React.useEffect(() => {
         SplashScreen.hide();
     });
-
     return (
-        <NavigationContainer theme={theme}>
-            {/*<View style={{flex: 1}}> <Login /> </View>*/}
-            <Stack.Navigator>
-                <Stack.Screen name="Login" component={Login} options={{title: "Login",
+        <NavigationContainer theme={theme} initialRouteName="Landing">
+        <Stack.Navigator>
+        <Stack.Screen
+        name="Landing"
+        component={Landing}
+        options={{headerShown: false }}
+        />
+        <Stack.Screen
+         name="Login"
+        component={Login}
+        options={{title: "Patient Login",
         headerStyle: {
             backgroundColor: "#755293",
           },
@@ -67,8 +70,11 @@ const App  = () => {
           headerTitleStyle: {
             fontWeight: 'bold'}, 
         }}
- />
-                <Stack.Screen name="Register" component={Register} options={{title: "Register",
+        />
+        <Stack.Screen
+         name="LoginDoctor"
+        component={LoginDoctor}
+        options={{title: "Doctor Login",
         headerStyle: {
             backgroundColor: "#755293",
           },
@@ -76,43 +82,86 @@ const App  = () => {
           headerTitleStyle: {
             fontWeight: 'bold'}, 
         }}
- />
-                <Stack.Screen name="DoctorDashboard" component={DoctorDashboard} options={{title: "Doctor Dashboard",
+        />
+        <Stack.Screen
+         name="CreateAccount"
+        component={CreateAccount}
+        options={{title: "Create an Account",
         headerStyle: {
             backgroundColor: "#755293",
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold'}, 
- }} />
-                <Stack.Screen name="PatientDashboard" component={PatientDashboard} options={{title:"Patient Dashboard",
+        }}
+        />
+        <Stack.Screen
+         name="PatientDashboard"
+        component={PatientDashboard}
+        options={{
+            headerTitle: "Home",
+            headerStyle: {
+              backgroundColor: "#755293",
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        <Stack.Screen
+         name="DoctorDashboard"
+        component={DoctorDashboard}
+        options={{
+            headerTitle: "Home",
+            headerStyle: {
+              backgroundColor: "#755293",
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+         <Stack.Screen
+         name="Appointments"
+        component={Appointments}
+        options={{title: "Appointments",
         headerStyle: {
             backgroundColor: "#755293",
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold'}, 
-
-}} />
-                <Stack.Screen name="Appointments" component={Appointments} options={{title: "Appointments",
+        }}
+        />
+         <Stack.Screen
+         name="Messages"
+        component={Messages}
+        options={{title: "Messages",
         headerStyle: {
             backgroundColor: "#755293",
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold'}, 
-
- }} />
-                <Stack.Screen name="Messages" component={Messages} options={{title: "Messages",
-        headerStyle: {
-            backgroundColor: "#755293",
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold'}, 
-
- }}/>
-            </Stack.Navigator>
+        }}
+        />
+        <Stack.Screen
+         name="DoctorList"
+        component={DoctorList}
+        options={{
+            headerTitle: "DoctorList",
+            headerStyle: {
+              backgroundColor: "#755293",
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        </Stack.Navigator>
         </NavigationContainer>
     );
 };

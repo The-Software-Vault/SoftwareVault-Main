@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable} from "react-native";
+import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
 import { images } from "../../constants";
 
 const Register = ({ navigation }) => {
@@ -8,33 +8,74 @@ const Register = ({ navigation }) => {
     const [number, onChangeNumber] = React.useState(null);
 
     return(
-        <View style={styles.container}>
-            <View style={styles.logoView}>
-                <Image source={images.logo} resizeMode="contain" style={styles.logo}/>
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.inputText}
-                    placeholder="username"
-                    placeholderTextColor="#AFAFAF"
-                    onChangeText={text => onChangeText(text)}/>
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                    style={styles.inputText}
-                    placeholder="password"
-                    placeholderTextColor="#AFAFAF"
-                    onChangeText={text => onChangeText(text)}/>
-            </View>
-            <Pressable style={styles.createBtn} onPress={() => navigation.navigate('PatientDashboard')}>
-                <TouchableOpacity>
-                    <Text style={styles.createText}>Register</Text>
-                </TouchableOpacity>
-            </Pressable>
+        <View style={{flex: 1}}>
+            <ScrollView style={styles.scrollView}>
+                <SafeAreaView style={styles.container}>
+                    <View style={{height: "10%"}}></View>
+                    <Text style={styles.black}>Username</Text>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder=""
+                            placeholderTextColor="#AFAFAF"
+                            onChangeText={text => onChangeText(text)}/>
+                    </View>
+                    <Text style={styles.black}>First Name</Text>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder=""
+                            placeholderTextColor="#AFAFAF"
+                            onChangeText={text => onChangeText(text)}/>
+                    </View>
+                    <Text style={styles.black}>Last Name</Text>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder=""
+                            placeholderTextColor="#AFAFAF"
+                            onChangeText={text => onChangeText(text)}/>
+                    </View>
+                    <Text style={styles.black}>E-mail Address</Text>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder=""
+                            placeholderTextColor="#AFAFAF"
+                            onChangeText={text => onChangeText(text)}/>
+                    </View>
+                    <Text style={styles.black}>Password</Text>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            secureTextEntry={true}
+                            style={styles.inputText}
+                            placeholder=""
+                            placeholderTextColor="#AFAFAF"
+                            onChangeText={text => onChangeText(text)}/>
+                    </View>
+                    <Text style={styles.black}>Confirm Password</Text>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            secureTextEntry={true}
+                            style={styles.inputText}
+                            placeholder=""
+                            placeholderTextColor="#AFAFAF"
+                            onChangeText={text => onChangeText(text)}/>
+                    </View>
+                    <Pressable style={styles.createBtn} onPress={() => navigation.navigate('PatientDashboard')}>
+                        <TouchableOpacity>
+                            <Text style={styles.createText}>Create Account</Text>
+                        </TouchableOpacity>
+                    </Pressable>
+                </SafeAreaView>    
+            </ScrollView>
         </View>
     )
 }
 const styles = StyleSheet.create({
+    scrollView: {
+        flex: 0.8
+    },
     container: {
         flex: 1,
         backgroundColor: '#fff',
