@@ -55,11 +55,6 @@ const App  = () => {
         <NavigationContainer theme={theme} initialRouteName="Landing">
         <Stack.Navigator>
         <Stack.Screen
-        name="Landing"
-        component={Landing}
-        options={{headerShown: false }}
-        />
-        <Stack.Screen
          name="Login"
         component={Login}
         options={{title: "Patient Login",
@@ -71,18 +66,6 @@ const App  = () => {
             fontWeight: 'bold'}, 
         }}
         />
-        <Stack.Screen
-         name="LoginDoctor"
-        component={LoginDoctor}
-        options={{title: "Doctor Login",
-        headerStyle: {
-            backgroundColor: "#755293",
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold'}, 
-        }}
- />
   <Stack.Screen name="PatientForm" component={PatientForm} options={{title: "Appointment Form",
         headerStyle: {
             backgroundColor: "#755293",
@@ -92,27 +75,6 @@ const App  = () => {
             fontWeight: 'bold'}, 
 
  }} />
-                <Stack.Screen name="DoctorDashboard" component={DoctorDashboard} options={{title: "Doctor Dashboard",
-        headerStyle: {
-            backgroundColor: "#755293",
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold'}, 
- }} />
-               
-        <Stack.Screen
-         name="CreateAccount"
-        component={CreateAccount}
-        options={{title: "Create an Account",
-        headerStyle: {
-            backgroundColor: "#755293",
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold'}, 
-        }}
-        />
         <Stack.Screen
          name="PatientDashboard"
         component={PatientDashboard}

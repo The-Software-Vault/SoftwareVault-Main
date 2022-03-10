@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Alert, Pressable, TextInput, Button, FlatList, TouchableOpacity} from  "react-native";
 import {images} from "../constants/";
 
-const PatientDashboard =  ({ navigation }) => {
+const PatientDashboard =  ({ navigation, route }) => {
 
     const [user, newUser] = React.useState([
 
