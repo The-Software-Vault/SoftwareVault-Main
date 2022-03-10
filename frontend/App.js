@@ -38,6 +38,7 @@ import { Appointments } from "./screens";
 import { Messages } from "./screens";
 import { PatientForm } from "./screens";
 import { ApptConfirmation } from "./screens";
+import { PatientProfile } from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -103,6 +104,16 @@ const App  = () => {
                 }} />
                 <Stack.Screen name="PatientDashboard" component={PatientDashboard} options={{
                     title:"Patient Dashboard",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="PatientProfile" component={PatientProfile} options={{
+                    title:"Patient Profile",
                     headerStyle: {
                         backgroundColor: "#755293",
                     },
