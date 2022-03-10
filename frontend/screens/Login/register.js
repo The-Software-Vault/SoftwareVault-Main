@@ -16,7 +16,7 @@ const Register = ({ navigation }) => {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder=""
+                            placeholder="Username"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
@@ -24,7 +24,7 @@ const Register = ({ navigation }) => {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder=""
+                            placeholder="First Name"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
@@ -32,7 +32,7 @@ const Register = ({ navigation }) => {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder=""
+                            placeholder="Last Name"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
@@ -40,7 +40,7 @@ const Register = ({ navigation }) => {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder=""
+                            placeholder="Email Address"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
@@ -49,7 +49,7 @@ const Register = ({ navigation }) => {
                         <TextInput
                             secureTextEntry={true}
                             style={styles.inputText}
-                            placeholder=""
+                            placeholder="Password"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
@@ -58,7 +58,7 @@ const Register = ({ navigation }) => {
                         <TextInput
                             secureTextEntry={true}
                             style={styles.inputText}
-                            placeholder=""
+                            placeholder="Confirm Password"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
