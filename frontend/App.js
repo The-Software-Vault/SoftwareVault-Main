@@ -30,15 +30,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Login } from "./screens";
-import { Register } from "./screens";
-import { DoctorDashboard } from "./screens";
-import { PatientDashboard } from "./screens";
-import { Appointments } from "./screens";
-import { Messages } from "./screens";
-import { PatientForm } from "./screens";
-import { ApptConfirmation } from "./screens";
-import { PatientProfile } from "./screens";
+import { Login, Register, DoctorDashboard, PatientDashboard, Appointments, Messages,
+PatientForm, ApptConfirmation, PatientProfile, DoctorList} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -120,6 +113,16 @@ const App  = () => {
                     headerTintColor: '#fff',
                     headerTitleStyle: {
                         fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="DoctorList" component={DoctorList} options={{
+                    headerTitle: "DoctorList",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
                     },
                 }} />
                 <Stack.Screen name="Appointments" component={Appointments} options={{
