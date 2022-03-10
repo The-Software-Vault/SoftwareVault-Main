@@ -6,6 +6,7 @@ import PatientDashboard from "./PatientDashboard";
 import DoctorDashboard from "./DoctorDashboard";
 import Appointments from "./Appointments";
 import Messages from "./Messages";
+import DoctorList from "./DoctorList";
 export {
     Landing,
     Login,
@@ -15,4 +16,5 @@ export {
     DoctorDashboard,
     Appointments,
     Messages,
+    DoctorList,
 }

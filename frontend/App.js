@@ -30,7 +30,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Landing, Login, LoginDoctor, CreateAccount, PatientDashboard, 
-    DoctorDashboard, Appointments, Messages} from "./screens";
+    DoctorDashboard, Appointments, Messages, DoctorList} from "./screens";
 
    // import { createDrawerNavigator } from 'react-navigation/drawer';
 
@@ -146,6 +146,20 @@ const App  = () => {
           headerTitleStyle: {
             fontWeight: 'bold'}, 
         }}
+        />
+        <Stack.Screen
+         name="DoctorList"
+        component={DoctorList}
+        options={{
+            headerTitle: "DoctorList",
+            headerStyle: {
+              backgroundColor: "#755293",
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
         />
         </Stack.Navigator>
         </NavigationContainer>
