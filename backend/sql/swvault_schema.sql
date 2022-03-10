@@ -6,11 +6,11 @@ USE `swvault`;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `swvault`.`user` (
 	`id` 	int PRIMARY KEY AUTO_INCREMENT,
-	`userType_id`	boolean,
 	`first_name`	varchar(100),
 	`last_name` 	varchar(100),
 	`email` 	varchar(100),
-	`password` 	varchar(100)
+	`password` 	varchar(100),
+	`userType_id`	int DEFAULT 0
 );
 
 -- -----------------------------------------------------
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `swvault`.`doctor` (
 	`id` 	int,
 	`specialty` 	varchar(100),
 	FOREIGN KEY(`id`)
-		REFERENCES user(`id`)
+		REFERENCES `swvault`.`user`(`id`)
 		ON DELETE CASCADE
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `swvault`.`patient` (
 	`id`	int,
 	`sex` 	varchar(100),
 	FOREIGN KEY(`id`)
-		REFERENCES user(`id`)
+		REFERENCES `swvault`.`user`(`id`)
 		ON DELETE CASCADE
 );
 
