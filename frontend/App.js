@@ -36,6 +36,8 @@ import { DoctorDashboard } from "./screens";
 import { PatientDashboard } from "./screens";
 import { Appointments } from "./screens";
 import { Messages } from "./screens";
+import { PatientForm } from "./screens";
+import { ApptConfirmation } from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -77,6 +79,15 @@ const App  = () => {
             fontWeight: 'bold'}, 
         }}
  />
+  <Stack.Screen name="PatientForm" component={PatientForm} options={{title: "Appointment Form",
+        headerStyle: {
+            backgroundColor: "#755293",
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'}, 
+
+ }} />
                 <Stack.Screen name="DoctorDashboard" component={DoctorDashboard} options={{title: "Doctor Dashboard",
         headerStyle: {
             backgroundColor: "#755293",
@@ -101,6 +112,10 @@ const App  = () => {
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold'}, 
+
+ }} />
+                <Stack.Screen name="ApptConfirmation" component={ApptConfirmation} options={{title: "ApptConfirmation",
+          headerShown: false,
 
  }} />
                 <Stack.Screen name="Messages" component={Messages} options={{title: "Messages",
