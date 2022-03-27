@@ -15,6 +15,9 @@ export default function Appointments( props ) {
                     </Pressable>
                 )}
             />
+            <Pressable style={styles.button} onPress={() => navigation.navigate('PatientForm', route.params)}>
+                        <Text style = {styles.buttonText}>Schedule Appointment</Text>
+                    </Pressable>
         </View>
     )
 }
@@ -35,4 +38,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 10,
     },
+    buttonText: {
+        color: "#ffffff",
+        fontWeight: "800",
+    }
 })
