@@ -1,5 +1,6 @@
 import React from "react";
-import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Pressable} from  "react-native";
+import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Pressable, TouchableOpacity} from  "react-native";
+//import { Fonts, Colors, Sizes } from "../constants/styles";
 
 const PatientDashboard =  ({ navigation, route}) => {
 
@@ -29,14 +30,19 @@ const PatientDashboard =  ({ navigation, route}) => {
                         <Pressable style={styles.profileImg}>
                             <Image style={styles.profileImg} source={{uri: 'https://via.placeholder.com/150'}}/>
                             {/*<Text style={{alignSelf: "center"}}>John Doe</Text>*/}
-                            <Text style={{alignSelf: "center"}}>Welcome,{route.params?.name}</Text>
+                            <Text style={{alignSelf: "center"}}>Welcome, {route.params?.name}</Text>
+                        </Pressable>
+                        <Pressable style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientProfile', {username: name})}>
+                            <TouchableOpacity>
+                                <Text style={styles.profileEditText}>Edit Profile</Text>
+                            </TouchableOpacity>
                         </Pressable>
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image}>
+                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('DoctorList')}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
-                            <Text style={styles.text_container}>Notifications</Text>
+                            <Text style={styles.text_container}>Doctors</Text>
                         </Pressable>
                     </View>
 
@@ -83,6 +89,20 @@ const styles = StyleSheet.create({
         height: 80,
         width: 80,
         borderRadius: 40,
+    },
+    profileEditBtn: {
+        width: "80%",
+        backgroundColor: "#755293",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 50,
+        marginBottom: 20,
+    },
+    profileEditText: {
+        color: "#ffffff",
+        fontWeight: "800",
     },
     profileSection: {
         width: '100%',

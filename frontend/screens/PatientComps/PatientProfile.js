@@ -1,13 +1,39 @@
 import React from "react";
+//import CalendarStrip from 'react-native-calendar-strip';
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
+//import {Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
+//import { Fonts, Colors, Sizes } from "../../constants/styles";
+//import SelectPicker from 'react-native-form-select-picker';
 import { images } from "../../constants";
 
-const Register = ({ navigation }) => {
+//const { width } = Dimensions.get('screen');
+
+const PatientProfile = ({ navigation, route}) => {
 
     const [text, onChangeText] = React.useState("This is a text");
     const [number, onChangeNumber] = React.useState(null);
 
-    return(
+    //const image = route.params.image;
+    const username = route.params.name;
+    //const type = route.params.type;
+
+    //const a = route.params.name;//{name} = route.params;
+    //const {name} = route.params;
+
+    function patientDashboard() {
+        return (
+                <View style={styles.scrollContainer}>
+                    <Pressable style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientDashboard', {
+                    })}>
+                        <TouchableOpacity>
+                            <Text style={styles.profileEditText}>Return to Dashboard</Text>
+                        </TouchableOpacity>
+                    </Pressable>
+                </View>
+        )
+    }
+
+    return (
         <View style={{flex: 1}}>
             <ScrollView style={styles.scrollView}>
                 <SafeAreaView style={styles.container}>
@@ -16,7 +42,7 @@ const Register = ({ navigation }) => {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder="Username"
+                            placeholder="hi"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
@@ -40,8 +66,11 @@ const Register = ({ navigation }) => {
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder="Email Address"/>
+                            placeholder="Email Address"
+                            placeholderTextColor="#AFAFAF"
+                            onChangeText={text => onChangeText(text)}/>
                     </View>
+                    <Text style={styles.black}>Password</Text>
                     <View style={styles.inputView}>
                         <TextInput
                             secureTextEntry={true}
@@ -59,13 +88,9 @@ const Register = ({ navigation }) => {
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
-                    <Pressable style={styles.createBtn} onPress={() => navigation.navigate('PatientDashboard')}>
-                        <TouchableOpacity>
-                            <Text style={styles.createText}>Create Account</Text>
-                        </TouchableOpacity>
-                    </Pressable>
                 </SafeAreaView>    
             </ScrollView>
+            {patientDashboard()}
         </View>
     )
 }
@@ -99,6 +124,15 @@ const styles = StyleSheet.create({
         color: "#777777",
         fontWeight: '800',
     },
+    scrollContainer: {
+        backgroundColor: 'white',
+        flex: 1,
+        height: 75.0,
+        position: 'absolute', bottom: 15.0, width: '100%',
+        alignItems: 'center',
+        //paddingHorizontal: Sizes.fixPadding * 2.0,
+        justifyContent: 'center',
+    },
     signUp: {
         color: "#755293",
         fontWeight: '500',
@@ -106,6 +140,20 @@ const styles = StyleSheet.create({
     forgot: {
         color: 'black',
         fontWeight: '500',
+    },
+    profileEditBtn: {
+        width: "80%",
+        backgroundColor: "#755293",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 50,
+        marginBottom: 20,
+    },
+    profileEditText: {
+        color: "#ffffff",
+        fontWeight: "800",
     },
     createBtn: {
         width: '80%',
@@ -138,4 +186,4 @@ const styles = StyleSheet.create({
         height: 170,
     }
 })
-export default Register;
+export default PatientProfile;
