@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Text, View, StyleSheet, TextInput, Image, FlatList, StatusBar, TouchableOpacity, SafeAreaView, Dimensions } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import { LolosSearch } from "react-icons/io";
@@ -20,7 +20,7 @@ export default function DoctorList (props){
         },
         {
             id: '2',
-            name: 'Dr.Brayden Trump',
+            name: 'Dr.Brayden Thread',
             yearsOfExperience: 10,
             rating: 4.7,
             reviews: 235,
@@ -76,16 +76,45 @@ export default function DoctorList (props){
         },
     ];
 
-    function search() {
+    const [search, setSearch] = useState('');
+    const [filteredData, setFilteredData] = useState([]);
+
+    //figure out how to display all doctors initially
+
+    //get all doctors
+
+    const filterSearch = (search) =>{
+        if (search) {
+            const data = doctorsList.filter(
+                function(item) {
+                    const itemData = item.name ? item.name.toUpperCase() 
+                    : ''.toUpperCase();
+                    const searchData = search.toUpperCase();
+                    return itemData.indexOf(searchData) > -1;
+                });
+                setFilteredData(data);
+                setSearch(search);
+        }
+        else {
+            setFilteredData(doctorsList);
+            setSearch(search);
+        }
+    }
+
+    function searchDr() {
+        
         return (
             <View style={styles.headerSearchStyle}>
                 <View style={{ flex: 1 }}>
                     <TextInput
                         placeholder={`Search Doctors`}
                         style={{ ...Fonts.gray17Regular, marginLeft: Sizes.fixPadding, }}
+                        onChangeText={searchDoc => filterSearch(searchDoc)}
+                        value = {search}
                     />
                 </View>
             </View>
+            
         )
     }
 
@@ -112,7 +141,7 @@ export default function DoctorList (props){
                             </Text>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: Sizes.fixPadding - 7.0 }}>
                                 <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding, marginRight: Sizes.fixPadding * 2.0 }}>
-                                    {"Rating:" + item.rating}
+                                    {"Rating: " + item.rating}
                                 </Text>
                                 <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding }}>
                                     {item.reviews} Reviews
@@ -121,28 +150,27 @@ export default function DoctorList (props){
                         </View>
                     </View>
 
-
                     <View style={styles.bookContainerStyle}>
-                        <TouchableOpacity onPress={() => navigation.navigate('TimeSlots', {
+                        <TouchableOpacity onPress={() => navigation.navigate('messages', {
                             image: item.image,
                             name: item.name,
                             type: type,
                             experience: item.yearsOfExperience,
                             rating: item.rating,
                         })}>
-                            <View style={styles.bookVideoConsultButtonStyle}>
-                                <Text style={{ ...Fonts.orangeColorBold }}>Book Video Consult</Text>
+                            <View style={styles.messageButtonStyle}>
+                                <Text style={{ ...Fonts.primaryColorBold }}>View Profile</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('TimeSlots', {
+                        <TouchableOpacity onPress={() => navigation.navigate('PatientForm', {
                             image: item.image,
                             name: item.name,
                             type: type,
-                            experience: item.yearsOfExperience,
-                            rating: item.rating,
+                           // experience: item.yearsOfExperience,
+                           // rating: item.rating,
                         })}>
                             <View style={styles.bookAppointmentButtonStyle}>
-                                <Text style={{ ...Fonts.primaryColorBold }}>Book Appointment</Text>
+                                <Text style={{ color: "white" }}>Book Appointment</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -155,7 +183,7 @@ export default function DoctorList (props){
 
         return (
             <FlatList
-                data={doctorsList}
+                data={filteredData}
                 keyExtractor={(item) => `${item.id}`}
                 renderItem={renderItem}
                 showsVerticalScrollIndicator={false}
@@ -167,7 +195,7 @@ export default function DoctorList (props){
     return <SafeAreaView style={{ flex: 1, }} backgroundColor="rgba(0,0,0,0)">
         <StatusBar backgroundColor={Colors.primary} />
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            {search()}
+            {searchDr()}
             {doctors()}
         </View>
 
@@ -221,20 +249,20 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginHorizontal: Sizes.fixPadding * 2.0,
     },
-    bookVideoConsultButtonStyle: {
+    messageButtonStyle: {
         width: width / 2 - 30,
-        borderColor: '#FF9B07',
+        borderColor: Colors.primary,
         borderWidth: 1.0,
-        backgroundColor: '#FFEDD2',
+        backgroundColor: '#E3E6FE',
         borderRadius: Sizes.fixPadding,
         paddingVertical: Sizes.fixPadding,
         alignItems: 'center',
     },
     bookAppointmentButtonStyle: {
         width: width / 2 - 30,
-        borderColor: Colors.primary,
+        borderColor: "black",
         borderWidth: 1.0,
-        backgroundColor: '#E3E6FE',
+        backgroundColor: '#755293',
         borderRadius: Sizes.fixPadding,
         paddingVertical: Sizes.fixPadding,
         alignItems: 'center',
