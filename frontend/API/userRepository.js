@@ -63,43 +63,4 @@ export class UserRepository {
         })
     }
 
-    /*
-    // PUT update username + password : http://CHANGE-ME:8000/user/
-    updateCreds(loginData){
-        return new Promise((resolve,reject) =>{
-            axios.put(`${this.url}/user/`, loginData)
-                .then(x => {
-                    resolve(x.data);
-                })
-                .catch(x => {
-                    alert(x);
-                    reject(x);
-                })
-        })
-    }
-
-    // PUT update Email : http://CHANGE-ME:8000/user/:userID/updateEmail
-    updateEmail(userID, email){
-        return new Promise((resolve,reject) =>{
-            axios.put(`${this.url}/user/${userID}/updateEmail`, email)
-                .then(x => {
-                    resolve(x.data);
-                })
-                .catch(x => {
-                    alert(x);
-                    reject(x);
-                })
-        })
-    }
-
-    // DELETE deletes user depending on userID : http://CHANGE-ME:8000/user/:userID
-    deleteUser(userID) {
-        return new Promise((resolve, reject) => {
-            axios.delete(`${this.url}/user/${userID}`, this.config)
-                .then(x => resolve(x.data))
-            alert("User has been deleted")
-        });
-    }
-    */
-
 }
