@@ -30,8 +30,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Login, Register, DoctorDashboard, PatientDashboard, Appointments, Messages,
-PatientForm, ApptConfirmation, PatientProfile, DoctorList} from "./screens";
+import { Login, Register, DoctorDashboard, PatientDashboard, Messages,
+PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();

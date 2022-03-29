@@ -33,11 +33,12 @@ const ApptConfirmation = ({ navigation, route }) => {
                         width: width - 140.0,
                     }}>
                        
-                       <Text style={{ ...Fonts.black16Bold, }}>{name}Dr. Bob Smith</Text>
+                       <Text style={{ ...Fonts.black16Bold, }}>{name}</Text>
                             <Text style={{ ...Fonts.primaryColor13Bold }}>View Profile</Text>
+                        
                     </View>
                     
-                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Specialty: {type}Radiologist</Text>
+                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Specialty: {type}</Text>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Date: {date}3/11</Text>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Time: {time}</Text>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Reason: {reason}</Text>
