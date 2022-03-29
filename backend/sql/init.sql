@@ -3,10 +3,11 @@
 -- -----------------------------------------------------
 
 -- Create user called `admin` with password `XXXXXX`
-CREATE USER 'admin'@'%' IDENTIFIED BY 'Password1!';
+CREATE USER IF NOT EXISTS 'admin'@'%' IDENTIFIED BY 'Password1!';
 
 -- Give access to admin on db
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';
+CREATE DATABASE IF NOT EXISTS `swvault`;
+USE `swvault`;
 GRANT ALL PRIVILEGES ON `swvault` TO 'admin'@'%';
 
 -- Set password method to native password for mysql workbench access (mysql 8 issue)
