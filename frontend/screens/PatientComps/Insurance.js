@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
 import { images } from "../../constants";
 
-const Register = ({ navigation }) => {
+const Insurance = ({ navigation }) => {
 
     const [text, onChangeText] = React.useState("This is a text");
     const [number, onChangeNumber] = React.useState(null);
@@ -12,56 +12,41 @@ const Register = ({ navigation }) => {
             <ScrollView style={styles.scrollView}>
                 <SafeAreaView style={styles.container}>
                     <View style={{height: "10%"}}></View>
-                    <Text style={styles.black}>Username</Text>
+                    <Text style={styles.black}>Name of Health Plan</Text>
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder="Username"
+                            placeholder="Name of Health Plan"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
-                    <Text style={styles.black}>First Name</Text>
+                    <Text style={styles.black}>Member ID</Text>
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder="First Name"
+                            placeholder="Member ID"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
-                    <Text style={styles.black}>Last Name</Text>
+                    <Text style={styles.black}>Group ID (Optional)</Text>
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder="Last Name"
+                            placeholder="Group ID (Optional)"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
-                    <Text style={styles.black}>E-mail Address</Text>
+                    <Text style={styles.black}>Relation to Plan Holder</Text>
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder="Email Address"/>
-                    </View>
-                    <View style={styles.inputView}>
-                        <TextInput
-                            secureTextEntry={true}
-                            style={styles.inputText}
-                            placeholder="Password"
-                            placeholderTextColor="#AFAFAF"
+                            placeholder="Relation to Plan Holder"
+							placeholderTextColor="#AFAFAF"
                             onChangeText={text => onChangeText(text)}/>
                     </View>
-                    <Text style={styles.black}>Confirm Password</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
-                            secureTextEntry={true}
-                            style={styles.inputText}
-                            placeholder="Confirm Password"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
-                    </View>
-                    <Pressable style={styles.createBtn} onPress={() => navigation.navigate('PatientDashboard')}>
+                    <Pressable style={styles.createBtn}>
                         <TouchableOpacity>
-                            <Text style={styles.createText}>Create Account</Text>
+                            <Text style={styles.createText}>Next</Text>
                         </TouchableOpacity>
                     </Pressable>
                 </SafeAreaView>    
@@ -138,4 +123,4 @@ const styles = StyleSheet.create({
         height: 170,
     }
 })
-export default Register;
+export default Insurance;
