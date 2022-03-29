@@ -5,10 +5,11 @@ export class UserRepository {
     // Leave this here
     url = false ? 'http://CHANGE-ME:8000' : 'http://localhost:8000';
 
-    // POST Create User : http://CHANGE-ME:8000/user/create
+
+    // POST Create User : http://CHANGE-ME:8000/user/register
     registerUser(loginData){
         return new Promise((resolve,reject) =>{
-            axios.post(`${this.url}/user/create`, loginData)
+            axios.post(`${this.url}/user/register`, loginData)
                 .then(x => {
                     resolve(x.data);
                 })
@@ -62,6 +63,7 @@ export class UserRepository {
         })
     }
 
+    /*
     // PUT update username + password : http://CHANGE-ME:8000/user/
     updateCreds(loginData){
         return new Promise((resolve,reject) =>{
@@ -98,5 +100,6 @@ export class UserRepository {
             alert("User has been deleted")
         });
     }
+    */
 
 }
