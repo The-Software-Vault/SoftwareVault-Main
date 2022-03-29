@@ -15,6 +15,9 @@ const PatientForm = ({ navigation, route }) => {
     //const image = route.params.image;
     const name = route.params.name;
     const type = route.params.type;
+    const image = route.params.image;
+   // const experience = route.params.experience;
+    //const rating = route.params.rating;
 
     const [selectedSlot, setSelectedSlot] = React.useState('');
     const [selectDate, setSelectDate] = React.useState('');
@@ -32,7 +35,7 @@ const PatientForm = ({ navigation, route }) => {
             }}>
                 <View style={styles.doctorImageContainer}>
                     <Image
-                        source={{uri: 'https://via.placeholder.com/150'}}
+                        source={image}
                         resizeMode="contain"
                         style={{
                             height: 90.0, width: 90.0, borderRadius: 45.0,
@@ -45,11 +48,11 @@ const PatientForm = ({ navigation, route }) => {
                         width: width - 140.0,
                     }}>
                         <View style={{ width: width / 3.0, }}>
-                            <Text>{name}Dr. Bob Smith</Text>
+                            <Text>{name}</Text>
                         </View>
                         <Text>View Profile</Text>
                     </View>
-                    <Text>{type}Radiologist</Text>
+                    <Text>{type}</Text>
                 </View>
             </View>
         )
