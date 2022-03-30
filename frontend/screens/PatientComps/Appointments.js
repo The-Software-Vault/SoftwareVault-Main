@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Text, View, useWindowDimensions, FlatList, Dimensions, Image, TouchableOpacity, StyleSheet, Pressable } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import Dialog from "react-native-dialog";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 const { width } = Dimensions.get('screen');
 

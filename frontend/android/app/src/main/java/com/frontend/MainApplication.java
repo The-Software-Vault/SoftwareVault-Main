@@ -9,7 +9,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
-import com.reactnativepagerview.PagerViewPackage;
+//import com.reactnativepagerview.PagerViewPackage;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {

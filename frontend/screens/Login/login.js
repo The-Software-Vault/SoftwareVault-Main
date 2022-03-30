@@ -1,6 +1,6 @@
 import React from "react";
 // import { bcrypt } from 'bcrypt'
-import  bcrypt from 'bcrypt'
+// import  bcrypt from 'bcrypt'
 import { UserRepository } from "../../API/userRepository";
 //import { StyleSheet, View, Image, Text, TextInput, TouchableOpacity} from "react-native";
 import {StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity} from  "react-native";
@@ -26,6 +26,8 @@ const Login = ({ navigation }) => {
         --> see bcrypt.compare function below
     5. If they match, login.
     */
+
+    /*
 
     // Return user id for given username
     async function getUserID(username) {
@@ -57,9 +59,10 @@ const Login = ({ navigation }) => {
 
         return true;
     }
+    */
 
     function checkUserType(){
-        const checker = checkUser(username, password);
+        //const checker = checkUser(username, password);
 
         // console.log("Hello,", username)
         if(username === "Doctor"){

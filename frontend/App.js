@@ -139,7 +139,7 @@ const App  = () => {
                     title: "ApptConfirmation",
                     headerShown: false,
                 }} />
-                <Stack.Screen name="Messages" component={Messages} options={{
+                <Stack.Screen name="messages" component={Messages} options={{
                     title: "Messages",
                     headerStyle: {
                         backgroundColor: "#755293",
