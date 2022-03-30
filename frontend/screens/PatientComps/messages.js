@@ -10,7 +10,7 @@ export default function Messages( props ) {
             <FlatList
                 data = {route.params}
                 renderItem={({ item }) => (
-                    <Pressable style={styles.msgBtn} onPress={() => navigation.navigate('Messages', item)}>
+                    <Pressable style={styles.msgBtn} onPress={() => navigation.navigate('messages', item)}>
                         <TouchableOpacity>
                             <Text >{item.content}</Text>
                         </TouchableOpacity>

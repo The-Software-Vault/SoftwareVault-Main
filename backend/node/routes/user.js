@@ -1,4 +1,4 @@
-const pool = require('../connection')
+cconst pool = require('../connection')
 
 module.exports = function user(app, logger) {
 
