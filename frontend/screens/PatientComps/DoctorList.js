@@ -83,26 +83,7 @@ export default function DoctorList (props){
 
     //get all doctors
 
-    const filterSearch = (search) =>{
-        if (search) {
-            const data = doctorsList.filter(
-                function(item) {
-                    const itemData = item.name ? item.name.toUpperCase() 
-                    : ''.toUpperCase();
-                    const searchData = search.toUpperCase();
-                    return itemData.indexOf(searchData) > -1;
-                });
-                setFilteredData(data);
-                setSearch(search);
-        }
-        else {
-            setFilteredData(doctorsList);
-            setSearch(search);
-        }
-    }
-
     function searchDr() {
-        
         return (
             <View style={styles.headerSearchStyle}>
                 <View style={{ flex: 1 }}>
@@ -114,8 +95,27 @@ export default function DoctorList (props){
                     />
                 </View>
             </View>
-            
         )
+    }
+
+    const filterSearch = (search) =>{
+        if (search) {
+            const data = doctorsList.filter(
+                function(item) {
+                    const itemData = item.name ? item.name.toUpperCase()
+                        : ''.toUpperCase();
+                    const searchData = search.toUpperCase();
+                    return itemData.indexOf(searchData) > -1;
+                });
+            setFilteredData(data);
+            setSearch(search);
+            console.log("--> Search Query: ", search, "\n\t-->Results: ", filteredData)
+        }
+        else {
+            setFilteredData(doctorsList);
+            setSearch(search);
+            console.log("--> Search Query: ", search, "\n\t-->Results: ", filteredData)
+        }
     }
 
     function doctors() {
@@ -133,6 +133,7 @@ export default function DoctorList (props){
                                 }}
                             />
                         </View>
+
                         <View>
                             <Text style={{ ...Fonts.black16Bold }}>{item.name}</Text>
                             <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>{type}</Text>
@@ -166,8 +167,8 @@ export default function DoctorList (props){
                             image: item.image,
                             name: item.name,
                             type: type,
-                           // experience: item.yearsOfExperience,
-                           // rating: item.rating,
+                            // experience: item.yearsOfExperience,
+                            // rating: item.rating,
                         })}>
                             <View style={styles.bookAppointmentButtonStyle}>
                                 <Text style={{ color: "white" }}>Book Appointment</Text>
@@ -183,6 +184,7 @@ export default function DoctorList (props){
 
         return (
             <FlatList
+                ListHeaderComponent={searchDr}
                 data={filteredData}
                 keyExtractor={(item) => `${item.id}`}
                 renderItem={renderItem}
@@ -200,8 +202,6 @@ export default function DoctorList (props){
         </View>
 
     </SafeAreaView>
-
-
 }
 
 const styles = StyleSheet.create({
