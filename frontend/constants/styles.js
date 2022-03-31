@@ -1,18 +1,18 @@
 
 export const Fonts = {
 
-    blackRegular: { fontFamily: 'NotoSans_Regular', },
-    black18Regular: { fontFamily: 'NotoSans_Regular', fontSize: 18.0, },
-    black16Regular: { fontFamily: 'NotoSans_Regular', fontSize: 16.0, },
-    black20Regular: { fontFamily: 'NotoSans_Regular', fontSize: 20.0, },
+    blackRegular: { fontFamily: 'NotoSans_Regular', color: 'black'},
+    black18Regular: { fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 18.0, },
+    black16Regular: { fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, },
+    black20Regular: { fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 20.0, },
 
-    blackBold: { fontFamily: 'NotoSans_Bold', },
-    black15Bold: { fontFamily: 'NotoSans_Bold', fontSize: 15.0, },
-    black16Bold: { fontFamily: 'NotoSans_Bold', fontSize: 16.0, },
-    black18Bold: { fontFamily: 'NotoSans_Bold', fontSize: 18.0, },
-    black20Bold: { fontFamily: 'NotoSans_Bold', fontSize: 20.0, },
-    black22Bold: { fontFamily: 'NotoSans_Bold', fontSize: 22.0, },
-    black24Bold: { fontFamily: 'NotoSans_Bold', fontSize: 24.0, },
+    blackBold: { fontFamily: 'NotoSans_Bold', color: 'black'},
+    black15Bold: { fontFamily: 'NotoSans_Bold', fontSize: 15.0, color: 'black'},
+    black16Bold: { fontFamily: 'NotoSans_Bold', fontSize: 16.0, color: 'black'},
+    black18Bold: { fontFamily: 'NotoSans_Bold', fontSize: 18.0, color: 'black'},
+    black20Bold: { fontFamily: 'NotoSans_Bold', fontSize: 20.0, color: 'black'},
+    black22Bold: { fontFamily: 'NotoSans_Bold', fontSize: 22.0, color: 'black'},
+    black24Bold: { fontFamily: 'NotoSans_Bold', fontSize: 24.0, color: 'black'},
 
     whiteRegular: { fontFamily: 'NotoSans_Regular', color: 'white', },
     white16Regular: { fontFamily: 'NotoSans_Regular', color: 'white', fontSize: 16.0 },
