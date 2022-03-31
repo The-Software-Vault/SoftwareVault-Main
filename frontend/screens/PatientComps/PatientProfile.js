@@ -14,7 +14,7 @@ const PatientProfile = ({ navigation, route}) => {
     const [number, onChangeNumber] = React.useState(null);
 
     //const image = route.params.image;
-    const username = route.params.name;
+    const {username} = route.params;
     //const type = route.params.type;
 
     //const a = route.params.name;//{name} = route.params;
@@ -22,78 +22,74 @@ const PatientProfile = ({ navigation, route}) => {
 
     function patientDashboard() {
         return (
-                <View style={styles.scrollContainer}>
-                    <Pressable style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientDashboard', {
-                    })}>
-                        <TouchableOpacity>
-                            <Text style={styles.profileEditText}>Return to Dashboard</Text>
-                        </TouchableOpacity>
-                    </Pressable>
-                </View>
+            <Pressable style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientDashboard', {name : username})}>
+                <TouchableOpacity>
+                    <Text style={styles.profileEditText}>Return to Dashboard</Text>
+                </TouchableOpacity>
+            </Pressable>
         )
     }
 
     return (
         <View style={{flex: 1}}>
-            <ScrollView style={styles.scrollView}>
-                <SafeAreaView style={styles.container}>
-                    <View style={{height: "10%"}}></View>
-                    <Text style={styles.black}>Username</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder="hi"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
-                    </View>
-                    <Text style={styles.black}>First Name</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder="First Name"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
-                    </View>
-                    <Text style={styles.black}>Last Name</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder="Last Name"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
-                    </View>
-                    <Text style={styles.black}>E-mail Address</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
-                            style={styles.inputText}
-                            placeholder="Email Address"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
-                    </View>
-                    <Text style={styles.black}>Password</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
-                            secureTextEntry={true}
-                            style={styles.inputText}
-                            placeholder="Password"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
-                    </View>
-                    <Text style={styles.black}>Confirm Password</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
-                            secureTextEntry={true}
-                            style={styles.inputText}
-                            placeholder="Confirm Password"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
-                    </View>
-                </SafeAreaView>    
-            </ScrollView>
-            {patientDashboard()}
+            <SafeAreaView style={styles.container}>
+                <View style={{height: "10%"}}></View>
+                <Text style={{alignSelf: "center", color: "black"}}>Username</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder={username}
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={text => onChangeText(text)}/>
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>First Name</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder=""
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={text => onChangeText(text)}/>
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Last Name</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder=""
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={text => onChangeText(text)}/>
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>E-mail Address</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder=""
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={text => onChangeText(text)}/>
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Password</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        secureTextEntry={true}
+                        style={styles.inputText}
+                        placeholder=""
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={text => onChangeText(text)}/>
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Confirm Password</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        secureTextEntry={true}
+                        style={styles.inputText}
+                        placeholder=""
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={text => onChangeText(text)}/>
+                </View>
+                {patientDashboard()}
+            </SafeAreaView>
         </View>
     )
 }
+
 const styles = StyleSheet.create({
     scrollView: {
         flex: 0.8
@@ -148,8 +144,8 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 50,
-        marginBottom: 20,
+        marginTop: 40,
+        marginBottom: 30,
     },
     profileEditText: {
         color: "#ffffff",

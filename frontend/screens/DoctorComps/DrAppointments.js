@@ -8,16 +8,16 @@ const Tab = createMaterialTopTabNavigator();
 
 const { width } = Dimensions.get('screen');
 
-export default function Appointments (props) {
+export default function DrAppointments (props) {
 
     const {route, navigation} = props;
 
-    const scheduleButton = () => {
+    const settingsButton = () => {
         return (
         <View style = {{marginBottom: 4}}>
             
-            <Pressable style={styles.scheduleButton} onPress={() => navigation.navigate('DoctorList', route.params)}>
-                        <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>
+            <Pressable style={styles.scheduleButton} onPress={() => navigation.navigate('ApptSettings', route.params)}>
+                        <Text style={{ ...Fonts.white20Regular }}>Appointment Settings</Text>
                     </Pressable>
         </View>
         )
@@ -27,47 +27,55 @@ export default function Appointments (props) {
             id: '1',
             date: '31 March 2022',
             time: '10:30 AM',
-            doctor: 'Dr.Beatriz Watson',
-            type: 'Dentist'
+            patient: 'Beatriz Watson',
+            reason: 'Ultrasound',
+            symptoms: 'N/A',
+            prescription: 'N/A',
+            drNotes: 'Looking good!'
         },
         {
             id: '2',
             date: '1 April 2022',
             time: '5:30 PM',
-            doctor: 'Dr.Beatriz Watson',
-            type: 'Dentist'
+            patient: 'Bob Smith',
+            reason: 'Sick',
+            symptoms: 'Sore throat & nausea',
+            prescription: 'Zofran',
+            drNotes: 'Take twice a day for 7 days'
         },
         {
             id: '3',
             date: '4 April 2022',
             time: '10:00 AM',
-            doctor: 'Dr.Diego Williams',
-            type: 'General Physician'
-        },
-        {
-            id: '4',
-            date: '10 April 2022',
-            time: '11:00 AM',
-            doctor: 'Dr.Shira Gates',
-            type: 'Nutritian'
+            patient: 'Alice Smith',
+            reason: 'Ultrasound',
+            symptoms: 'N/A',
+            prescription: 'N/A',
+            drNotes: 'Everything looks good!'
         },
     ];
     
     const canceledDataList = [
-        //will need to store canceled appointments
+        //will need to store canceled appointments & cancellation reasons if canceled by a doctor
         {
             id: '1',
             date: '8 April 2022',
             time: '5:00 PM',
-            doctor: 'Dr.Shira Gates',
-            type: 'Nutritian'
+            patient: 'Shira Gates',
+            reason: 'Sickness',
+            symptoms: 'Headache',
+            canceledBy: 'Patient',
+            cancelReason: 'N/A'
         },
         {
             id: '2',
             date: '31 March 2022',
             time: '1:30 PM',
-            doctor: 'Dr.Linnea Bezos',
-            type: 'Cough & Fever'
+            patient: 'Linnea Bezos',
+            reason: 'Sickness',
+            symptoms: 'Cough & Sore Throat',
+            canceledBy: 'Doctor',
+            cancelReason: 'Busy'
         },
     ];
     
@@ -82,8 +90,11 @@ export default function Appointments (props) {
                     </View>
                     <View style={{ marginLeft: 10.0 }}>
                         <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                        <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
-                        <Text style={{ ...Fonts.primaryColorRegular }}>{item.type}</Text>
+                        <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>Patient: {item.patient}</Text>
+                        <Text style={{ ...Fonts.black16Regular }}>Reason: {item.reason}</Text>
+                        <Text style={{ ...Fonts.black16Regular }}>Symptoms: {item.symptoms}</Text>
+                        <Text style={{ ...Fonts.black16Regular }}>Prescription: {item.prescription}</Text>
+                        <Text style={{ ...Fonts.black16Regular }}>Notes: {item.drNotes}</Text>
                     </View>
                 </View>
                 <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
@@ -97,7 +108,7 @@ export default function Appointments (props) {
                 <View style={styles.noActiveDataContainerStyle}>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Past Appointments</Text>
                 </View>  
-                {scheduleButton()}
+                {settingsButton()}
                 </View>
                 :
             <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -106,13 +117,13 @@ export default function Appointments (props) {
                     keyExtractor={(item) => `${item.id}`}
                     renderItem={renderItem}
                 />
-                {scheduleButton()}
+                {settingsButton()}
             </View>
         )
     
     }
     
-    //should be able to view the doctors profile by clicking on the doctors name
+    //should be able to view the doctors profile
     //provide reason for cancellation perhaps?
     const CanceledScreen = () => {
         const renderItem = ({ item }) => (
@@ -123,8 +134,10 @@ export default function Appointments (props) {
                     </View>
                     <View style={{ marginLeft: Sizes.fixPadding }}>
                         <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                        <Text style={{ marginVertical: Sizes.fixPadding - 2.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
-                        <Text style={{ ...Fonts.primaryColorRegular }}>{item.type}</Text>
+                        <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>Patient: {item.patient}</Text>
+                        <Text style={{ ...Fonts.black16Regular }}>Reason: {item.reason}</Text>
+                        <Text style={{ ...Fonts.black16Regular }}>Symptoms: {item.symptoms}</Text>
+                        <Text style={{ ...Fonts.black16Regular }}>Cancellation Reason: {item.cancelReason}</Text>
                     </View>
                 </View>
                 <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
@@ -138,7 +151,7 @@ export default function Appointments (props) {
                 <View style={styles.noActiveDataContainerStyle}>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Canceled Appointments</Text>
                 </View>  
-                {scheduleButton()}
+                {settingsButton()}
                 </View>
                 :
             <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -147,7 +160,7 @@ export default function Appointments (props) {
                     keyExtractor={(item) => `${item.id}`}
                     renderItem={renderItem}
                 />
-                {scheduleButton()}
+                {settingsButton()}
             </View>
         )
     }
@@ -161,8 +174,7 @@ export default function Appointments (props) {
             id: '1',
             date: '4 April 2022',
             time: '10:00 AM',
-            doctor: 'Dr.Ronan Peiterson',
-            type: 'General Physician',
+            patient: 'Jane Smith',
             reason: 'Ultrasound',
             symptoms: 'N/A'
         },
@@ -170,8 +182,7 @@ export default function Appointments (props) {
             id: '2',
             date: '18 April 2022',
             time: '12:30 PM',
-            doctor: 'Dr.Brayden Thread',
-            type: 'Cardiologist',
+            patient: 'Alice Smith',
             reason: 'Ultrasound',
             symptoms: 'N/A'
         },
@@ -179,10 +190,10 @@ export default function Appointments (props) {
             id: '3',
             date: '25 April 2022',
             time: '2:30 PM',
-            doctor: 'Dr.Brayden Thread',
-            type: 'Cardiologist',
-            reason: 'Ultrasound',
-            symptoms: 'N/A'
+            patient: 'Brayden Thread',
+            reason: 'Sickness',
+            symptoms: 'Nausea',
+            
         },
     ]);
 
@@ -220,9 +231,6 @@ export default function Appointments (props) {
         })
         setActiveDataList(filterArray);
     }
-
-    //show who the appointment was canceled by (doctor or patient)
-    //if doctor, show the reason for the cancellation 
 
     const showDetailBox = (item) => {
         return (
@@ -292,7 +300,7 @@ export default function Appointments (props) {
                         </View>
                         <View style={{ marginLeft: Sizes.fixPadding }}>
                             <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                            <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
+                            <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.patient}</Text>
                             <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true)}}>
                         <Text style = {styles.detailsButtonTxt}>Details</Text>
                         {showDetailBox(item)}
@@ -318,7 +326,7 @@ export default function Appointments (props) {
                 <View style={styles.noActiveDataContainerStyle}>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Upcoming Appointments</Text>
                 </View>  
-                {scheduleButton()}
+                {settingsButton()}
                 </View>
                 :
                 <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -327,7 +335,7 @@ export default function Appointments (props) {
                         keyExtractor={(item) => `${item.id}`}
                         renderItem={renderItem}
                     />
-                    {scheduleButton()}
+                    {settingsButton()}
                 </View>
         )
     }
