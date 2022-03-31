@@ -30,7 +30,7 @@ const PatientDashboard =  ({ navigation, route}) => {
                         <Pressable style={styles.profileImg}>
                             <Image style={styles.profileImg} source={{uri: 'https://via.placeholder.com/150'}}/>
                             {/*<Text style={{alignSelf: "center"}}>John Doe</Text>*/}
-                            <Text style={{alignSelf: "center"}}>Welcome, {route.params?.name}</Text>
+                            <Text style={{alignSelf: "center", color: "black"}}>Welcome, {route.params?.name}</Text>
                         </Pressable>
                         <Pressable style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientProfile', {username: name})}>
                             <TouchableOpacity>

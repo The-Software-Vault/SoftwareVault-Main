@@ -31,7 +31,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Login, Register, DoctorDashboard, PatientDashboard, Messages,
-PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments} from "./screens";
+PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
