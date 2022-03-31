@@ -80,10 +80,15 @@ export default function DoctorList (props){
     const [filteredData, setFilteredData] = useState([]);
 
     //figure out how to display all doctors initially
+    //useEffect with API call to database for list of doctors I think
 
     //get all doctors
 
-    const filterSearch = (search) =>{
+    useEffect(() => {
+        setFilteredData(doctorsList);
+    },[]);
+
+    const filterSearch = (search) => {
         if (search) {
             const data = doctorsList.filter(
                 function(item) {
