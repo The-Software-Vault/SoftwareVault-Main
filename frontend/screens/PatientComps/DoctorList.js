@@ -24,8 +24,31 @@ export default function DoctorList (props){
     const [filteredData, setFilteredData] = useState([]);
 
     //figure out how to display all doctors initially
+    //useEffect with API call to database for list of doctors I think
 
     //get all doctors
+
+    useEffect(() => {
+        setFilteredData(doctorsList);
+    },[]);
+
+    const filterSearch = (search) => {
+        if (search) {
+            const data = doctorsList.filter(
+                function(item) {
+                    const itemData = item.name ? item.name.toUpperCase() 
+                    : ''.toUpperCase();
+                    const searchData = search.toUpperCase();
+                    return itemData.indexOf(searchData) > -1;
+                });
+                setFilteredData(data);
+                setSearch(search);
+        }
+        else {
+            setFilteredData(doctorsList);
+            setSearch(search);
+        }
+    }
 
     function searchDr() {
         return (
@@ -40,26 +63,6 @@ export default function DoctorList (props){
                 </View>
             </View>
         )
-    }
-
-    const filterSearch = (search) =>{
-        if (search) {
-            const data = doctorsList.filter(
-                function(item) {
-                    const itemData = item.name ? item.name.toUpperCase()
-                        : ''.toUpperCase();
-                    const searchData = search.toUpperCase();
-                    return itemData.indexOf(searchData) > -1;
-                });
-            setFilteredData(data);
-            setSearch(search);
-            console.log("--> Search Query: ", search, "\n\t-->Results: ", filteredData)
-        }
-        else {
-            setFilteredData(doctorsList);
-            setSearch(search);
-            console.log("--> Search Query: ", search, "\n\t-->Results: ", filteredData)
-        }
     }
 
     function doctors() {
@@ -128,7 +131,6 @@ export default function DoctorList (props){
 
         return (
             <FlatList
-                ListHeaderComponent={searchDr}
                 data={filteredData}
                 keyExtractor={(item) => `${item.id}`}
                 renderItem={renderItem}
@@ -139,7 +141,7 @@ export default function DoctorList (props){
     }
 
     return <SafeAreaView style={{ flex: 1, }} backgroundColor="rgba(0,0,0,0)">
-        <StatusBar backgroundColor={"#755293"} />
+        <StatusBar backgroundColor={Colors.primary} />
         <View style={{ flex: 1, backgroundColor: 'white' }}>
             {searchDr()}
             {doctors()}

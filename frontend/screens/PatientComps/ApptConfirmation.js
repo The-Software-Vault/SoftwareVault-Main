@@ -39,7 +39,7 @@ const ApptConfirmation = ({ navigation, route }) => {
                     </View>
                     
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Specialty: {type}</Text>
-                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Date: {date}3/11</Text>
+                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Date: {date}</Text>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Time: {time}</Text>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Reason: {reason}</Text>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Symptoms: {symptoms}</Text>

@@ -3,6 +3,7 @@ import CalendarStrip from 'react-native-calendar-strip';
 import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import SelectPicker from 'react-native-form-select-picker';
+import moment from "moment";
 
 const timeSlots = ["8:00 A.M.", "8:30 A.M.", "9:00 A.M.", "9:30 A.M.", "10:00 A.M.", "10:30 A.M.", "11:00 A.M.", "11:30 A.M.", "12:00 P.M.", "12:30 P.M.", "1:00 P.M.", "1:30 P.M.", "2:00 P.M.", "2:30 P.M.", "3:00 P.M.", "3:30 P.M.", "4:00 P.M.", "4:30 P.M.", "5:00 P.M.", "5:30 P.M.", "6:00 P.M.", ]
 
@@ -76,6 +77,7 @@ const PatientForm = ({ navigation, route }) => {
         return date.isoWeekday() === 7;
     }
 
+    //have to double tap the date to get it to highlight for some reason
     function calendar() {
         return (
             <View style={{flex: 1}}>
@@ -86,7 +88,7 @@ const PatientForm = ({ navigation, route }) => {
                             backgroundColor: "#755293",
                             alignItems: 'center',
                             justifyContent: 'center'
-                        }}
+                        }}   
                         dateNumberStyle={{ color: 'black', fontSize: 17.0 }}
                         dateNameStyle={{ color: 'black', fontSize: 15.0 }}
                         highlightDateNameStyle={{ color: 'white', fontSize: 15.0 }}
@@ -99,10 +101,10 @@ const PatientForm = ({ navigation, route }) => {
                         disabledDateNameStyle={{ color: 'gray', fontSize: 15.0 }}
                         disabledDateNumberStyle={{ color: 'gray', fontSize: 17.0, }}
                         useIsoWeekday={false}
-                        //onDateSelected={(date) =>
-                          //  setSelectDate(date)
-                      // }
-
+                        onDateSelected={(date) =>
+                            setSelectDate(date.format('MM-DD-YYYY'))
+                       }      
+                      // selectedDate={selectDate} 
                     />
                 </View>
             </View>
