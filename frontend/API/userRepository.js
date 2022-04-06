@@ -3,8 +3,7 @@ import axios from 'axios'
 export class UserRepository {
 
     // Leave this here
-    url = false ? 'http://CHANGE-ME:8000' : 'http://192.168.132.46:8000';
-
+    url = false ? 'http://CHANGE-ME:8000' : 'http://localhost:8000';
 
     // POST Create User : http://CHANGE-ME:8000/user/register
     registerUser(loginData){
@@ -28,7 +27,7 @@ export class UserRepository {
                     resolve(x.data);
                 })
                 .catch(x => {
-                    alert(x);
+                    alert('Wrong Username/Password!', x);
                     reject(x);
                 })
         })

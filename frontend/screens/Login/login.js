@@ -1,13 +1,8 @@
 import React from "react";
 import axios from 'axios'
-//const bcrypt = require('bcrypt');
-//const saltRounds = 10;
-// import { bcrypt } from 'bcrypt'
-// import  bcrypt from 'bcrypt'
-import { UserRepository } from "../../API/userRepository";
-//import { StyleSheet, View, Image, Text, TextInput, TouchableOpacity} from "react-native";
-import {StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity} from  "react-native";
 import { images } from "../../constants/";
+import { UserRepository } from "../../API/userRepository";
+import { StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity } from  "react-native";
 
 const Login = ({ navigation }) => {
 
@@ -15,123 +10,10 @@ const Login = ({ navigation }) => {
 
     const [username, onChangeUsername] = React.useState('');
     const [password, onChangePassword] = React.useState('');
-    const [text, onChangeText] = React.useState("This is a text");
-    const [number, onChangeNumber] = React.useState(null);
-
-    /*
-    1. Declare password variable
-        --> const password = password
-    2. Check if entered username exists in database
-        --> if username in user.username: return true
-    3. If match returns true, return hashed password
-        --> let hashpass = user.hashpass
-    4. Hash the entered password and compare it with hasspass
-        --> see bcrypt.compare function below
-    5. If they match, login.
-    */
-
-    /*
-    // Return user id for given username
-    async function getUserID(username) {
-        console.log(logins.userDetailsParam({username: username}))
-        //console.log("Oks:", logins.userDetailsBody({username}))
-
-
-        axios.get(`${logins.url}/user/`, {params: username})
-            .then(response => {
-                if(response.data === 0) {
-                    console.log("Invalid: ", this.data())
-                    this.data()
-                }
-                else {
-                    console.log("Valid: ", response.data.username())
-                    //this.validLogin(response.data)
-                }
-            })
-
-
-        //console.log("UserBody: ", logins.userDetailsBody({username})[4]);
-        //console.log("UserBody: ", logins.userDetailsBody({username})[4]);
-        //return (await logins.userDetailsBody({username}))[0];
-        return (await logins.userDetailsBody({username}))[0];
-    }
-
-    // Return the given user's hashed password
-    async function getHashed(userID) {
-        let hashpassed = logins.userDetailsParam(1);
-        console.log("hashy: ", hashpassed)
-        //console.log("Hashed: ", logins.userDetailsParam(1));
-        return (await logins.userDetailsParam({userID}))[5];
-    }
-
-
-    async function checkUser(username, password) {
-        //... fetch user from a db etc.
-        let userID = getUserID(username);
-        let hashPass = getHashed(userID);
-
-        console.log("UserID: ", userID);
-        console.log("HashPass: ", hashPass);
-
-
-
-        const match = await bcrypt.compare(password, hashPass);
-
-        if(match) {
-            console.log("Password: ", password)
-            console.log("Hashed: ", hashPass)
-        }
-
-        console.log("Yo: ", password)
-
-        return true;
-
-    }
-
-    async function generateHash() {
-        const myHash = await bcrypt.hash(password, saltRounds);
-        console.log("Hash: ", myHash);
-        //return myHash
-    }
-
-    async function comparePass(hash) {
-        const myPass = await bcrypt.compare(password, hash);
-        console.log('Comparing ', password, ' >>> ', myPass);
-
-        //const hashPass = await bcrypt.compare(someOtherPassword, hash);
-        //console.log('Comparing ', someOtherPassword, ' >>> ', result2);
-    }
-*/
-
 
     function checkUserType(){
-        //console.log("HIIII", username, " -> ",getUserID(username))
-        //let log_creds = getUserID(username);
-        //console.log("Username: ", log_creds);
+        console.log("Status: ", logins.verifyUser({username: username, hashpass: password}).value)
 
-        //let log_pass = getHashed(1)
-        //console.log("HashPass: ", log_pass)
-        //const checker = checkUser(username, password);
-        //console.log("Password: ", password)
-
-        // Hashing a Password - Autogenerate a salt & hash
-        /*
-        bcrypt.hash(password, saltRounds, function(err, hash) {
-            console.log(hash)
-            // Store hash in your password DB.
-            //console.log("Password: ", password)
-            //console.log("Hashed: ", hash)
-        });
-         */
-
-        //generateHash();
-        //let myHash = generateHash()
-        //comparePass(myHash)
-        //console.log("Username: ", username, "\tPassword: ", password)
-        console.log("Status: ", logins.verifyUser({username: username, hashpass: password}))
-
-
-        // console.log("Hello,", username)
         if(username === "Doctor"){
             return 'DoctorDashboard'
         }
@@ -139,48 +21,6 @@ const Login = ({ navigation }) => {
             return 'PatientDashboard';
         }
     }
-
-/*
-    async function onLogin() {
-        const bcrypt = require('bcrypt');
-        const saltRounds = 10;
-
-        // Hashing a Password - Autogenerate a salt & hash
-        bcrypt.hash(password, saltRounds, function(err, hash) {
-            // Store hash in your password DB.
-            console.log("Password: ", password)
-            console.log("Hashed: ", hash)
-        });
-
-        // Checking a password
-        bcrypt.compare(password, hash, function(err, result) {
-            // result == true
-            console.log("The supplied hash matches with supplied plain text password!")
-
-            axios.post(`${logins.url}/user/login`, {username: username, password : hash})
-                .then(response => {
-                    if(response.data === 0) {
-                        this.invalidLogin()
-                    }
-                    else {
-                        console.log(response.data)
-                        this.validLogin(response.data)
-                    }
-                })
-        });
-
-        axios.post(`${this.login.url}/user/login`, {username: this.state.username, password : })
-            .then(response => {
-                if(response.data === 0) {
-                    this.invalidLogin()
-                }
-                else {
-                    console.log(response.data)
-                    this.validLogin(response.data)
-                }
-            })
-    }
- */
 
     return(
         <View style={styles.container}>
