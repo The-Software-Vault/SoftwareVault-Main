@@ -30,7 +30,7 @@ const PatientDashboard =  ({ navigation, route}) => {
                         <Pressable style={styles.profileImg}>
                             <Image style={styles.profileImg} source={{uri: 'https://via.placeholder.com/150'}}/>
                             {/*<Text style={{alignSelf: "center"}}>John Doe</Text>*/}
-                            <Text style={{alignSelf: "center"}}>Welcome, {route.params?.name}</Text>
+                            <Text style={{alignSelf: "center", color: "black"}}>Welcome, {route.params?.name}</Text>
                         </Pressable>
                         <Pressable style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientProfile', {username: name})}>
                             <TouchableOpacity>
@@ -61,7 +61,7 @@ const PatientDashboard =  ({ navigation, route}) => {
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('Messages', messages)}>
+                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
                             <Text style={styles.text_container}>Messages</Text>
                         </Pressable>

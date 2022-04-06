@@ -21,4 +21,16 @@ Primary Repository for The Software Vault Project
   3.2. Deploy to simulator/device: `yarn react-native run-android` (or deploy via IDE: make sure to open project through `android` folder)
 
 ### Backend:
-Coming Soon!
+Instructions for running/testing backend (<u>**USES YARN**</u>):
+  
+  1. Import initial database & tables into MySQL:
+  
+    $ mysql -u root -p < backend/sql/init.sql
+    $ mysql -u root -p < backend/sql/swvault_schema.sql
+  
+  2. Navigate to the _backend/node_ folder, and create a file called **.env**.     
+    2.1. Paste the code shown [here](https://github.com/luisegarduno/FullStack-Template/blob/master/backend/node/.env)
+    into your file & make changes to the parameters accordingly.     
+    ** Or feel free to contact any of the developers for a copy of their .env file.
+  
+  3. Install packages & deploy backend! (`$ yarn install; yarn run dev`)

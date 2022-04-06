@@ -30,8 +30,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Login, Register, DoctorDashboard, PatientDashboard, Appointments, Messages,
-PatientForm, ApptConfirmation, PatientProfile, DoctorList} from "./screens";
+import { Login, Register, DoctorDashboard, PatientDashboard, Messages,
+PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -139,7 +139,7 @@ const App  = () => {
                     title: "ApptConfirmation",
                     headerShown: false,
                 }} />
-                <Stack.Screen name="Messages" component={Messages} options={{
+                <Stack.Screen name="messages" component={Messages} options={{
                     title: "Messages",
                     headerStyle: {
                         backgroundColor: "#755293",

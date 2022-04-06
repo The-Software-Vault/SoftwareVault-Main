@@ -1,16 +1,19 @@
 import React from "react";
-//import { StyleSheet, View, Image, Text, TextInput, TouchableOpacity} from "react-native";
-import {StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity} from  "react-native";
+import axios from 'axios'
 import { images } from "../../constants/";
+import { UserRepository } from "../../API/userRepository";
+import { StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity } from  "react-native";
 
 const Login = ({ navigation }) => {
 
+    let logins = new UserRepository();
+
     const [username, onChangeUsername] = React.useState('');
-    const [text, onChangeText] = React.useState("This is a text");
-    const [number, onChangeNumber] = React.useState(null);
+    const [password, onChangePassword] = React.useState('');
 
     function checkUserType(){
-        //console.log("Hello,", username)
+        console.log("Status: ", logins.verifyUser({username: username, hashpass: password}).value)
+
         if(username === "Doctor"){
             return 'DoctorDashboard'
         }
@@ -38,7 +41,8 @@ const Login = ({ navigation }) => {
                     style={styles.inputText}
                     placeholder="password"
                     placeholderTextColor="#AFAFAF"
-                    onChangeText={text => onChangeText(text)}/>
+                    value={password}
+                    onChangeText={password => onChangePassword(password)}/>
             </View>
             <Pressable style={styles.loginBtn} onPress={() => navigation.navigate(checkUserType(), {name: username})}>
                 <TouchableOpacity>
