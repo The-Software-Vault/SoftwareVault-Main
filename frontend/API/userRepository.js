@@ -5,7 +5,6 @@ export class UserRepository {
     // Leave this here
     url = false ? 'http://CHANGE-ME:8000' : 'http://localhost:8000';
 
-
     // POST Create User : http://CHANGE-ME:8000/user/register
     registerUser(loginData){
         return new Promise((resolve,reject) =>{
@@ -28,7 +27,7 @@ export class UserRepository {
                     resolve(x.data);
                 })
                 .catch(x => {
-                    alert(x);
+                    alert('Wrong Username/Password!', x);
                     reject(x);
                 })
         })
@@ -39,7 +38,7 @@ export class UserRepository {
         return new Promise((resolve,reject) =>{
             axios.get(`${this.url}/user/`, {params: username})
                 .then(x => {
-                    console.log(x);
+                    //console.log(x.data);
                     resolve(x.data);
                 })
                 .catch(x => {
@@ -54,6 +53,8 @@ export class UserRepository {
         return new Promise((resolve,reject) =>{
             axios.get(`${this.url}/user/${userID}`)
                 .then(x => {
+                    //console.log(x)
+                    console.log(x.data)
                     resolve(x.data);
                 })
                 .catch(x => {
