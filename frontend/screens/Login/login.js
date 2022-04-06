@@ -1,4 +1,7 @@
 import React from "react";
+import axios from 'axios'
+//const bcrypt = require('bcrypt');
+//const saltRounds = 10;
 // import { bcrypt } from 'bcrypt'
 // import  bcrypt from 'bcrypt'
 import { UserRepository } from "../../API/userRepository";
@@ -28,17 +31,39 @@ const Login = ({ navigation }) => {
     */
 
     /*
-
     // Return user id for given username
     async function getUserID(username) {
+        console.log(logins.userDetailsParam({username: username}))
+        //console.log("Oks:", logins.userDetailsBody({username}))
+
+
+        axios.get(`${logins.url}/user/`, {params: username})
+            .then(response => {
+                if(response.data === 0) {
+                    console.log("Invalid: ", this.data())
+                    this.data()
+                }
+                else {
+                    console.log("Valid: ", response.data.username())
+                    //this.validLogin(response.data)
+                }
+            })
+
+
+        //console.log("UserBody: ", logins.userDetailsBody({username})[4]);
+        //console.log("UserBody: ", logins.userDetailsBody({username})[4]);
+        //return (await logins.userDetailsBody({username}))[0];
         return (await logins.userDetailsBody({username}))[0];
     }
 
     // Return the given user's hashed password
     async function getHashed(userID) {
-        console.log(logins.userDetailsParam(1));
+        let hashpassed = logins.userDetailsParam(1);
+        console.log("hashy: ", hashpassed)
+        //console.log("Hashed: ", logins.userDetailsParam(1));
         return (await logins.userDetailsParam({userID}))[5];
     }
+
 
     async function checkUser(username, password) {
         //... fetch user from a db etc.
@@ -47,6 +72,8 @@ const Login = ({ navigation }) => {
 
         console.log("UserID: ", userID);
         console.log("HashPass: ", hashPass);
+
+
 
         const match = await bcrypt.compare(password, hashPass);
 
@@ -58,11 +85,51 @@ const Login = ({ navigation }) => {
         console.log("Yo: ", password)
 
         return true;
+
     }
-    */
+
+    async function generateHash() {
+        const myHash = await bcrypt.hash(password, saltRounds);
+        console.log("Hash: ", myHash);
+        //return myHash
+    }
+
+    async function comparePass(hash) {
+        const myPass = await bcrypt.compare(password, hash);
+        console.log('Comparing ', password, ' >>> ', myPass);
+
+        //const hashPass = await bcrypt.compare(someOtherPassword, hash);
+        //console.log('Comparing ', someOtherPassword, ' >>> ', result2);
+    }
+*/
+
 
     function checkUserType(){
+        //console.log("HIIII", username, " -> ",getUserID(username))
+        //let log_creds = getUserID(username);
+        //console.log("Username: ", log_creds);
+
+        //let log_pass = getHashed(1)
+        //console.log("HashPass: ", log_pass)
         //const checker = checkUser(username, password);
+        //console.log("Password: ", password)
+
+        // Hashing a Password - Autogenerate a salt & hash
+        /*
+        bcrypt.hash(password, saltRounds, function(err, hash) {
+            console.log(hash)
+            // Store hash in your password DB.
+            //console.log("Password: ", password)
+            //console.log("Hashed: ", hash)
+        });
+         */
+
+        //generateHash();
+        //let myHash = generateHash()
+        //comparePass(myHash)
+        //console.log("Username: ", username, "\tPassword: ", password)
+        console.log("Status: ", logins.verifyUser({username: username, hashpass: password}))
+
 
         // console.log("Hello,", username)
         if(username === "Doctor"){
@@ -134,6 +201,7 @@ const Login = ({ navigation }) => {
                     style={styles.inputText}
                     placeholder="password"
                     placeholderTextColor="#AFAFAF"
+                    value={password}
                     onChangeText={password => onChangePassword(password)}/>
             </View>
             <Pressable style={styles.loginBtn} onPress={() => navigation.navigate(checkUserType(), {name: username})}>
