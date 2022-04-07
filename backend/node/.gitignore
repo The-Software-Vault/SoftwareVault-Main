@@ -40,3 +40,7 @@ mysql
 //package.json
 .env
 /.env
+
+# private key (ssh)
+*.pem
+swvault.pem

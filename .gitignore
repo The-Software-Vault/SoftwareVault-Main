@@ -121,3 +121,7 @@ dist
 /.DS_Store
 
 .eslintcache
+
+# private key (ssh)
+*.pem
+swvault.pem
