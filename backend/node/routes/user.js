@@ -199,7 +199,7 @@ module.exports = function user(app, logger) {
                 var groupID = req.body.groupID
                 var relation = req.body.relation
                 // if there's no issue obtaining a connection, execute query & release connection
-                connection.query("UPDATE `swvault`.`patientInfo` u SET u.healthPlan = ?, u.memberID = ?, u.groupID = ?, u.relation = ? WHERE u.id = ?", [healthPlan, memberID, groupID, relation, id], (err, rows) => {
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.healthPlan = ?, u.memberID = ?, u.groupID = ?, u.relation = ? WHERE u.patientID = ?", [healthPlan, memberID, groupID, relation, id], (err, rows) => {
                     connection.release();
                     if (err) {
                         logger.error("Error while executing Query: \n", err);
@@ -231,7 +231,7 @@ module.exports = function user(app, logger) {
                 var cell = req.body.cell
                 var work = req.body.work
                 // if there's no issue obtaining a connection, execute query & release connection
-                connection.query("UPDATE `swvault`.`patientInfo` u SET u.ecn = ?, u.relation = ?, u.cell = ?, u.work = ? WHERE u.id = ?", [ecn, relation, cell, work, id], (err, rows) => {
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.ecn = ?, u.relation = ?, u.cell = ?, u.work = ? WHERE u.patientID = ?", [ecn, relation, cell, work, id], (err, rows) => {
                     connection.release();
                     if (err) {
                         logger.error("Error while executing Query: \n", err);
@@ -264,7 +264,7 @@ module.exports = function user(app, logger) {
                 var med = req.body.med
                 var allergies = req.body.allergies
                 // if there's no issue obtaining a connection, execute query & release connection
-                connection.query("UPDATE `swvault`.`patientInfo` u SET u.age = ?, u.weight = ?, u.height = ?, u.med = ?, u.allergies = ? WHERE u.id = ?", [age, weight, height, med, allergies, id], (err, rows) => {
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.age = ?, u.weight = ?, u.height = ?, u.med = ?, u.allergies = ? WHERE u.patientID = ?", [age, weight, height, med, allergies, id], (err, rows) => {
                     connection.release();
                     if (err) {
                         logger.error("Error while executing Query: \n", err);
