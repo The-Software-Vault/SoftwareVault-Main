@@ -4,8 +4,11 @@ import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Pressable, Touc
 
 const PatientDashboard =  ({ navigation, route}) => {
 
+    let userInfo = new UserRepository();
+
     const a = route.params.name;//{name} = route.params;
     const {name} = route.params;
+    const {id} = userInfo.userDetailsBody(name).id;
 
     const [user, newUser] = React.useState([
         {name: 'Kyle Booth', username: 'kyleb', appointments: ['Friday 2pm, Saturday 1pm'], messages: ['Hello!', 'The images are great!'], messageSender: ['Dr. Bob Smith, Dr. Alice Smith']},
@@ -32,11 +35,13 @@ const PatientDashboard =  ({ navigation, route}) => {
                             {/*<Text style={{alignSelf: "center"}}>John Doe</Text>*/}
                             <Text style={{alignSelf: "center", color: "black"}}>Welcome, {route.params?.name}</Text>
                         </Pressable>
-                        <Pressable style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientProfile', {username: name})}>
-                            <TouchableOpacity>
-                                <Text style={styles.profileEditText}>Edit Profile</Text>
-                            </TouchableOpacity>
-                        </Pressable>
+
+                        <View style={styles.rowContainer}>
+                            <Pressable style={styles.profileEditBtn1} onPress={() => navigation.navigate('PatientProfile', {username: name})}></Pressable>
+                            <Pressable style={styles.medHistoryBtn} onPress={() => navigation.navigate('MedicalHistoryForm', {username: name, id: id})}></Pressable>
+                            <Pressable style={styles.insurnaceBtn} onPress={() => navigation.navigate('Insurance', {username: name, id: id})}></Pressable>
+                            <Pressable style={styles.emcBtn} onPress={() => navigation.navigate('EmergencyContactForm', {username: name, id: id})}></Pressable>
+                        </View>
                     </View>
 
                     <View style={styles.card_template}>
@@ -78,6 +83,31 @@ const styles = StyleSheet.create({
         color: "F3E03F",
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    rowContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    profileEditBtn1: {
+        backgroundColor: 'green',
+        width: '15%',
+        height: '15%'
+    },
+    medHistoryBtn: {
+        backgroundColor: 'red',
+        width: '15%',
+        height: '15%'
+    },
+    insurnaceBtn: {
+        backgroundColor: 'yellow',
+        width: '15%',
+        height: '15%'
+    },
+    emcBtn: {
+        backgroundColor: 'blue',
+        width: '15%',
+        height: '15%'
     },
     profileImgContainer: {
         marginLeft: 8,
