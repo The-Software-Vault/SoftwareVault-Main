@@ -13,7 +13,7 @@ const ApptConfirmation = ({ navigation, route }) => {
     const type = route.params.type;
     const time = route.params.selectedSlot;
     const reason = route.params.reason;
-    const symptoms = route.params.text;
+    const symptoms = route.params.symptoms;
     const date = route.params.selectDate;
 
     function doctorInfo() {

@@ -8,9 +8,9 @@ export default function Messages( props ) {
 
     const [messagesList, setMessagesList] = useState([
         { id: '1', message: 'Hello Doctor', time: '9:35 AM', isSender: true, isSeen: true },
-        { id: '2', message: 'Hello', time: '9:36 AM', isSender: false, isSeen: null },
-        { id: '3', message: 'How can i help you?', time: '9:37 AM', isSender: false, isSeen: null },
-        { id: '4', message: 'I\'m felling sick for 2 days.', time: '9:38 AM', isSender: true, isSeen: false },
+        { id: '2', message: 'Hello!', time: '9:36 AM', isSender: false, isSeen: null },
+        { id: '3', message: 'How can I help you?', time: '9:37 AM', isSender: false, isSeen: null },
+        { id: '4', message: 'I\'ve been feeling sick for the past 2 days. Nausea, headache, etc.', time: '9:38 AM', isSender: true, isSeen: false },
     ]);
 
 
