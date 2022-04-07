@@ -64,4 +64,46 @@ export class UserRepository {
         })
     }
 
+    // PUT Update Insurance Information : http://CHANGE-ME:8000/user/updateInsurance
+    updateInsurance(insuranceData){
+        return new Promise((resolve,reject) =>{
+            axios.put(`${this.url}/user/updateInsurance`, insuranceData)
+                .then(x => {
+                    resolve(x.data);
+                })
+                .catch(x => {
+                    alert(x);
+                    reject(x);
+                })
+        })
+    }
+
+    // PUT Update Emergency Contact : http://CHANGE-ME:8000/user/updateEMC
+    updateEMC(emcData){
+        return new Promise((resolve,reject) =>{
+            axios.put(`${this.url}/user/updateEMC`, emcData)
+                .then(x => {
+                    resolve(x.data);
+                })
+                .catch(x => {
+                    alert(x);
+                    reject(x);
+                })
+        })
+    }
+
+    // PUT Update Medical History : http://CHANGE-ME:8000/user/updateMH
+    updateMH(mhData){
+        return new Promise((resolve,reject) =>{
+            axios.put(`${this.url}/user/updateMH`, mhData)
+                .then(x => {
+                    resolve(x.data);
+                })
+                .catch(x => {
+                    alert(x);
+                    reject(x);
+                })
+        })
+    }
+
 }

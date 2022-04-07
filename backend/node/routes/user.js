@@ -182,4 +182,101 @@ module.exports = function user(app, logger) {
             }
         });
     });
+
+    // PUT /user/updateInsurance
+    app.put('/user/updateInsurance', (req, res) => {
+        console.log(req.body.id, req.body.healthPlan, req.body.memberID, req.body.groupID, req.body.relation);
+        // obtain a connection from our pool of connections
+        pool.getConnection(function (err, connection){
+            if(err){
+                // if there's an issue obtaining a connection, release the connection instance & log the error
+                logger.error('Problem obtaining MySQL connection',err)
+                res.status(400).send('Problem obtaining MySQL connection'); 
+            } else {
+                var id = req.body.id
+                var healthPlan = req.body.healthPlan
+                var memberID = req.body.memberID
+                var groupID = req.body.groupID
+                var relation = req.body.relation
+                // if there's no issue obtaining a connection, execute query & release connection
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.healthPlan = ?, u.memberID = ?, u.groupID = ?, u.relation = ? WHERE u.id = ?", [healthPlan, memberID, groupID, relation, id], (err, rows) => {
+                    connection.release();
+                    if (err) {
+                        logger.error("Error while executing Query: \n", err);
+                        res.status(400).json({
+                            "data": [],
+                            "error": "MySQL error"
+                        })
+                    } else {
+                        res.status(200).json(rows)
+                    }
+                });
+            }
+        });
+    });
+
+    // PUT /user/updateEMC
+    app.put('/user/updateEMC', (req, res) => {
+        console.log(req.body.id, req.body.ecn, req.body.relation, req.body.cell, req.body.work);
+        // obtain a connection from our pool of connections
+        pool.getConnection(function (err, connection){
+            if(err){
+                // if there's an issue obtaining a connection, release the connection instance & log the error
+                logger.error('Problem obtaining MySQL connection',err)
+                res.status(400).send('Problem obtaining MySQL connection'); 
+            } else {
+                var id = req.body.id
+                var ecn = req.body.ecn
+                var relation = req.body.relation
+                var cell = req.body.cell
+                var work = req.body.work
+                // if there's no issue obtaining a connection, execute query & release connection
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.ecn = ?, u.relation = ?, u.cell = ?, u.work = ? WHERE u.id = ?", [ecn, relation, cell, work, id], (err, rows) => {
+                    connection.release();
+                    if (err) {
+                        logger.error("Error while executing Query: \n", err);
+                        res.status(400).json({
+                            "data": [],
+                            "error": "MySQL error"
+                        })
+                    } else {
+                        res.status(200).json(rows)
+                    }
+                });
+            }
+        });
+    });
+
+    // PUT /user/updateMH
+    app.put('/user/updateMH', (req, res) => {
+        console.log(req.body.id, req.body.age, req.body.weight, req.body.height, req.body.med, req.body.allergies);
+        // obtain a connection from our pool of connections
+        pool.getConnection(function (err, connection){
+            if(err){
+                // if there's an issue obtaining a connection, release the connection instance & log the error
+                logger.error('Problem obtaining MySQL connection',err)
+                res.status(400).send('Problem obtaining MySQL connection'); 
+            } else {
+                var id = req.body.id
+                var age = req.body.age
+                var weight = req.body.weight
+                var height = req.body.height
+                var med = req.body.med
+                var allergies = req.body.allergies
+                // if there's no issue obtaining a connection, execute query & release connection
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.age = ?, u.weight = ?, u.height = ?, u.med = ?, u.allergies = ? WHERE u.id = ?", [age, weight, height, med, allergies, id], (err, rows) => {
+                    connection.release();
+                    if (err) {
+                        logger.error("Error while executing Query: \n", err);
+                        res.status(400).json({
+                            "data": [],
+                            "error": "MySQL error"
+                        })
+                    } else {
+                        res.status(200).json(rows)
+                    }
+                });
+            }
+        });
+    });
 }

@@ -1,11 +1,24 @@
 import React from "react";
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
 import { images } from "../../constants";
+import { UserRepository } from "../../API/userRepository";
+import axios from 'axios'
 
 const MedicalHistoryForm = ({ navigation }) => {
 
-    const [text, onChangeText] = React.useState("This is a text");
-    const [number, onChangeNumber] = React.useState(null);
+    let updates = new UserRepository();
+
+    const [age, onChangeAge] = React.useState('');
+    const [weight, onChangeWeight] = React.useState('');
+    const [height, onChangeHeight] = React.useState('');
+    const [med, onChangeMed] = React.useState('');
+    const [allergies, onChangeAllergies] = React.useState('');
+    const {name, id} = route.params;
+
+    function submit() {
+        updates.updateMH(({id: id, age: age, weight: weight, height: height, med: med, allergies: allergies}).value);
+        navigation.navigate('PatientDashboard', {name: name});
+    }
 
     return(
         <View style={{flex: 1}}>
@@ -18,7 +31,7 @@ const MedicalHistoryForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Age"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={age => onChangeAge(age)}/>
                     </View>
                     <Text style={styles.black}>Weight (lbs)</Text>
                     <View style={styles.inputView}>
@@ -26,7 +39,7 @@ const MedicalHistoryForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Weight (lbs)"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={weight => onChangeWeight(weight)}/>
                     </View>
                     <Text style={styles.black}>Height (Ft, In)</Text>
                     <View style={styles.inputView}>
@@ -34,7 +47,7 @@ const MedicalHistoryForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Height (Ft, In)"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={height => onChangeHeight(height)}/>
                     </View>
                     <Text style={styles.black}>Current Medication</Text>
                     <View style={styles.inputView}>
@@ -42,7 +55,7 @@ const MedicalHistoryForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Current Medication"
 							placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={med => onChangeMed(med)}/>
                     </View>
 					<Text style={styles.black}>Known Allergies</Text>
                     <View style={styles.inputView}>
@@ -50,11 +63,11 @@ const MedicalHistoryForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Known Allergies"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={allergies => onChangeAllergies(allergies)}/>
                     </View>
-                    <Pressable style={styles.createBtn}>
+                    <Pressable style={styles.createBtn} onPress={() => submit()}>
                         <TouchableOpacity>
-                            <Text style={styles.createText}>Next</Text>
+                            <Text style={styles.createText}>Update Profile</Text>
                         </TouchableOpacity>
                     </Pressable>
                 </SafeAreaView>    
