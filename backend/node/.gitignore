@@ -37,6 +37,6 @@ node
 mysql
 /.mysql
 
-package.json
+//package.json
 .env
 /.env

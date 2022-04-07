@@ -1,10 +1,8 @@
 import React from "react";
-// import { bcrypt } from 'bcrypt'
-// import  bcrypt from 'bcrypt'
-import { UserRepository } from "../../API/userRepository";
-//import { StyleSheet, View, Image, Text, TextInput, TouchableOpacity} from "react-native";
-import {StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity} from  "react-native";
+import axios from 'axios'
 import { images } from "../../constants/";
+import { UserRepository } from "../../API/userRepository";
+import { StyleSheet, View, Image, Text, Pressable, TextInput, TouchableOpacity } from  "react-native";
 
 const Login = ({ navigation }) => {
 
@@ -12,59 +10,10 @@ const Login = ({ navigation }) => {
 
     const [username, onChangeUsername] = React.useState('');
     const [password, onChangePassword] = React.useState('');
-    const [text, onChangeText] = React.useState("This is a text");
-    const [number, onChangeNumber] = React.useState(null);
-
-    /*
-    1. Declare password variable
-        --> const password = password
-    2. Check if entered username exists in database
-        --> if username in user.username: return true
-    3. If match returns true, return hashed password
-        --> let hashpass = user.hashpass
-    4. Hash the entered password and compare it with hasspass
-        --> see bcrypt.compare function below
-    5. If they match, login.
-    */
-
-    /*
-
-    // Return user id for given username
-    async function getUserID(username) {
-        return (await logins.userDetailsBody({username}))[0];
-    }
-
-    // Return the given user's hashed password
-    async function getHashed(userID) {
-        console.log(logins.userDetailsParam(1));
-        return (await logins.userDetailsParam({userID}))[5];
-    }
-
-    async function checkUser(username, password) {
-        //... fetch user from a db etc.
-        let userID = getUserID(username);
-        let hashPass = getHashed(userID);
-
-        console.log("UserID: ", userID);
-        console.log("HashPass: ", hashPass);
-
-        const match = await bcrypt.compare(password, hashPass);
-
-        if(match) {
-            console.log("Password: ", password)
-            console.log("Hashed: ", hashPass)
-        }
-
-        console.log("Yo: ", password)
-
-        return true;
-    }
-    */
 
     function checkUserType(){
-        //const checker = checkUser(username, password);
+        console.log("Status: ", logins.verifyUser({username: username, hashpass: password}).value)
 
-        // console.log("Hello,", username)
         if(username === "Doctor"){
             return 'DoctorDashboard'
         }
@@ -72,48 +21,6 @@ const Login = ({ navigation }) => {
             return 'PatientDashboard';
         }
     }
-
-/*
-    async function onLogin() {
-        const bcrypt = require('bcrypt');
-        const saltRounds = 10;
-
-        // Hashing a Password - Autogenerate a salt & hash
-        bcrypt.hash(password, saltRounds, function(err, hash) {
-            // Store hash in your password DB.
-            console.log("Password: ", password)
-            console.log("Hashed: ", hash)
-        });
-
-        // Checking a password
-        bcrypt.compare(password, hash, function(err, result) {
-            // result == true
-            console.log("The supplied hash matches with supplied plain text password!")
-
-            axios.post(`${logins.url}/user/login`, {username: username, password : hash})
-                .then(response => {
-                    if(response.data === 0) {
-                        this.invalidLogin()
-                    }
-                    else {
-                        console.log(response.data)
-                        this.validLogin(response.data)
-                    }
-                })
-        });
-
-        axios.post(`${this.login.url}/user/login`, {username: this.state.username, password : })
-            .then(response => {
-                if(response.data === 0) {
-                    this.invalidLogin()
-                }
-                else {
-                    console.log(response.data)
-                    this.validLogin(response.data)
-                }
-            })
-    }
- */
 
     return(
         <View style={styles.container}>
@@ -134,6 +41,7 @@ const Login = ({ navigation }) => {
                     style={styles.inputText}
                     placeholder="password"
                     placeholderTextColor="#AFAFAF"
+                    value={password}
                     onChangeText={password => onChangePassword(password)}/>
             </View>
             <Pressable style={styles.loginBtn} onPress={() => navigation.navigate(checkUserType(), {name: username})}>
