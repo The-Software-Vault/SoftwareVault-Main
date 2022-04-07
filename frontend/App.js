@@ -31,7 +31,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Login, Register, DoctorDashboard, PatientDashboard, Messages,
-PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat, DrAppointments} from "./screens";
+PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat, DrAppointments, ApptSettings, SpecificSettings, GeneralSettings} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -151,6 +151,36 @@ const App  = () => {
                 }} />
                 <Stack.Screen name="messages" component={Messages} options={{
                     title: "Messages",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="ApptSettings" component={ApptSettings} options={{
+                    title: "Appointment Settings",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="SpecificSettings" component={SpecificSettings} options={{
+                    title: "Specific Availability Settings",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="GeneralSettings" component={GeneralSettings} options={{
+                    title: "General Availability Settings",
                     headerStyle: {
                         backgroundColor: "#755293",
                     },

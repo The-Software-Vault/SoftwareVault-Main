@@ -3,8 +3,7 @@ import axios from 'axios'
 export class UserRepository {
 
     // Leave this here
-    url = false ? 'http://CHANGE-ME:8000' : 'http://localhost:8000';
-
+    url = true ? 'http://54.156.23.43:8000' : 'http://localhost:8000';
 
     // POST Create User : http://CHANGE-ME:8000/user/register
     registerUser(loginData){
@@ -28,7 +27,7 @@ export class UserRepository {
                     resolve(x.data);
                 })
                 .catch(x => {
-                    alert(x);
+                    alert('Wrong Username/Password!', x);
                     reject(x);
                 })
         })
@@ -39,7 +38,7 @@ export class UserRepository {
         return new Promise((resolve,reject) =>{
             axios.get(`${this.url}/user/`, {params: username})
                 .then(x => {
-                    console.log(x);
+                    //console.log(x.data);
                     resolve(x.data);
                 })
                 .catch(x => {
@@ -53,6 +52,50 @@ export class UserRepository {
     userDetailsParam(userID){
         return new Promise((resolve,reject) =>{
             axios.get(`${this.url}/user/${userID}`)
+                .then(x => {
+                    //console.log(x)
+                    console.log(x.data)
+                    resolve(x.data);
+                })
+                .catch(x => {
+                    alert(x);
+                    reject(x);
+                })
+        })
+    }
+
+    // PUT Update Insurance Information : http://CHANGE-ME:8000/user/updateInsurance
+    updateInsurance(insuranceData){
+        return new Promise((resolve,reject) =>{
+            axios.put(`${this.url}/user/updateInsurance`, insuranceData)
+                .then(x => {
+                    resolve(x.data);
+                })
+                .catch(x => {
+                    alert(x);
+                    reject(x);
+                })
+        })
+    }
+
+    // PUT Update Emergency Contact : http://CHANGE-ME:8000/user/updateEMC
+    updateEMC(emcData){
+        return new Promise((resolve,reject) =>{
+            axios.put(`${this.url}/user/updateEMC`, emcData)
+                .then(x => {
+                    resolve(x.data);
+                })
+                .catch(x => {
+                    alert(x);
+                    reject(x);
+                })
+        })
+    }
+
+    // PUT Update Medical History : http://CHANGE-ME:8000/user/updateMH
+    updateMH(mhData){
+        return new Promise((resolve,reject) =>{
+            axios.put(`${this.url}/user/updateMH`, mhData)
                 .then(x => {
                     resolve(x.data);
                 })

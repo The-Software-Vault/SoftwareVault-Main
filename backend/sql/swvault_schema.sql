@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS `swvault`.`user` (
 );
 
 INSERT INTO user (`first_name`, `last_name`, `username`, `email`, `hashpass`, `userType_id`) VALUES
-    ('Jane', 'Doe', 'JDoe', 'jdoe@gmail.com','$2y$10$a64Id4ut.ho6vopIqN3Mp.WngqkWHbrIP8TqtWHQgqv6ebZwmm9E6', 1),
-    ('John', 'Smith', 'JSmith', 'jadoe@yahoo.com', '$2y$10$drpmdKOu/FJK3LPYhRaIVOHsTJZbeeO4XNR.HZX7P3hs.w2xUw8ky', 1),
-    ('Sarah', 'Jones', 'SJones', 'svega@med.com', '$2y$10$qtGLXoc/352DfuaZDBV.qunVPx.8ZQ/deDtk0kPngV.BgVwDbIW6e', 1),
-    ('Sam', 'Free', 'SFree', 'sfree@aol.com', '$2y$10$rfFc7aei2y/UKOcvUqgBjuLZtoHvCgH9sPwYJXJU6W1bTOI1JLehC', 2),
-    ('Will', 'Vega', 'WVega', 'wvega@gmail.com', '$2y$10$F.i/NcsYlnmk3dPDIB/G8uYr5AGd8H9VMHEeg4b2LPwpZgHK7oOGu', 3),
-    ('Emily', 'Smith', 'ESmith', 'esmith@yahoo.com', '$2y$10$T9qyikelj.A3oaX25OoD9OoUdKHZuNM.aGwWZVRL.uMvgAT..MawC', 1),
-    ('Ryan', 'Jones', 'RJones', 'rjones@hotmail.com', '$2y$10$JWNU22Ea0Nen0ZW9i1Eg4uXwFWyHR6x/jAqxQYV/6dGpUeJ9VWJte', 2);
+    ('Jane', 'Doe', 'JDoe', 'jdoe@gmail.com','$2b$10$CmrDR3YvdkT7Xpd7XYc/F.eD2MH8NU.mJewWsu7bLXxh1WX4JCXtW', 1),
+    ('John', 'Smith', 'JSmith', 'jadoe@yahoo.com', '$2b$10$eN.9Oz3nCnVNB9enqfKgmeZ8KkHAziCZIwFPUKSxBsG8Ye5q5Q9o2', 1),
+    ('Sarah', 'Jones', 'SJones', 'svega@med.com', '$2b$10$Xx7ODAIIQjMJVGCURK295eeehZX18pTeZz4Up2L9FTsvo6ivgD9Bu', 1),
+    ('Sam', 'Free', 'SFree', 'sfree@aol.com', '$2b$10$IplV67.58Eg7LHDoO6.jBOsIQw5ZkEWylEDzF1jgCM3hpwmh88gj.', 2),
+    ('Will', 'Vega', 'WVega', 'wvega@gmail.com', '$2b$10$O4pyMK4HhF61dY4IVqhqiO0wFWR6L4l513K1p40.uw8Ima4GS/Mr6', 3),
+    ('Emily', 'Smith', 'ESmith', 'esmith@yahoo.com', '$2b$10$0zrtNGOGJav4gc7ASaEAMO8HZRAL0jwjkgOqZ82ouZhHaJFsWYYaC', 1),
+    ('Ryan', 'Jones', 'RJones', 'rjones@hotmail.com', '$2b$10$4D9Yl8VkwjI85QtDQx62Heqfe4jS2OCvducv0Lq.WR7F03d..K97m', 2);
 
 -- -----------------------------------------------------
 -- Table `swvault`.`doctor`
