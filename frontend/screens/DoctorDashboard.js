@@ -10,8 +10,8 @@ const DoctorDashboard =  ({ navigation, route }) => {
     ]);
 
     const [appointments, newAppointment] = React.useState([
-        {date: '2/22/2022', time: '5:00 p.m.', doctor: 'Dr. Bob Smith', duration: '30 minutes'},
-        {date: '3/2/2022', time: '3:00 p.m.', doctor: 'Dr. Alice Smith', duration: '45 minutes'},
+        {date: '2/22/2022', time: '5:00 p.m.', patient: 'Bob Smith', duration: '30 minutes'},
+        {date: '3/2/2022', time: '3:00 p.m.', patient: 'Alice Smith', duration: '30 minutes'},
     ]);
 
     const [messages, newMessage] = React.useState([
@@ -45,7 +45,7 @@ const DoctorDashboard =  ({ navigation, route }) => {
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('Appointments', appointments)}>
+                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('DrAppointments', appointments)}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
                             <Text style={styles.text_container}>Appointments</Text>
                         </Pressable>

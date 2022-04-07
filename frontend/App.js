@@ -31,7 +31,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Login, Register, DoctorDashboard, PatientDashboard, Messages,
-PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat} from "./screens";
+PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat, DrAppointments} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -126,6 +126,16 @@ const App  = () => {
                     },
                 }} />
                 <Stack.Screen name="Appointments" component={Appointments} options={{
+                    title: "Appointments",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="DrAppointments" component={DrAppointments} options={{
                     title: "Appointments",
                     headerStyle: {
                         backgroundColor: "#755293",
