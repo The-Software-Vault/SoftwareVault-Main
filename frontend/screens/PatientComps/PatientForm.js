@@ -24,7 +24,8 @@ const PatientForm = ({ navigation, route }) => {
     const [selectDate, setSelectDate] = React.useState('');
     const [reason, onChangeReason] = React.useState('');
     const [schedule, setSchedule] = React.useState(false);
-    const [text, onChangeText] = React.useState("N/A");
+    const [symptoms, onChangeSymptoms] = React.useState("N/A");
+    const [imageLink, onChangeImage] = React.useState("");
 
     function doctorInfo() {
 
@@ -63,7 +64,7 @@ const PatientForm = ({ navigation, route }) => {
         return (
                 <View style={styles.scheduleContainer}>
                     <TouchableOpacity onPress={() => navigation.navigate('ApptConfirmation', {
-                        name, type, selectedSlot, selectDate, reason, text
+                        name, type, selectedSlot, selectDate, reason, symptoms
                     })}>
                         <View style={styles.scheduleButton}>
                             <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>
@@ -73,11 +74,12 @@ const PatientForm = ({ navigation, route }) => {
         )
     }
 
+    //dates that this specific doctor isn't available on
     const datesBlacklistFunc = date => {
         return date.isoWeekday() === 7;
     }
 
-    //have to double tap the date to get it to highlight for some reason
+    //have to double tap the date to get it to highlight for some reason - but the date does get selected on a single tap still 
     function calendar() {
         return (
             <View style={{flex: 1}}>
@@ -93,7 +95,7 @@ const PatientForm = ({ navigation, route }) => {
                         dateNameStyle={{ color: 'black', fontSize: 15.0 }}
                         highlightDateNameStyle={{ color: 'white', fontSize: 15.0 }}
                         highlightDateNumberStyle={{ color: 'white', fontSize: 17.0 }}
-                        datesBlacklist={datesBlacklistFunc}
+                        //datesBlacklist={datesBlacklistFunc} 
                         disabledDateOpacity={0.6}
                         scrollable={true}
                         upperCaseDays={false}
@@ -143,6 +145,7 @@ const PatientForm = ({ navigation, route }) => {
                     <Text style={{marginBottom: 2}}>Appointment Information</Text>
                     <View style={styles.inputView}>
                 <TextInput
+                    maxLength={30}
                     style={styles.inputText}
                     placeholder="Appointment Reason"
                     placeholderTextColor="#AFAFAF"
@@ -151,12 +154,20 @@ const PatientForm = ({ navigation, route }) => {
             </View>
             <View style={styles.inputView}>
                 <TextInput
-                    
+                    maxLength={40}
                     style={styles.inputText}
                     placeholder="Symptoms (optional)"
                     placeholderTextColor="#AFAFAF"
-                    onChangeText={text => onChangeText(text)}/>
+                    onChangeText={symptom => onChangeSymptoms(symptom)}/>
             </View>
+            <View style={styles.inputView2}>
+                <TextInput
+                    style={styles.inputText}
+                    placeholder="Image Link (optional)"
+                    placeholderTextColor="#AFAFAF"
+                    onChangeText={image => onChangeImage(image)}/>
+            </View>
+           
             </View>
                     
                 </View>
@@ -198,6 +209,15 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         height: 60,
         marginBottom: 20,
+        justifyContent: "center",
+        padding: 20,
+    },
+    inputView2: {
+        width: "80%",
+        backgroundColor: "#EAEAEA",
+        borderRadius: 25,
+        height: 60,
+        marginBottom: 80,
         justifyContent: "center",
         padding: 20,
     },
