@@ -12,6 +12,11 @@ export default function Appointments (props) {
 
     const {route, navigation} = props;
 
+    const [showDetails, setShowDetails] = React.useState(false);
+    const [currItem, setCurrItem] = React.useState([]);
+    const [showNotes, setShowNotes] = React.useState(false);
+    const [showDoctor, setShowDoctor] = React.useState(false);
+
     const scheduleButton = () => {
         return (
         <View style = {{marginBottom: 4}}>
@@ -20,6 +25,85 @@ export default function Appointments (props) {
                         <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>
                     </Pressable>
         </View>
+        )
+    }
+
+    const showDetailBox = () => {
+        return (
+            <Dialog.Container visible={showDetails} contentStyle={styles.detailsContainerStyle}>
+                <View style={styles.detailsStyle}>
+                    <Text style={{ textAlign: 'center', ...Fonts.black16Bold }}>Appointment Details</Text>
+                    <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
+                </View>
+                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Date: {currItem.date}</Text>
+                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Time: {currItem.time}</Text>
+                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Reason: {currItem.reason}</Text>
+                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Symptoms: {currItem.symptoms}</Text>
+                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>{instructions}</Text> 
+                        <Text style={{ ...Fonts.primaryColor14Regular, marginTop: 5 }} onPress={() => Linking.openURL(link)}>{link}</Text>
+                       
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: Sizes.fixPadding, justifyContent: "center" }}>
+                        <TouchableOpacity
+                            activeOpacity={0.9}
+                            onPress={() => {
+                                setShowDetails(false);
+                            }}
+                            style={styles.dialogNoButtonStyle}>
+                            <Text style={{ ...Fonts.primaryColor17Bold }}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ View>
+            </Dialog.Container>
+        )
+    }
+
+    const showNotesBox = () => {
+        return (
+            <Dialog.Container visible={showNotes} contentStyle={styles.dialogContainerStyle}>
+                <View style={styles.dialogStyle}>
+                    <Text style={{ textAlign: 'center', ...Fonts.black16Regular }}>Doctor Notes</Text>
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: Sizes.fixPadding * 2.0, }}>
+                        <TouchableOpacity
+                            activeOpacity={0.9}
+                            onPress={() => {
+                                setShowNotes(false);
+                            }}
+                            style={styles.dialogNoButtonStyle}>
+                            <Text style={{ ...Fonts.primaryColor17Bold }}>Close</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.9}
+                            onPress={() => {
+                                setShowNotes(false);
+                               // getNotes(id);
+                            }}
+                            style={styles.dialogYesButtonStyle}>
+                            <Text style={{ ...Fonts.white17Bold }}>Confirm</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ View>
+            </Dialog.Container>
+        )
+    }
+
+    //show doctor profile or general doc info - specialty, experience, etc.
+    const showDoctorInfo = () => {
+        return (
+            <Dialog.Container visible={showPatient} contentStyle={styles.dialogContainerStyle}>
+                <View style={styles.dialogStyle}>
+                    <Text style={{ textAlign: 'center', ...Fonts.black16Regular }}>Doctor Information</Text>
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: Sizes.fixPadding * 2.0, }}>
+                        <TouchableOpacity
+                            activeOpacity={0.9}
+                            onPress={() => {
+                                setShowPatient(false);
+                            }}
+                            style={styles.dialogNoButtonStyle}>
+                            <Text style={{ ...Fonts.primaryColor17Bold }}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ View>
+            </Dialog.Container>
         )
     }
     const pastDataList = [
@@ -46,7 +130,7 @@ export default function Appointments (props) {
         },
         {
             id: '4',
-            date: '10 April 2022',
+            date: '6 April 2022',
             time: '11:00 AM',
             doctor: 'Dr.Shira Gates',
             type: 'Nutritian'
@@ -75,17 +159,37 @@ export default function Appointments (props) {
     //also should be able to choose to message the doctor or view their profile
     const PastScreen = () => {
         const renderItem = ({ item }) => (
-            <View style={{ marginHorizontal: 20.0 }}>
-                <View style={{ flexDirection: 'row', marginVertical: 20.0 }}>
-                    <View style={styles.pasetCircleStyle}>
-                        <Text style={{ textAlign: 'center', color: Colors.primary, fontSize: 18, }}>{item.date}</Text>
+            <View style = {{marginHorizontal: 20}}>
+                <View style={{ flexDirection: 'row', justifyContent: "space-between", marginVertical: Sizes.fixPadding * 2.0 }}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.pastCircleStyle}>
+                            <Text style={{ textAlign: 'center', color: Colors.primary, fontSize: 18, }}>{item.date}</Text>
+                        </View>
+                        <View style={{ marginLeft: Sizes.fixPadding }}>
+                            <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
+                            <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
+                            <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
+                        <Text style = {styles.detailsButtonTxt}>Details</Text>
+                        {showDetailBox()}
+                    </TouchableOpacity>
+
+                    <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+
+                    <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
+                        <Text style = {styles.messageButtonTxt}>Message</Text>
+                    </TouchableOpacity>          
                     </View>
-                    <View style={{ marginLeft: 10.0 }}>
-                        <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                        <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
-                        <Text style={{ ...Fonts.primaryColorRegular }}>{item.type}</Text>
+                        </View>
                     </View>
+
+                    <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
+                        <Text style = {styles.messageButtonTxt}>View Notes</Text>
+                        {showNotesBox()}
+                    </TouchableOpacity>
+
                 </View>
+                
+                   
                 <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
                 </View>
             </View>
@@ -159,7 +263,7 @@ export default function Appointments (props) {
     const [activeDataList, setActiveDataList] = React.useState([
         {
             id: '1',
-            date: '4 April 2022',
+            date: '8 April 2022',
             time: '10:00 AM',
             doctor: 'Dr.Ronan Peiterson',
             type: 'General Physician',
@@ -197,7 +301,6 @@ export default function Appointments (props) {
     ]);
 
     const [showModal, setShowModal] = React.useState(false);
-    const [showDetails, setShowDetails] = React.useState(false);
 
     const [id, setId] = useState('');
 
@@ -221,37 +324,7 @@ export default function Appointments (props) {
         setActiveDataList(filterArray);
     }
 
-    //show who the appointment was canceled by (doctor or patient)
-    //if doctor, show the reason for the cancellation 
-
-    const showDetailBox = (item) => {
-        return (
-            <Dialog.Container visible={showDetails} contentStyle={styles.detailsContainerStyle}>
-                <View style={styles.detailsStyle}>
-                    <Text style={{ textAlign: 'center', ...Fonts.black16Bold }}>Appointment Details</Text>
-                    <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
-                </View>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Date: {item.date}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Time: {item.time}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Reason: {item.reason}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Symptoms: {item.symptoms}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>{instructions}</Text>
-                        <Text style={{ ...Fonts.primaryColor14Regular, marginTop: 5 }} onPress={() => Linking.openURL(link)}>{link}</Text>
-                       
-                    <View style={{ flex: 1, flexDirection: 'row', marginTop: Sizes.fixPadding, justifyContent: "center" }}>
-                        <TouchableOpacity
-                            activeOpacity={0.9}
-                            onPress={() => {
-                                setShowDetails(false);
-                            }}
-                            style={styles.dialogNoButtonStyle}>
-                            <Text style={{ ...Fonts.primaryColor17Bold }}>Close</Text>
-                        </TouchableOpacity>
-                    </View>
-                </ View>
-            </Dialog.Container>
-        )
-    }
+    //if canceled by doctor, show the reason for the cancellation 
 
     const showDialog = () => {
         return (
@@ -293,11 +366,21 @@ export default function Appointments (props) {
                         <View style={{ marginLeft: Sizes.fixPadding }}>
                             <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
                             <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
-                            <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true)}}>
+                            <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
                         <Text style = {styles.detailsButtonTxt}>Details</Text>
-                        {showDetailBox(item)}
+                        {showDetailBox()}
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
+                        <Text style = {styles.messageButtonTxt}>Message</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
+                        <Text style = {styles.messageButtonTxt}>View Notes</Text>
+                        {showNotesBox()}
                     </TouchableOpacity>
                         </View>
+
                     </View>
                     <TouchableOpacity style = {styles.button} onPress={() => { setShowModal(true); setId(item.id); }}>
                         <Text style = {styles.buttonTxt}>Cancel</Text>
@@ -348,7 +431,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: "center",
     },
-    pasetCircleStyle: {
+    messageButtonTxt: {
+        color: "blue"
+    },
+    pastCircleStyle: {
         height: 90.0,
         width: 90.0,
         borderRadius: 45.0,
