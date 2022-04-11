@@ -35,8 +35,10 @@ app.use(cors({
 app.use(ExpressAPILogMiddleware(logger, { request: true }));
 
 const user = require('./routes/user')
+const message = require('./routes/message')
 
 user(app, logger);
+message(app, logger);
 
 
 app.get('/', (req, res) => {

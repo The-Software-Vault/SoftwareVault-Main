@@ -1,21 +1,22 @@
 import React, {useState, useEffect} from "react";
 import { Fonts, Colors, Sizes } from "../../constants/styles"
 import {StyleSheet, View, FlatList, Text, TextInput, Pressable, TouchableOpacity} from  "react-native";
+import { MessageRepository } from "../../API/messageRepository";
 
 export default function Messages( props ) {
+    
 
     const {route, navigation} = props;
+    const [messagesList, setMessagesList] = useState([]);
 
-    const [messagesList, setMessagesList] = useState([
-        { id: '1', message: 'Hello Doctor', time: '9:35 AM', isSender: true, isSeen: true },
-        { id: '2', message: 'Hello!', time: '9:36 AM', isSender: false, isSeen: null },
-        { id: '3', message: 'How can I help you?', time: '9:37 AM', isSender: false, isSeen: null },
-        { id: '4', message: 'I\'ve been feeling sick for the past 2 days. Nausea, headache, etc.', time: '9:38 AM', isSender: true, isSeen: false },
-    ]);
-
+    useEffect(() => { 
+        console.log(messagesList)
+        let logins = new MessageRepository();
+        //setMessagesList(logins.getChatHistory(1,4));
+        console.log(logins.getChatHistory(1,4))
+    }, []);
 
     function messages() {
-
         const renderItem = ({ item }) => {
             return (
                 <View style={{
@@ -61,7 +62,6 @@ export default function Messages( props ) {
     }
 
     function addMessage({ message }) {
-
         const oldMessages = messagesList;
         let date = Date();
         let hour = (new Date(date)).getHours();
@@ -107,7 +107,6 @@ export default function Messages( props ) {
             </View>
         )
     }
-
     return <View style={{ flex: 1, backgroundColor: 'white' }}>
             {messages()}
             {typeMessage()}
