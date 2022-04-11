@@ -4,6 +4,7 @@ module.exports = function message(app, logger) {
 
     // GET /message/getChat
     app.get('/message/getChat', (req, res) => {
+        console.log("UserID: " + req.query.userId + " DoctorID: " + req.query.doctorId)
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
@@ -14,7 +15,7 @@ module.exports = function message(app, logger) {
                 var userId = req.query.userId
                 var doctorId = req.query.doctorId
                 // if there's no issue obtaining a connection, execute query & release connection
-                connection.query("SELECT * FROM `swvault`.`messages` m WHERE m.userId = 1 AND m.doctorId = 4", [userId, doctorId], (err, rows) => {
+                connection.query("SELECT m.message, m.sentDate FROM `swvault`.`messages` m WHERE m.userId = ? AND m.doctorId = ?", [userId, doctorId], (err, rows) => {
                     connection.release();
                     if (err) {
                         logger.error("Error while fetching values: \n", err);
@@ -31,7 +32,7 @@ module.exports = function message(app, logger) {
     });
 
 
-    // POST /user/register
+    // POST /message/addMessage
     app.post('/message/addMessage', (req, res) => {
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){

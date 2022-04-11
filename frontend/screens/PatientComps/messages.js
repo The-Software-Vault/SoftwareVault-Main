@@ -5,15 +5,16 @@ import { MessageRepository } from "../../API/messageRepository";
 
 export default function Messages( props ) {
     
+    let msgs = new MessageRepository();
 
     const {route, navigation} = props;
-    const [messagesList, setMessagesList] = useState([]);
+    const [messagesList, setMessagesList] = React.useState(['']);
 
     useEffect(() => { 
-        console.log(messagesList)
-        let logins = new MessageRepository();
-        //setMessagesList(logins.getChatHistory(1,4));
-        console.log(logins.getChatHistory(1,4))
+        console.log("Messages List:", messagesList)
+        //let msgs = new MessageRepository();
+        //setMessagesList(msgs.getChatHistory(1,4));
+        console.log("CHAT LOG:", msgs.getChatHistory(1,4));
     }, []);
 
     function messages() {
@@ -70,7 +71,7 @@ export default function Messages( props ) {
         let finalhour = hour >= 12 ? (hour - 12) : hour;
 
         const newMessage = {
-            id: messagesList.length + 1,
+            //id: messagesList.length + 1,
             message: message,
             time: `${finalhour}:${minute} ${AmPm}`,
             isSender: true,
