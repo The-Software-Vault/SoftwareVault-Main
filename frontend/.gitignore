@@ -70,3 +70,7 @@ buck-out/
 .vscode/
 
 .env
+
+# private key (ssh)
+*.pem
+swvault.pem
