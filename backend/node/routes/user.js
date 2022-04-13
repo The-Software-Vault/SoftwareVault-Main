@@ -5,7 +5,7 @@ module.exports = function user(app, logger) {
 
     // GET /user/
     app.get('/user/', (req, res) => {
-        console.log(req.query.username)
+        console.log("/user/ -->", req.body.username)
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
@@ -13,7 +13,7 @@ module.exports = function user(app, logger) {
                 logger.error('Problem obtaining MySQL connection',err)
                 res.status(400).send('Problem obtaining MySQL connection'); 
             } else {
-                var username = req.query.username
+                var username = req.body.username
                 // if there's no issue obtaining a connection, execute query & release connection
                 connection.query("SELECT * FROM `swvault`.`user` u WHERE u.username = ?", [username], (err, rows) => {
                     connection.release();
@@ -24,7 +24,7 @@ module.exports = function user(app, logger) {
                             "error": "MySQL error"
                         })
                     } else {
-                        res.status(200).json(rows)
+                        res.status(200).json(rows);
                     }
                 });
             }
@@ -106,13 +106,13 @@ module.exports = function user(app, logger) {
 
     // POST /user/login
     app.post('/user/login', (req, res) => {
-        console.log(req.body.username, req.body.hashpass);
+        console.log("/user/login --> ", req.body.username, req.body.hashpass)
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
-            // if there's an issue obtaining a connection, release the connection instance & log the error
-            logger.error('Problem obtaining MySQL connection',err)
-            res.status(400).send('Problem obtaining MySQL connection'); 
+                // if there's an issue obtaining a connection, release the connection instance & log the error
+                logger.error('Problem obtaining MySQL connection',err)
+                res.status(400).send('Problem obtaining MySQL connection'); 
             } else {
                 // if there's no issue obtaining a connection, execute query & release connection
                 const username = req.body.username
@@ -132,7 +132,7 @@ module.exports = function user(app, logger) {
                             bcrypt.compare(hashpass, rows[0].hashpass, function (err, result) {
                                 console.log("Username:", username, "\tPassword:", hashpass, "\nSavedHash:", rows[0].hashpass)
                                 if(result){
-                                    console.log("Correct! Hash matches w/ plain text")
+                                    console.log("Correct! Hash matches w/ plain text (UserID:", rows[0].id, ")")
                                     res.status(201).json(rows[0].id)
                                 }
                                 else {

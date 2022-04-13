@@ -5,7 +5,7 @@ import { UserRepository } from "../../API/userRepository";
 import axios from 'axios'
 
 
-const Insurance = ({ navigation }) => {
+const Insurance = ({ navigation, route }) => {
 
     let updates = new UserRepository();
 
