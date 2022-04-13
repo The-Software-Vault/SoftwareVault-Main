@@ -4,7 +4,7 @@ import { images } from "../../constants";
 import { UserRepository } from "../../API/userRepository";
 import axios from 'axios'
 
-const MedicalHistoryForm = ({ navigation }) => {
+const MedicalHistoryForm = ({ navigation, route }) => {
 
     let updates = new UserRepository();
 

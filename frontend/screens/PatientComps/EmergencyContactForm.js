@@ -4,7 +4,7 @@ import { images } from "../../constants";
 import { UserRepository } from "../../API/userRepository";
 import axios from 'axios'
 
-const EmergencyContactForm = ({ navigation }) => {
+const EmergencyContactForm = ({ navigation, route }) => {
 
     let updates = new UserRepository();
 

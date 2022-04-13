@@ -8,11 +8,27 @@ const Login = ({ navigation }) => {
 
     let logins = new UserRepository();
 
+    let [id, setId] = React.useState('')
     const [username, onChangeUsername] = React.useState('');
     const [password, onChangePassword] = React.useState('');
 
     function checkUserType(){
-        console.log("Status: ", logins.verifyUser({username: username, hashpass: password}).value)
+        console.log("Login/Verify: ", logins.verifyUser({username: username, hashpass: password}).value)
+
+        axios.post(`${logins.url}/user/login`, {username: username, hashpass : password})
+            .then(response => {
+                console.log("response: ", response.data)
+                if(response.data === 0) {
+                    invalidLogin()
+                }
+                else {
+                    console.log("Username:", username, "  Password:", password)
+                    console.log("UserID:", response.data)
+                    id = response.data
+                    {id => setId(id)}
+                    // validLogin(response.data)
+                }
+            })
 
         if(username === "Doctor"){
             return 'DoctorDashboard'
@@ -20,6 +36,16 @@ const Login = ({ navigation }) => {
         else {
             return 'PatientDashboard';
         }
+
+        //invalidLogin()
+        //return 'Login'
+    }
+
+    function invalidLogin() {
+        alert("Wrong Username/Password");
+        username.length = 0;
+        password.length = 0;
+        //this.setState({status : false})
     }
 
     return(

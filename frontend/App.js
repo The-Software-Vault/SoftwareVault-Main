@@ -31,7 +31,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Login, Register, DoctorDashboard, PatientDashboard, Messages,
-PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat, DrAppointments, ApptSettings, SpecificSettings, GeneralSettings} from "./screens";
+PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat, DrAppointments, ApptSettings, SpecificSettings, GeneralSettings, MedicalHistoryForm, Insurance, EmergencyContactForm} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -181,6 +181,36 @@ const App  = () => {
                 }} />
                 <Stack.Screen name="GeneralSettings" component={GeneralSettings} options={{
                     title: "General Availability Settings",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="MedicalHistoryForm" component={MedicalHistoryForm} options={{
+                    title: "Medical History Form",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="Insurance" component={Insurance} options={{
+                    title: "Insurance",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="EmergencyContactForm" component={EmergencyContactForm} options={{
+                    title: "Emergency Contact Form",
                     headerStyle: {
                         backgroundColor: "#755293",
                     },
