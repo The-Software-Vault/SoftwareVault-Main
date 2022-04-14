@@ -6,11 +6,10 @@ export class MessageRepository {
     url = false ? 'http://54.156.23.43:8000' : 'http://localhost:8000';
 
     // GET Returns chat history between a doctor and patient (UserIs, DoctorId) : http://CHANGE-ME:8000/message/getChat
-    getChatHistory(userId, doctorId){
+    getChatHistory(convo){
         return new Promise((resolve,reject) =>{
-            axios.get(`${this.url}/message/getChat`, {userId, doctorId})
+            axios.get(`${this.url}/message/getChat`, {params: convo})
                 .then(x => {
-                    console.log("getChatHistory -->\tuserID:", userId, "\tDoctorID:", doctorId);
                     resolve(x.data);
                 })
                 .catch(x => {
