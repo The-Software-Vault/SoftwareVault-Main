@@ -5,7 +5,7 @@ module.exports = function user(app, logger) {
 
     // GET /user/
     app.get('/user/', (req, res) => {
-        console.log(req.query.username)
+        console.log("/user/ -->", req.body.username)
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
@@ -13,7 +13,7 @@ module.exports = function user(app, logger) {
                 logger.error('Problem obtaining MySQL connection',err)
                 res.status(400).send('Problem obtaining MySQL connection'); 
             } else {
-                var username = req.query.username
+                var username = req.body.username
                 // if there's no issue obtaining a connection, execute query & release connection
                 connection.query("SELECT * FROM `swvault`.`user` u WHERE u.username = ?", [username], (err, rows) => {
                     connection.release();
@@ -24,7 +24,7 @@ module.exports = function user(app, logger) {
                             "error": "MySQL error"
                         })
                     } else {
-                        res.status(200).json(rows)
+                        res.status(200).json(rows);
                     }
                 });
             }
@@ -106,13 +106,13 @@ module.exports = function user(app, logger) {
 
     // POST /user/login
     app.post('/user/login', (req, res) => {
-        console.log(req.body.username, req.body.hashpass);
+        console.log("/user/login --> ", req.body.username, req.body.hashpass)
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
-            // if there's an issue obtaining a connection, release the connection instance & log the error
-            logger.error('Problem obtaining MySQL connection',err)
-            res.status(400).send('Problem obtaining MySQL connection'); 
+                // if there's an issue obtaining a connection, release the connection instance & log the error
+                logger.error('Problem obtaining MySQL connection',err)
+                res.status(400).send('Problem obtaining MySQL connection'); 
             } else {
                 // if there's no issue obtaining a connection, execute query & release connection
                 const username = req.body.username
@@ -132,7 +132,7 @@ module.exports = function user(app, logger) {
                             bcrypt.compare(hashpass, rows[0].hashpass, function (err, result) {
                                 console.log("Username:", username, "\tPassword:", hashpass, "\nSavedHash:", rows[0].hashpass)
                                 if(result){
-                                    console.log("Correct! Hash matches w/ plain text")
+                                    console.log("Correct! Hash matches w/ plain text (UserID:", rows[0].id, ")")
                                     res.status(201).json(rows[0].id)
                                 }
                                 else {
@@ -177,6 +177,103 @@ module.exports = function user(app, logger) {
                         })
                     } else {
                         res.status(204).json(rows)
+                    }
+                });
+            }
+        });
+    });
+
+    // PUT /user/updateInsurance
+    app.put('/user/updateInsurance', (req, res) => {
+        console.log(req.body.id, req.body.healthPlan, req.body.memberID, req.body.groupID, req.body.relation);
+        // obtain a connection from our pool of connections
+        pool.getConnection(function (err, connection){
+            if(err){
+                // if there's an issue obtaining a connection, release the connection instance & log the error
+                logger.error('Problem obtaining MySQL connection',err)
+                res.status(400).send('Problem obtaining MySQL connection'); 
+            } else {
+                var id = req.body.id
+                var healthPlan = req.body.healthPlan
+                var memberID = req.body.memberID
+                var groupID = req.body.groupID
+                var relation = req.body.relation
+                // if there's no issue obtaining a connection, execute query & release connection
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.healthPlan = ?, u.memberID = ?, u.groupID = ?, u.relation = ? WHERE u.patientID = ?", [healthPlan, memberID, groupID, relation, id], (err, rows) => {
+                    connection.release();
+                    if (err) {
+                        logger.error("Error while executing Query: \n", err);
+                        res.status(400).json({
+                            "data": [],
+                            "error": "MySQL error"
+                        })
+                    } else {
+                        res.status(200).json(rows)
+                    }
+                });
+            }
+        });
+    });
+
+    // PUT /user/updateEMC
+    app.put('/user/updateEMC', (req, res) => {
+        console.log(req.body.id, req.body.ecn, req.body.relation, req.body.cell, req.body.work);
+        // obtain a connection from our pool of connections
+        pool.getConnection(function (err, connection){
+            if(err){
+                // if there's an issue obtaining a connection, release the connection instance & log the error
+                logger.error('Problem obtaining MySQL connection',err)
+                res.status(400).send('Problem obtaining MySQL connection'); 
+            } else {
+                var id = req.body.id
+                var ecn = req.body.ecn
+                var relation = req.body.relation
+                var cell = req.body.cell
+                var work = req.body.work
+                // if there's no issue obtaining a connection, execute query & release connection
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.ecn = ?, u.relation = ?, u.cell = ?, u.work = ? WHERE u.patientID = ?", [ecn, relation, cell, work, id], (err, rows) => {
+                    connection.release();
+                    if (err) {
+                        logger.error("Error while executing Query: \n", err);
+                        res.status(400).json({
+                            "data": [],
+                            "error": "MySQL error"
+                        })
+                    } else {
+                        res.status(200).json(rows)
+                    }
+                });
+            }
+        });
+    });
+
+    // PUT /user/updateMH
+    app.put('/user/updateMH', (req, res) => {
+        console.log(req.body.id, req.body.age, req.body.weight, req.body.height, req.body.med, req.body.allergies);
+        // obtain a connection from our pool of connections
+        pool.getConnection(function (err, connection){
+            if(err){
+                // if there's an issue obtaining a connection, release the connection instance & log the error
+                logger.error('Problem obtaining MySQL connection',err)
+                res.status(400).send('Problem obtaining MySQL connection'); 
+            } else {
+                var id = req.body.id
+                var age = req.body.age
+                var weight = req.body.weight
+                var height = req.body.height
+                var med = req.body.med
+                var allergies = req.body.allergies
+                // if there's no issue obtaining a connection, execute query & release connection
+                connection.query("UPDATE `swvault`.`patientInfo` u SET u.age = ?, u.weight = ?, u.height = ?, u.med = ?, u.allergies = ? WHERE u.patientID = ?", [age, weight, height, med, allergies, id], (err, rows) => {
+                    connection.release();
+                    if (err) {
+                        logger.error("Error while executing Query: \n", err);
+                        res.status(400).json({
+                            "data": [],
+                            "error": "MySQL error"
+                        })
+                    } else {
+                        res.status(200).json(rows)
                     }
                 });
             }

@@ -40,7 +40,6 @@ const message = require('./routes/message')
 user(app, logger);
 message(app, logger);
 
-
 app.get('/', (req, res) => {
   res.status(200).send('Go to 0.0.0.0:3000.');
 });

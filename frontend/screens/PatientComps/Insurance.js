@@ -1,11 +1,24 @@
 import React from "react";
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
 import { images } from "../../constants";
+import { UserRepository } from "../../API/userRepository";
+import axios from 'axios'
 
-const Insurance = ({ navigation }) => {
 
-    const [text, onChangeText] = React.useState("This is a text");
-    const [number, onChangeNumber] = React.useState(null);
+const Insurance = ({ navigation, route }) => {
+
+    let updates = new UserRepository();
+
+    const [healthPlan, onChangeHealthPlan] = React.useState('');
+    const [memberID, onChangeMemberID] = React.useState('');
+    const [groupID, onChangeGroupID] = React.useState('');
+    const [relation, onChangeRelation] = React.useState('');
+    const {name, id:id} = route.params;
+
+    function submit() {
+        updates.updateInsurance(({id:id, healthPlan: healthPlan, memberID: memberID, groupID: groupID, relation: relation}).value);
+        navigation.navigate('PatientDashboard', {name: name});
+    }
 
     return(
         <View style={{flex: 1}}>
@@ -18,7 +31,7 @@ const Insurance = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Name of Health Plan"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={healthPlan => onChangeHealthPlan(healthPlan)}/>
                     </View>
                     <Text style={styles.black}>Member ID</Text>
                     <View style={styles.inputView}>
@@ -26,7 +39,7 @@ const Insurance = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Member ID"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={memberID => onChangeMemberID(memberID)}/>
                     </View>
                     <Text style={styles.black}>Group ID (Optional)</Text>
                     <View style={styles.inputView}>
@@ -34,7 +47,7 @@ const Insurance = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Group ID (Optional)"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={groupID => onChangeGroupID(groupID)}/>
                     </View>
                     <Text style={styles.black}>Relation to Plan Holder</Text>
                     <View style={styles.inputView}>
@@ -42,11 +55,11 @@ const Insurance = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Relation to Plan Holder"
 							placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={relation => onChangeRelation(relation)}/>
                     </View>
-                    <Pressable style={styles.createBtn}>
+                    <Pressable style={styles.createBtn} onPress={() => submit()}>
                         <TouchableOpacity>
-                            <Text style={styles.createText}>Next</Text>
+                            <Text style={styles.createText}>Update Profile</Text>
                         </TouchableOpacity>
                     </Pressable>
                 </SafeAreaView>    

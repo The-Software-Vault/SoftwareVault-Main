@@ -24,7 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 
-./yarn.lock
+#./yarn.lock
 node_modules
 /.log
 /.node_modules
@@ -40,3 +40,7 @@ mysql
 //package.json
 .env
 /.env
+
+# private key (ssh)
+*.pem
+swvault.pem

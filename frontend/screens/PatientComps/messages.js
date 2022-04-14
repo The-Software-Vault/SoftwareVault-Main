@@ -74,7 +74,7 @@ export default function Messages( props ) {
         let finalhour = hour >= 12 ? (hour - 12) : hour;
 
         const newMessage = {
-            id: messagesList.length + 1,
+            //id: messagesList.length + 1,
             message: message,
             time: `${finalhour}:${minute} ${AmPm}`,
             isSender: true,

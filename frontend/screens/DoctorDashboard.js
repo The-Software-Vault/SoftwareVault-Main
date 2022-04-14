@@ -52,7 +52,7 @@ const DoctorDashboard =  ({ navigation, route }) => {
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('Messages', messages)}>
+                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
                             <Text style={styles.text_container}>Messages</Text>
                         </Pressable>

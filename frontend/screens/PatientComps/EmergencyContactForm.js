@@ -1,11 +1,23 @@
 import React from "react";
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
 import { images } from "../../constants";
+import { UserRepository } from "../../API/userRepository";
+import axios from 'axios'
 
-const EmergencyContactForm = ({ navigation }) => {
+const EmergencyContactForm = ({ navigation, route }) => {
 
-    const [text, onChangeText] = React.useState("This is a text");
-    const [number, onChangeNumber] = React.useState(null);
+    let updates = new UserRepository();
+
+    const [ecn, onChangeENC] = React.useState('');
+    const [relation, onChangeRelation] = React.useState('');
+    const [cell, onChangeCell] = React.useState('');
+    const [work, onChangeWork] = React.useState('');
+    const {name, id} = route.params;
+
+    function submit() {
+        updates.updateEMC(({id: id, ecn: ecn, relation: relation, cell: cell, work: work}).value);
+        navigation.navigate('PatientDashboard', {name: name});
+    }
 
     return(
         <View style={{flex: 1}}>
@@ -18,7 +30,7 @@ const EmergencyContactForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Emergency Contact Name"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={ecn => onChangeENC(ecn)}/>
                     </View>
                     <Text style={styles.black}>Relation</Text>
                     <View style={styles.inputView}>
@@ -26,7 +38,7 @@ const EmergencyContactForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Relation"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={relation => onChangeRelation(relation)}/>
                     </View>
                     <Text style={styles.black}>Phone Number (Cell)</Text>
                     <View style={styles.inputView}>
@@ -34,7 +46,7 @@ const EmergencyContactForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Phone Number (Cell)"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={cell => onChangeCell(cell)}/>
                     </View>
 					<Text style={styles.black}>Phone Number (Work)</Text>
                     <View style={styles.inputView}>
@@ -42,9 +54,9 @@ const EmergencyContactForm = ({ navigation }) => {
                             style={styles.inputText}
                             placeholder="Phone Number (Work)"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={text => onChangeText(text)}/>
+                            onChangeText={work => onChangeWork(work)}/>
                     </View>
-                    <Pressable style={styles.createBtn}>
+                    <Pressable style={styles.createBtn} onPress={() => submit()}>
                         <TouchableOpacity>
                             <Text style={styles.createText}>Update Profile</Text>
                         </TouchableOpacity>
