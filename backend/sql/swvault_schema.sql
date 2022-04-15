@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `swvault`.`messages` (
 	`message`		VARCHAR(512) NOT NULL,
 	`sentDate`	DATETIME NOT NULL,
 	`isSender`	TINYINT(1),
+	`isSeen`		TINYINT(1),
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`userId`)
 	        REFERENCES `swvault`.`user`(`id`)
@@ -89,5 +90,5 @@ CREATE TABLE IF NOT EXISTS `swvault`.`messages` (
 	    ON DELETE CASCADE
 );
 
-INSERT INTO messages (`userId`, `doctorId`, `message`, `sentDate`, `isSender`) VALUES
-	(1, 4, 'Hello Doctor, I have a quick question', CURRENT_TIMESTAMP, NULL);
+INSERT INTO messages (`userId`, `doctorId`, `message`, `sentDate`, `isSender`,`isSeen`) VALUES
+	(1, 4, 'Hello Doctor, I have a quick question', CURRENT_TIMESTAMP, 1, 0);
