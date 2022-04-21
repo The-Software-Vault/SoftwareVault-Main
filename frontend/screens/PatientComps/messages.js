@@ -1,21 +1,23 @@
 import React, {useState, useEffect} from "react";
 import { Fonts, Colors, Sizes } from "../../constants/styles"
 import {StyleSheet, View, FlatList, Text, TextInput, Pressable, TouchableOpacity} from  "react-native";
+import { MessageRepository } from "../../API/messageRepository";
 
 export default function Messages( props ) {
+    
+    let msgs = new MessageRepository();
 
     const {route, navigation} = props;
+    const [messagesList, setMessagesList] = React.useState(['']);
 
-    const [messagesList, setMessagesList] = useState([
-        { id: '1', message: 'Hello Doctor', time: '9:35 AM', isSender: true, isSeen: true },
-        { id: '2', message: 'Hello', time: '9:36 AM', isSender: false, isSeen: null },
-        { id: '3', message: 'How can i help you?', time: '9:37 AM', isSender: false, isSeen: null },
-        { id: '4', message: 'I\'m felling sick for 2 days.', time: '9:38 AM', isSender: true, isSeen: false },
-    ]);
-
+    useEffect(() => { 
+        console.log("Messages List:", messagesList)
+        //let msgs = new MessageRepository();
+        //setMessagesList(msgs.getChatHistory(1,4));
+        console.log("CHAT LOG:", msgs.getChatHistory(1,4));
+    }, []);
 
     function messages() {
-
         const renderItem = ({ item }) => {
             return (
                 <View style={{
@@ -61,7 +63,6 @@ export default function Messages( props ) {
     }
 
     function addMessage({ message }) {
-
         const oldMessages = messagesList;
         let date = Date();
         let hour = (new Date(date)).getHours();
@@ -70,7 +71,7 @@ export default function Messages( props ) {
         let finalhour = hour >= 12 ? (hour - 12) : hour;
 
         const newMessage = {
-            id: messagesList.length + 1,
+            //id: messagesList.length + 1,
             message: message,
             time: `${finalhour}:${minute} ${AmPm}`,
             isSender: true,
@@ -107,7 +108,6 @@ export default function Messages( props ) {
             </View>
         )
     }
-
     return <View style={{ flex: 1, backgroundColor: 'white' }}>
             {messages()}
             {typeMessage()}

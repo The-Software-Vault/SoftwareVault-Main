@@ -69,3 +69,25 @@ INSERT INTO patient (`id`, `sex`) VALUES
     (2, 'male'),
     (3, 'female'),
     (6, 'female');
+
+-- -----------------------------------------------------
+-- Table `swvault`.`messages`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `swvault`.`messages` (
+	`id`			INT AUTO_INCREMENT,
+	`userId`		INT NOT NULL,
+	`doctorId`	INT NOT NULL,
+	`message`		VARCHAR(512) NOT NULL,
+	`sentDate`	DATETIME NOT NULL,
+	`isSender`	TINYINT(1),
+	PRIMARY KEY (`id`),
+	FOREIGN KEY (`userId`)
+	        REFERENCES `swvault`.`user`(`id`)
+	    ON DELETE CASCADE,
+	FOREIGN KEY (`doctorId`)
+	        REFERENCES `swvault`.`user`(`id`)
+	    ON DELETE CASCADE
+);
+
+INSERT INTO messages (`userId`, `doctorId`, `message`, `sentDate`, `isSender`) VALUES
+	(1, 4, 'Hello Doctor, I have a quick question', CURRENT_TIMESTAMP, NULL);
