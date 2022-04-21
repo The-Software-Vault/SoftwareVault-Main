@@ -15,7 +15,7 @@ module.exports = function message(app, logger) {
                 var userId = req.query.userId
                 var doctorId = req.query.doctorId
                 // if there's no issue obtaining a connection, execute query & release connection
-                connection.query("SELECT m.message, m.sentDate FROM `swvault`.`messages` m WHERE m.userId = ? AND m.doctorId = ?", [userId, doctorId], (err, rows) => {
+                connection.query("SELECT * FROM `swvault`.`messages` m WHERE m.userId = ? AND m.doctorId = ?", [userId, doctorId], (err, rows) => {
                     connection.release();
                     if (err) {
                         logger.error("Error while fetching values: \n", err);
