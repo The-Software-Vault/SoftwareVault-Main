@@ -12,12 +12,13 @@ export default function Messages( props ) {
     const {route, navigation} = props;
     const [messagesList, setMessagesList] = useState([]);
 
-
     useEffect(() => { 
-        console.log(messagesList)
-        let logins = new MessageRepository();
-        //setMessagesList(logins.getChatHistory(1,4));
-        console.log(logins.getChatHistory(1,4))
+        
+        msgs.getChatHistory({userId: 1, doctorId: 4}).then(res => {
+            console.log("Messages + Details: ", res)
+            setMessagesList(res);
+        })
+
     }, []);
 
     function messages() {
