@@ -75,7 +75,6 @@ const ApptSettings = ({ navigation }) => {
                 </View>
                 <View style={styles.inputView}>
                     <TextInput
-                        secureTextEntry={true}
                         style={styles.inputText}
                         placeholder="Patient Instructions"
                         placeholderTextColor="#AFAFAF"

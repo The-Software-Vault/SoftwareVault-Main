@@ -22,56 +22,59 @@ const MedicalHistoryForm = ({ navigation, route }) => {
 
     return(
         <View style={{flex: 1}}>
-            <ScrollView style={styles.scrollView}>
-                <SafeAreaView style={styles.container}>
-                    <View style={{height: "10%"}}></View>
-                    <Text style={styles.black}>Age</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+            <SafeAreaView style={styles.container}>
+
+            <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30}}>Medical Information</Text>
+            <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20, marginBottom: 40}}>Please fill out this form to share with your doctor.</Text>
+                
+                
+                <Text style={{alignSelf: "center", color: "black"}}>Age</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Age"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={age => onChangeAge(age)}/>
-                    </View>
-                    <Text style={styles.black}>Weight (lbs)</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Weight (lbs)</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Weight (lbs)"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={weight => onChangeWeight(weight)}/>
-                    </View>
-                    <Text style={styles.black}>Height (Ft, In)</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Height (Ft, In)</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Height (Ft, In)"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={height => onChangeHeight(height)}/>
-                    </View>
-                    <Text style={styles.black}>Current Medication</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Current Medication</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Current Medication"
 							placeholderTextColor="#AFAFAF"
                             onChangeText={med => onChangeMed(med)}/>
-                    </View>
-					<Text style={styles.black}>Known Allergies</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Known Allergies</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Known Allergies"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={allergies => onChangeAllergies(allergies)}/>
-                    </View>
-                    <Pressable style={styles.createBtn} onPress={() => submit()}>
-                        <TouchableOpacity>
-                            <Text style={styles.createText}>Update Profile</Text>
-                        </TouchableOpacity>
-                    </Pressable>
+                </View>
+                <TouchableOpacity style={styles.createBtn} onPress={() => submit()}>
+                        
+                            <Text style={styles.createText}>Confirm</Text>
+                       
+                    </TouchableOpacity>
                 </SafeAreaView>    
-            </ScrollView>
+    
         </View>
     )
 }
@@ -114,14 +117,14 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     createBtn: {
-        width: '80%',
-        backgroundColor: "#F3E03F",
+        width: "80%",
+        backgroundColor: "#755293",
         borderRadius: 25,
         height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 20,
-        marginBottom: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 30,
+        marginBottom: 30,
     },
     createText: {
         color: "#ffffff",

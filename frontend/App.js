@@ -97,6 +97,7 @@ const App  = () => {
                 }} />
                 <Stack.Screen name="PatientDashboard" component={PatientDashboard} options={{
                     title:"Patient Dashboard",
+                    headerShown: false,
                     headerStyle: {
                         backgroundColor: "#755293",
                     },
@@ -106,7 +107,7 @@ const App  = () => {
                     },
                 }} />
                 <Stack.Screen name="PatientProfile" component={PatientProfile} options={{
-                    title:"Patient Profile",
+                    title:"Settings",
                     headerStyle: {
                         backgroundColor: "#755293",
                     },

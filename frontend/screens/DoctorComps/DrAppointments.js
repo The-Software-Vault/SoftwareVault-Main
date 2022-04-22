@@ -3,6 +3,7 @@ import { Text, View, useWindowDimensions, FlatList, Dimensions, Image, Touchable
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import Dialog from "react-native-dialog";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { images } from "../../constants";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -221,8 +222,11 @@ export default function DrAppointments (props) {
                         </View>
                     </View>
 
-                    <TouchableOpacity style = {styles.addButton} onPress={() => { setShowNotes(true); }}>
-                        <Text style = {styles.addButtonTxt}>Edit Notes</Text>
+                    <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
+                    <View style={{flexDirection: "row"}}>
+                    <Image source={images.notes}/>
+                    <Text style = {styles.messageButtonTxt}> Edit Notes</Text>      
+                    </View>  
                         {showNotesBox()}
                     </TouchableOpacity>
 
@@ -378,23 +382,38 @@ export default function DrAppointments (props) {
                             <Text style={{ textAlign: 'center', color: '#8ECC90', fontSize: 18, }}>{item.date}</Text>
                         </View>
                         <View style={{ marginLeft: Sizes.fixPadding }}>
-                            <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                            <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.patient}</Text>
-                            <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
-                        <Text style = {styles.detailsButtonTxt}>Details</Text>
+                        <View style={{flexDirection: "row"}}>
+                    <Image source={images.clock}/>
+                    <Text style={{ ...Fonts.black18Bold }}> {item.time}</Text>      
+                    </View>  
+                    <View style={{flexDirection: "row", marginVertical: 4.0,}}>
+                    <Image source={images.doctor}/>
+                    <Text style={{  ...Fonts.black16Regular, marginBottom: 15 }}> {item.patient}</Text>    
+                    </View>  
+                    <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
+                            <View style={{flexDirection: "row"}}>
+                    <Image source={images.info}/>
+                    <Text style = {styles.messageButtonTxt}> Details</Text>      
+                    </View> 
                         {showDetailBox()}
                     </TouchableOpacity>
 
                     <View style={{flexDirection: "row", justifyContent: "space-between"}}>
 
                     <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
-                        <Text style = {styles.messageButtonTxt}>Message</Text>
+                        <View style={{flexDirection: "row"}}>
+                    <Image source={images.message}/>
+                    <Text style = {styles.messageButtonTxt}> Message</Text>      
+                    </View>            
                     </TouchableOpacity>
                 
                     </View>
 
-                    <TouchableOpacity style = {styles.addButton} onPress={() => { setShowNotes(true); }}>
-                        <Text style = {styles.addButtonTxt}>Add Notes</Text>
+                    <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
+                    <View style={{flexDirection: "row"}}>
+                    <Image source={images.notes}/>
+                    <Text style = {styles.messageButtonTxt}> Add Notes</Text>      
+                    </View>  
                         {showNotesBox()}
                     </TouchableOpacity>
 
@@ -517,7 +536,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end"
     },
     buttonDetails: {
-        width: 50,
+        width: 70,
         height: 20,
         justifyContent: "flex-end"
     },
@@ -528,7 +547,10 @@ const styles = StyleSheet.create({
         color: "blue"
     },
     messageButtonTxt: {
-        color: "blue"
+        color: "blue",
+        marginTop: 1,
+        ...Fonts.primaryColor16Regular
+        
     },
     completeButtonTxt: {
         color: "#755293"

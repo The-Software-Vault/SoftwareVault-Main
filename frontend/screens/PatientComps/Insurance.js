@@ -22,48 +22,51 @@ const Insurance = ({ navigation, route }) => {
 
     return(
         <View style={{flex: 1}}>
-            <ScrollView style={styles.scrollView}>
-                <SafeAreaView style={styles.container}>
-                    <View style={{height: "10%"}}></View>
-                    <Text style={styles.black}>Name of Health Plan</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+            <SafeAreaView style={styles.container}>
+
+            <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black"}}>Insurance Information</Text>
+            <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20, marginBottom: 40}}>Please fill out this form if you have health insurance.</Text>
+                
+                
+                <Text style={{alignSelf: "center", color: "black"}}>Health Plan</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Name of Health Plan"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={healthPlan => onChangeHealthPlan(healthPlan)}/>
-                    </View>
-                    <Text style={styles.black}>Member ID</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Member ID</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Member ID"
                             placeholderTextColor="#AFAFAF"
-                            onChangeText={memberID => onChangeMemberID(memberID)}/>
-                    </View>
-                    <Text style={styles.black}>Group ID (Optional)</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+                            onChangeText={memID => onChangeMemberID(memID)}/>
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Group ID (Optional)</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Group ID (Optional)"
                             placeholderTextColor="#AFAFAF"
                             onChangeText={groupID => onChangeGroupID(groupID)}/>
-                    </View>
-                    <Text style={styles.black}>Relation to Plan Holder</Text>
-                    <View style={styles.inputView}>
-                        <TextInput
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Relation to Plan Holder</Text>
+                <View style={styles.inputView}>
+                <TextInput
                             style={styles.inputText}
                             placeholder="Relation to Plan Holder"
 							placeholderTextColor="#AFAFAF"
-                            onChangeText={relation => onChangeRelation(relation)}/>
-                    </View>
-                    <Pressable style={styles.createBtn} onPress={() => submit()}>
-                        <TouchableOpacity>
-                            <Text style={styles.createText}>Update Profile</Text>
-                        </TouchableOpacity>
-                    </Pressable>
+                            onChangeText={planHolder => onChangeRelation(planHolder)}/>
+                </View>
+                <TouchableOpacity style={styles.createBtn} onPress={() => submit()}>
+                        
+                            <Text style={styles.createText}>Confirm</Text>
+                        
+                    </TouchableOpacity>
                 </SafeAreaView>    
-            </ScrollView>
+    
         </View>
     )
 }
@@ -106,14 +109,14 @@ const styles = StyleSheet.create({
         fontWeight: '500',
     },
     createBtn: {
-        width: '80%',
-        backgroundColor: "#F3E03F",
+        width: "80%",
+        backgroundColor: "#755293",
         borderRadius: 25,
         height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 20,
-        marginBottom: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 30,
+        marginBottom: 30,
     },
     createText: {
         color: "#ffffff",

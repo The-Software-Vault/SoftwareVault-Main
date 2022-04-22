@@ -3,6 +3,7 @@ import { Text, View, useWindowDimensions, FlatList, Dimensions, Image, Touchable
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import Dialog from "react-native-dialog";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { images } from "../../constants";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -35,12 +36,24 @@ export default function Appointments (props) {
                     <Text style={{ textAlign: 'center', ...Fonts.black16Bold }}>Appointment Details</Text>
                     <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
                 </View>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Date: {currItem.date}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Time: {currItem.time}</Text>
+                <View style={{flexDirection: "row"}}>
+                    <Image source={images.date}/>
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}> {currItem.date}</Text>      
+                    </View>  
+                        <View style={{flexDirection: "row"}}>
+                    <Image source={images.clock}/>
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}> {currItem.time}</Text>      
+                    </View>  
+                    <View style={{flexDirection: "row"}}>
+                    <Image source={images.link}/>
+                    <Text style={{ ...Fonts.primaryColor14Regular, marginTop: 5 }} onPress={() => Linking.openURL(link)}>{link}</Text>     
+                    </View>  
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>{instructions}</Text> 
                         <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Reason: {currItem.reason}</Text>
                         <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Symptoms: {currItem.symptoms}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>{instructions}</Text> 
-                        <Text style={{ ...Fonts.primaryColor14Regular, marginTop: 5 }} onPress={() => Linking.openURL(link)}>{link}</Text>
+                    
+                        
+                        
                        
                     <View style={{ flex: 1, flexDirection: 'row', marginTop: Sizes.fixPadding, justifyContent: "center" }}>
                         <TouchableOpacity
@@ -176,13 +189,14 @@ export default function Appointments (props) {
                     <View style={{flexDirection: "row", justifyContent: "space-between"}}>
 
                     <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
-                        <Text style = {styles.messageButtonTxt}>Message</Text>
+                    <Image source={images.message}/>
                     </TouchableOpacity>          
                     </View>
                         </View>
                     </View>
 
                     <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
+                        
                         <Text style = {styles.messageButtonTxt}>View Notes</Text>
                         {showNotesBox()}
                     </TouchableOpacity>
@@ -257,7 +271,7 @@ export default function Appointments (props) {
     }
 
     //link will be specific to the doctor
-    const instructions = "Please click the link below when it is time for the appointment!";
+    const instructions = "Please click the link above when it is time for the appointment!";
     const link = "https://smu.zoom.us/s/99521176990";
 
     const [activeDataList, setActiveDataList] = React.useState([
@@ -364,19 +378,36 @@ export default function Appointments (props) {
                             <Text style={{ textAlign: 'center', color: '#8ECC90', fontSize: 18, }}>{item.date}</Text>
                         </View>
                         <View style={{ marginLeft: Sizes.fixPadding }}>
-                            <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                            <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
+                        <View style={{flexDirection: "row"}}>
+                    <Image source={images.clock}/>
+                    <Text style={{ ...Fonts.black18Bold }}> {item.time}</Text>      
+                    </View>  
+                            
+                    <View style={{flexDirection: "row", marginVertical: 4.0,}}>
+                    <Image source={images.doctor}/>
+                    <Text style={{  ...Fonts.black16Regular, marginBottom: 15 }}> {item.doctor}</Text>    
+                    </View>  
+                            
                             <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
-                        <Text style = {styles.detailsButtonTxt}>Details</Text>
+                            <View style={{flexDirection: "row"}}>
+                    <Image source={images.info}/>
+                    <Text style = {styles.messageButtonTxt}> Details</Text>      
+                    </View> 
                         {showDetailBox()}
                     </TouchableOpacity>
 
                     <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
-                        <Text style = {styles.messageButtonTxt}>Message</Text>
+                        <View style={{flexDirection: "row"}}>
+                    <Image source={images.message}/>
+                    <Text style = {styles.messageButtonTxt}> Message</Text>      
+                    </View>            
                     </TouchableOpacity>
 
                     <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
-                        <Text style = {styles.messageButtonTxt}>View Notes</Text>
+                    <View style={{flexDirection: "row"}}>
+                    <Image source={images.notes}/>
+                    <Text style = {styles.messageButtonTxt}> Doctor Notes</Text>      
+                    </View>  
                         {showNotesBox()}
                     </TouchableOpacity>
                         </View>
@@ -432,7 +463,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     messageButtonTxt: {
-        color: "blue"
+        color: "blue",
+        marginTop: 1,
+        ...Fonts.primaryColor16Regular
     },
     pastCircleStyle: {
         height: 90.0,
@@ -472,7 +505,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end"
     },
     buttonDetails: {
-        width: 50,
+        width: 70,
         height: 20,
         justifyContent: "flex-end"
     },

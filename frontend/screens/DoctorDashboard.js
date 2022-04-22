@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Pressable} from  "react-native";
+import { images } from "../../constants";
 
 const DoctorDashboard =  ({ navigation, route }) => {
 
@@ -34,13 +35,6 @@ const DoctorDashboard =  ({ navigation, route }) => {
                         <Pressable style={styles.card_image}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
                             <Text style={styles.text_container}>Notifications</Text>
-                        </Pressable>
-                    </View>
-
-                    <View style={styles.card_template}>
-                        <Pressable style={styles.card_image}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
-                            <Text style={styles.text_container}>Calendar</Text>
                         </Pressable>
                     </View>
 

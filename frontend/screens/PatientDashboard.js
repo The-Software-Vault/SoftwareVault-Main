@@ -1,6 +1,7 @@
 import React from "react";
 import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Pressable, TouchableOpacity} from  "react-native";
 import { UserRepository } from "../API/userRepository"
+import { images } from "../constants";
 //import { Fonts, Colors, Sizes } from "../constants/styles";
 
 const PatientDashboard =  ({ navigation, route}) => {
@@ -29,49 +30,74 @@ const PatientDashboard =  ({ navigation, route}) => {
     return(
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
+                
+            <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 3}}>
+                <TouchableOpacity  onPress={() => navigation.navigate('PatientProfile', {username: a})}>
+                            <Image source={images.setting} resizeMode="contain" style={styles.topBar}/>
+                            </TouchableOpacity>
+            <View style={{alignItems: "flex-end", justifyContent: "flex-end"}}>
+                <TouchableOpacity  onPress={() => navigation.navigate('Login')}>
+                            <Image source={images.logout} resizeMode="contain" style={styles.topBar}/>
+                            </TouchableOpacity>
+                            </View>
+                            
+            
+                            
+                </View>
                 <View style={styles.container}>
-
+                
                     <View style={styles.profileSection}>
-                        <Pressable style={styles.profileImg}>
-                            <Image style={styles.profileImg} source={{uri: 'https://via.placeholder.com/150'}}/>
-                            {/*<Text style={{alignSelf: "center"}}>John Doe</Text>*/}
-                            <Text style={{alignSelf: "center", color: "black"}}>Welcome, {a}, {route.params.id}</Text>
-                        </Pressable>
 
-                        <View style={styles.rowContainer}>
-                            <Pressable style={styles.profileEditBtn1} onPress={() => navigation.navigate('PatientProfile', {username: a})}></Pressable>
-                            <Pressable style={styles.medHistoryBtn} onPress={() => navigation.navigate('MedicalHistoryForm', {username: a, id: id})}></Pressable>
-                            <Pressable style={styles.insurnaceBtn} onPress={() => navigation.navigate('Insurance', {username: a, id: id})}></Pressable>
-                            <Pressable style={styles.emcBtn} onPress={() => navigation.navigate('EmergencyContactForm', {username: a, id: id})}></Pressable>
+                   
+                    <TouchableOpacity  onPress={() => navigation.navigate('PatientProfile', {username: a})}>
+                            
+                            </TouchableOpacity>
+                        
+                            <Image style={styles.profileImg} source={images.stock}/>
+                           
+                            <Text style={{alignSelf: "center", color: "black"}}>Welcome, {a} {route.params.id}</Text>
+                    </View>
+
+                    <View style={styles.rowContainer}>
+                        
+                            <TouchableOpacity  onPress={() => navigation.navigate('MedicalHistoryForm', {username: a, id: id})}>
+                            <Image source={images.medical} resizeMode="contain" style={styles.logo}/>
+                            </TouchableOpacity>
+                        
+                            <TouchableOpacity  onPress={() => navigation.navigate('Insurance', {username: a, id: id})}>
+                            <Image source={images.insurance} resizeMode="contain" style={styles.shield}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity  onPress={() => navigation.navigate('EmergencyContactForm', {username: a, id: id})}>
+                                 <Image source={images.contact} resizeMode="contain" style={styles.logo}/>
+                            </TouchableOpacity>
                         </View>
+
+                        <View style={styles.card_template}>
+                        <TouchableOpacity style={styles.card_image}>
+                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            <Text style={styles.text_container}>Notifications</Text>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('DoctorList')}>
+                        <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('DoctorList')}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
                             <Text style={styles.text_container}>Doctors</Text>
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
-                            <Text style={styles.text_container}>Calendar</Text>
-                        </Pressable>
-                    </View>
-
-                    <View style={styles.card_template}>
-                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('Appointments', appointments)}>
+                        <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('Appointments', appointments)}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
                             <Text style={styles.text_container}>Appointments</Text>
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
+                        <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
                             <Text style={styles.text_container}>Messages</Text>
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>
@@ -86,10 +112,32 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    safe: {
+        flex: 1,
+        color: "#fff",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    topBar: {
+        height: 35, 
+        width: 35,    
+    },
+    logo: {
+        height: 60, 
+        width: 60,  
+        borderColor: "blue"
+    },
+    shield: {
+        height: 60, 
+        width: 60,  
+        marginEnd: 8
+    },
     rowContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        backgroundColor:"F3E03F", 
+        justifyContent: 'space-between',
+        marginBottom: 10,
     },
     profileEditBtn1: {
         backgroundColor: 'green',
@@ -118,9 +166,10 @@ const styles = StyleSheet.create({
         borderRadius: 40,
     },
     profileImg: {
-        height: 80,
-        width: 80,
-        borderRadius: 40,
+        height: 100,
+        width: 100,
+        borderRadius: 60,
+        marginBottom: 10
     },
     profileEditBtn: {
         width: "80%",
@@ -138,14 +187,21 @@ const styles = StyleSheet.create({
     },
     profileSection: {
         width: '100%',
-        height: 250,
-        marginBottom: 5,
+        height: 125,
+        marginBottom: 20,
         marginTop: 10,
         boxShadow: "10x 10px 17px -12px rgba(0,0,0,0.75)",
         alignItems: 'center',
     },
     card_template: {
         width: '100%',
+        height: 250,
+        marginBottom: 5,
+        marginTop: 10,
+        boxShadow: "10x 10px 17px -12px rgba(0,0,0,0.75)",
+    },
+    card_template2: {
+        width: '50%',
         height: 250,
         marginBottom: 5,
         marginTop: 10,
