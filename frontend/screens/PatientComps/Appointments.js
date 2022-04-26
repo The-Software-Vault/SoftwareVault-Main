@@ -84,15 +84,6 @@ export default function Appointments (props) {
                             style={styles.dialogNoButtonStyle}>
                             <Text style={{ ...Fonts.primaryColor17Bold }}>Close</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={0.9}
-                            onPress={() => {
-                                setShowNotes(false);
-                               // getNotes(id);
-                            }}
-                            style={styles.dialogYesButtonStyle}>
-                            <Text style={{ ...Fonts.white17Bold }}>Confirm</Text>
-                        </TouchableOpacity>
                     </View>
                 </ View>
             </Dialog.Container>

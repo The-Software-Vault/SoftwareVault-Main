@@ -12,6 +12,7 @@ const link = require("../assets/icons/link.png");
 const info = require("../assets/icons/info.png");
 const doctor = require("../assets/icons/doctor.png");
 const logout = require("../assets/icons/logout.png");
+const doctorProf = require("../assets/doctors/doctor-1.png");
 
 export default {
     logo,
@@ -28,4 +29,5 @@ export default {
     info,
     doctor,
     logout,
+    doctorProf
 }

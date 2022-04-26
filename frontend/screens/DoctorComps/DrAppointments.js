@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, useWindowDimensions, FlatList, Dimensions, Image, TouchableOpacity, StyleSheet, Pressable, Linking } from "react-native";
+import { Text, View, useWindowDimensions, FlatList, Dimensions, Image, Modal, TouchableOpacity, StyleSheet, Pressable, Linking, TextInput } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import Dialog from "react-native-dialog";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -18,7 +18,8 @@ export default function DrAppointments (props) {
     const [currItem, setCurrItem] = React.useState([]);
     const [showNotes, setShowNotes] = React.useState(false);
     const [showPatient, setShowPatient] = React.useState(false);
-
+    const [notes, setNotes] = React.useState('');
+    const [prescription, setPrescription] = React.useState('');
     const [id, setId] = useState('');
 
     const settingsButton = () => {
@@ -92,29 +93,52 @@ export default function DrAppointments (props) {
 
     const showNotesBox = () => {
         return (
-            <Dialog.Container visible={showNotes} contentStyle={styles.dialogContainerStyle}>
-                <View style={styles.dialogStyle}>
-                    <Text style={{ textAlign: 'center', ...Fonts.black16Regular }}>Edit Appointment Notes</Text>
-                    <View style={{ flex: 1, flexDirection: 'row', marginTop: Sizes.fixPadding * 2.0, }}>
-                        <TouchableOpacity
-                            activeOpacity={0.9}
-                            onPress={() => {
-                                setShowNotes(false);
-                            }}
-                            style={styles.dialogNoButtonStyle}>
-                            <Text style={{ ...Fonts.primaryColor17Bold }}>Close</Text>
+            <Dialog.Container visible={showNotes}
+                contentStyle={styles.dialogContainerStyle}
+                presentationStyle="overFullScreen"
+            >
+                <View style={{
+                    backgroundColor: 'white', alignItems: 'center',
+                }}>
+                    <Text style={{ ...Fonts.black18Bold, paddingBottom: Sizes.fixPadding, }}>
+                        Appointment Notes
+                    </Text>
+                    <View style={{
+                        borderBottomColor: 'gray', borderBottomWidth: 0.50, width: '100%',
+                    }}>
+                        <TextInput
+                            value={prescription} //need an API to call specific appt notes
+                            style={{ ...Fonts.black18Regular, paddingBottom: Sizes.fixPadding }}
+                            placeholder='Prescription'
+                        />
+                    </View>
+                    <View style={{ borderBottomColor: 'gray', borderBottomWidth: 0.50, width: '100%', marginTop: Sizes.fixPadding, }}>
+                        <TextInput
+                            value={notes}
+                            style={{ ...Fonts.black18Regular, paddingBottom: Sizes.fixPadding }}
+                            placeholder='Notes'
+                            multiline
+                        />
+                    </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: Sizes.fixPadding * 2.0 }}>
+                        <TouchableOpacity activeOpacity={0.9} onPress={() => setShowNotes(false)}
+                            style={styles.dialogNoButtonStyle}
+                        >
+                            <Text style={{ ...Fonts.black20Regular }}>Cancel</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             activeOpacity={0.9}
                             onPress={() => {
-                                setShowNotes(false);
-                               // getNotes(id);
+                                setShowNotes(false)
+                                setNotes(notes);
+                                setPrescription(prescription);
                             }}
-                            style={styles.dialogYesButtonStyle}>
-                            <Text style={{ ...Fonts.white17Bold }}>Confirm</Text>
+                            style={styles.dialogYesButtonStyle}
+                        >
+                            <Text style={{ ...Fonts.white20Regular }}>Confirm</Text>
                         </TouchableOpacity>
                     </View>
-                </ View>
+                </View>
             </Dialog.Container>
         )
     }
@@ -279,8 +303,6 @@ export default function DrAppointments (props) {
                     <View style={{ marginLeft: Sizes.fixPadding }}>
                         <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
                         <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>Patient: {item.patient}</Text>
-                        <Text style={{ ...Fonts.black16Regular }}>Reason: {item.reason}</Text>
-                        <Text style={{ ...Fonts.black16Regular }}>Symptoms: {item.symptoms}</Text>
                         <Text style={{ ...Fonts.black16Regular }}>Cancellation Reason: {item.cancelReason}</Text>
                     </View>
                 </View>

@@ -163,7 +163,7 @@ const PatientForm = ({ navigation, route }) => {
             <View style={styles.inputView2}>
                 <TextInput
                     style={styles.inputText}
-                    placeholder="Image Link (optional)"
+                    placeholder="Upload Ultrasound Image (optional)"
                     placeholderTextColor="#AFAFAF"
                     onChangeText={image => onChangeImage(image)}/>
             </View>

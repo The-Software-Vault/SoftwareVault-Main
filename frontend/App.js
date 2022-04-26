@@ -31,7 +31,9 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Login, Register, DoctorDashboard, PatientDashboard, Messages,
-PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat, DrAppointments, ApptSettings, SpecificSettings, GeneralSettings, MedicalHistoryForm, Insurance, EmergencyContactForm} from "./screens";
+PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat,
+ DrAppointments, ApptSettings, SpecificSettings, GeneralSettings, 
+ MedicalHistoryForm, Insurance, EmergencyContactForm, Notifications, DoctorProfile, DoctorInfo} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -87,6 +89,7 @@ const App  = () => {
                 }} />
                 <Stack.Screen name="DoctorDashboard" component={DoctorDashboard} options={{
                     title: "Doctor Dashboard",
+                    headerShown: false,
                     headerStyle: {
                         backgroundColor: "#755293",
                     },
@@ -116,8 +119,18 @@ const App  = () => {
                         fontWeight: 'bold'
                     },
                 }} />
+                <Stack.Screen name="DoctorProfile" component={DoctorProfile} options={{
+                    title:"Settings",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
                 <Stack.Screen name="DoctorList" component={DoctorList} options={{
-                    headerTitle: "DoctorList",
+                    headerTitle: "Find a Doctor",
                     headerStyle: {
                         backgroundColor: "#755293",
                     },
@@ -192,6 +205,16 @@ const App  = () => {
                 }} />
                 <Stack.Screen name="MedicalHistoryForm" component={MedicalHistoryForm} options={{
                     title: "Medical History Form",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
+                <Stack.Screen name="DoctorInfo" component={DoctorInfo} options={{
+                    title: "Extra Information",
                     headerStyle: {
                         backgroundColor: "#755293",
                     },

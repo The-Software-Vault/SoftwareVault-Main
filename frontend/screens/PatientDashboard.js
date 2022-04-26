@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Pressable, TouchableOpacity} from  "react-native";
 import { UserRepository } from "../API/userRepository"
 import { images } from "../constants";
-//import { Fonts, Colors, Sizes } from "../constants/styles";
+import { Fonts, Colors, Sizes } from "../constants/styles";
 
 const PatientDashboard =  ({ navigation, route}) => {
 
@@ -39,10 +39,7 @@ const PatientDashboard =  ({ navigation, route}) => {
                 <TouchableOpacity  onPress={() => navigation.navigate('Login')}>
                             <Image source={images.logout} resizeMode="contain" style={styles.topBar}/>
                             </TouchableOpacity>
-                            </View>
-                            
-            
-                            
+                            </View>       
                 </View>
                 <View style={styles.container}>
                 
@@ -53,8 +50,9 @@ const PatientDashboard =  ({ navigation, route}) => {
                             
                             </TouchableOpacity>
                         
+                        <View style={styles.profileImgContainer}>
                             <Image style={styles.profileImg} source={images.stock}/>
-                           
+                            </View>
                             <Text style={{alignSelf: "center", color: "black"}}>Welcome, {a} {route.params.id}</Text>
                     </View>
 
@@ -160,16 +158,24 @@ const styles = StyleSheet.create({
         height: '15%'
     },
     profileImgContainer: {
-        marginLeft: 8,
-        height: 80,
-        width: 80,
-        borderRadius: 40,
+        height: 100,
+        width: 100,
+        borderRadius: 60,
+        borderColor:"#755293",
+        borderWidth: 1.0,
+        shadowOpacity: 0.5,
+        shadowRadius: Sizes.fixPadding,
+        elevation: 20.0,
+        overflow: 'hidden',
+        backgroundColor: 'white',
+        shadowColor: Colors.primary,
+        shadowOffset: { width: 0, height: 0 },
     },
     profileImg: {
         height: 100,
         width: 100,
-        borderRadius: 60,
-        marginBottom: 10
+        borderRadius: 20,
+        marginBottom: 10,
     },
     profileEditBtn: {
         width: "80%",
