@@ -15,7 +15,7 @@ const Chat = ({ navigation }) => {
         const renderItem = ({ item }) => {
             return (
                 <TouchableOpacity activeOpacity={0.9}
-                    onPress={() => navigation.navigate('Message', { name: item.name })}>
+                onPress={() => { navigation.navigate('messages') }}>
                     <View style={{ marginHorizontal: Sizes.fixPadding * 2.0, marginTop: Sizes.fixPadding * 2.0 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>

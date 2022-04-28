@@ -63,21 +63,21 @@ const DoctorDashboard =  ({ navigation, route }) => {
 
                         <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            <Image style={styles.card_image} source={require('../assets/backgrounds/notifications_background.png')}/>
                             <Text style={styles.text_container}>Notifications</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('DrAppointments', appointments)}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            <Image style={styles.card_image} source={{uri: 'https://wraltechwire.com/wp-content/uploads/2021/01/Triangle-Headliners-banner.png'}}/>
                             <Text style={styles.text_container}>Appointments</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            <Image style={styles.card_image} source={require('../assets/backgrounds/messages_background.png')}/>
                             <Text style={styles.text_container}>Messages</Text>
                         </TouchableOpacity>
                     </View>
