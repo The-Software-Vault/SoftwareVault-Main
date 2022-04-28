@@ -72,28 +72,28 @@ const PatientDashboard =  ({ navigation, route}) => {
 
                         <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            <Image style={styles.card_image} source={require('../assets/backgrounds/notifications_background.png')}/>
                             <Text style={styles.text_container}>Notifications</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('DoctorList')}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            <Image style={styles.card_image} source={{uri: 'https://media.istockphoto.com/vectors/close-up-doctor-banner-background-vector-id1216564093?k=20&m=1216564093&s=170667a&w=0&h=06xcTlcPmQrOw_NUYMpNda5GuL3_1L5k8_-8qs64XHE='}}/>
                             <Text style={styles.text_container}>Doctors</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('Appointments', appointments)}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            <Image style={styles.card_image} source={{uri: 'https://wraltechwire.com/wp-content/uploads/2021/01/Triangle-Headliners-banner.png'}}/>
                             <Text style={styles.text_container}>Appointments</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('Chat')}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                            <Image style={styles.card_image} source={require('../assets/backgrounds/messages_background.png')}/>
                             <Text style={styles.text_container}>Messages</Text>
                         </TouchableOpacity>
                     </View>
