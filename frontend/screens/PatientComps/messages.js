@@ -8,7 +8,7 @@ import { MessageRepository } from "../../API/messageRepository";
 
 export default function Messages( props ) {
     
-
+    let msgs = new MessageRepository();
     const {route, navigation} = props;
     const [messagesList, setMessagesList] = useState([]);
 
