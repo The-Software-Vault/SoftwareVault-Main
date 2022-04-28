@@ -1,66 +1,81 @@
 import React from "react";
-import {StyleSheet, View, Text, TextInput, TouchableOpacity, Pressable, SafeAreaView} from "react-native";
+import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
+import { images } from "../constants";
 
-const Register = ({ navigation }) => {
 
-    const [username, onChangeUsername] = React.useState('');
+const DoctorProfile = ({ navigation, route}) => {
+
     const [text, onChangeText] = React.useState("This is a text");
+    const [number, onChangeNumber] = React.useState(null);
+
+    function doctorDashboard() {
+        return (
+            <TouchableOpacity style={styles.profileEditBtn} onPress={() => navigation.navigate('DoctorDashboard', {name : username})}>
+
+                    <Text style={styles.profileEditText}>Confirm</Text>
+
+            </TouchableOpacity>
+        )
+    }
 
     return (
-        <View style={{flex: 1, backgroundColor: 'white'}}>
+        <View style={{flex: 1}}>
             <SafeAreaView style={styles.container}>
-                <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black"}}>Register</Text>
-                <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 10.0, marginBottom: 40}}>Create account</Text>
+            
+            <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30, marginBottom: 30}}>Account Settings</Text>
+                
+                <Text style={{alignSelf: "center", color: "black"}}>Username</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
-                        placeholder="Username"
-                        placeholderTextColor="#AFAFAF"
-                        onChangeText={username => onChangeUsername(username)}/>
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.inputText}
-                        placeholder="First Name"
+                        placeholder=""
                         placeholderTextColor="#AFAFAF"
                         onChangeText={text => onChangeText(text)}/>
                 </View>
+                <Text style={{alignSelf: "center", color: "black"}}>First Name</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
-                        placeholder="Last Name"
+                        placeholder=""
                         placeholderTextColor="#AFAFAF"
                         onChangeText={text => onChangeText(text)}/>
                 </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Last Name</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
-                        placeholder="Email Address"
+                        placeholder=""
                         placeholderTextColor="#AFAFAF"
                         onChangeText={text => onChangeText(text)}/>
                 </View>
+                <Text style={{alignSelf: "center", color: "black"}}>E-mail Address</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder=""
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={text => onChangeText(text)}/>
+                </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Change Password</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         secureTextEntry={true}
                         style={styles.inputText}
-                        placeholder="Password"
+                        placeholder=""
                         placeholderTextColor="#AFAFAF"
                         onChangeText={text => onChangeText(text)}/>
                 </View>
+                <Text style={{alignSelf: "center", color: "black"}}>Confirm New Password</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         secureTextEntry={true}
                         style={styles.inputText}
-                        placeholder="Confirm Password"
+                        placeholder=""
                         placeholderTextColor="#AFAFAF"
                         onChangeText={text => onChangeText(text)}/>
                 </View>
-                <Pressable style={styles.createBtn} onPress={() => navigation.navigate('PatientDashboard', {name: username})}>
-                    <TouchableOpacity>
-                        <Text style={styles.createText}>Create Account</Text>
-                    </TouchableOpacity>
-                </Pressable>
-            </SafeAreaView> 
+                {doctorDashboard()}
+            </SafeAreaView>
         </View>
     )
 }
@@ -95,6 +110,15 @@ const styles = StyleSheet.create({
         color: "#777777",
         fontWeight: '800',
     },
+    scrollContainer: {
+        backgroundColor: 'white',
+        flex: 1,
+        height: 75.0,
+        position: 'absolute', bottom: 15.0, width: '100%',
+        alignItems: 'center',
+        //paddingHorizontal: Sizes.fixPadding * 2.0,
+        justifyContent: 'center',
+    },
     signUp: {
         color: "#755293",
         fontWeight: '500',
@@ -102,6 +126,20 @@ const styles = StyleSheet.create({
     forgot: {
         color: 'black',
         fontWeight: '500',
+    },
+    profileEditBtn: {
+        width: "80%",
+        backgroundColor: "#755293",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 30,
+        marginBottom: 30,
+    },
+    profileEditText: {
+        color: "#ffffff",
+        fontWeight: "800",
     },
     createBtn: {
         width: '80%',
@@ -111,7 +149,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 20,
-        marginBottom: 20,
+        marginBottom: 10,
     },
     createText: {
         color: "#ffffff",
@@ -134,4 +172,4 @@ const styles = StyleSheet.create({
         height: 170,
     }
 })
-export default Register;
+export default DoctorProfile;

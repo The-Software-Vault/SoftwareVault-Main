@@ -2,10 +2,9 @@ const pool = require('../connection')
 
 module.exports = function message(app, logger) {
 
-    // GET /message/getChat
-    app.get('/message/getChat', (req, res) => {
-        //console.log("UserID: " + req.query.userId + " DoctorID: " + req.query.doctorId)
-        
+    // GET /doctor/getDoctors
+    app.get('/doctor/getDoctors', (req, res) => {
+       // console.log("UserID: " + req.query.userId + " DoctorID: " + req.query.doctorId)
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
@@ -13,10 +12,9 @@ module.exports = function message(app, logger) {
                 logger.error('Problem obtaining MySQL connection',err)
                 res.status(400).send('Problem obtaining MySQL connection'); 
             } else {
-                var userId = req.query.userId
                 var doctorId = req.query.doctorId
                 // if there's no issue obtaining a connection, execute query & release connection
-                connection.query("SELECT * FROM `swvault`.`messages` m WHERE m.userId = ? AND m.doctorId = ?", [userId, doctorId], (err, rows) => {
+                connection.query("SELECT user.id, doctor.specialty, doctor. FROM `swvault`.`doctor`", [userId, doctorId], (err, rows) => {
                     connection.release();
                     if (err) {
                         logger.error("Error while fetching values: \n", err);

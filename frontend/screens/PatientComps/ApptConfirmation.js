@@ -1,8 +1,8 @@
 import React from "react";
-import CalendarStrip from 'react-native-calendar-strip';
-import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
+import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image, StyleSheet, Dimensions } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import SelectPicker from 'react-native-form-select-picker';
+
 
 const { width } = Dimensions.get('screen');
 
@@ -15,6 +15,26 @@ const ApptConfirmation = ({ navigation, route }) => {
     const reason = route.params.reason;
     const symptoms = route.params.symptoms;
     const date = route.params.selectDate;
+    const image = route.params.image;
+    const imageLinks = route.params.imageLinks;
+
+    function images() {
+        console.log(imageLinks)
+        const imageList = imageLinks.map((img, index) => 
+            <Image
+                key={index}
+                source={{ uri: img.uri }}
+                style={{ width: 100, height: 100, marginTop: 20}}
+            />
+        )
+        return (
+
+            <View>
+                <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding }}>Images:</Text>
+                {imageList}
+            </View>
+        )
+    }
 
     function doctorInfo() {
 
@@ -24,23 +44,72 @@ const ApptConfirmation = ({ navigation, route }) => {
                 marginHorizontal: Sizes.fixPadding * 1.5,
                 
             }}>
+                <View style={styles.doctorImageContainer}>
+                    <Image
+                        source={image}
+                        resizeMode="contain"
+                        style={{
+                            height: 90.0, width: 90.0, borderRadius: 45.0,
+                        }}
+                    />
+                </View>
                 <View style={{ justifyContent: 'center', marginTop: Sizes.fixPadding, }}>
-                <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding }}>Appointment Confirmed!</Text>
-                <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding, marginBottom: 5 }}>Appointment Details:</Text>
-                       
                     <View style={{
                         flexDirection: 'row', justifyContent: 'space-between',
                         width: width - 140.0,
                     }}>
-                       
-                       <Text style={{ ...Fonts.black16Bold, }}>{name}</Text>
-                            <Text style={{ ...Fonts.primaryColor13Bold }}>View Profile</Text>
-                        
+                        <View style={{ width: width / 3.0, }}>
+                            <Text>{name}</Text>
+                        </View>
+                        <Text>View Profile</Text>
                     </View>
+                    <Text>{type}</Text>
+                </View>
+            </View>
+        )
+    }
+
+    function divider() {
+        return (
+            <View style={{ backgroundColor: Colors.lightGray, height: 0.70 }}></View>
+        )
+    }
+
+    function dateAndTime() {
+        return (
+            <View style={styles.dateAndTimeContainerStyle}>
+                <View style={{ flexDirection: 'row', alignItems: 'center'}}>
                     
-                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Specialty: {type}</Text>
-                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Date: {date}</Text>
-                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Time: {time}</Text>
+                    <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding + 5.0 }}>
+                    <Image source={images.calendar}></Image> {date}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+
+                    <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding }}>
+                        <Image source={images.clock}></Image> {time}</Text>
+                </View>
+            </View>
+        )
+    }
+
+    function apptInfo() {
+
+        return (
+            <View style={{
+                flexDirection: 'row',
+                marginHorizontal: Sizes.fixPadding * 1.5,
+                
+            }}>
+                <View style={{ justifyContent: 'center', marginTop: Sizes.fixPadding, }}>
+                <Text style={{ ...Fonts.black20Bold, marginTop: Sizes.fixPadding, marginLeft: 75}}>Appointment Confirmed!</Text>
+                <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding, marginBottom: 5 }}>Appointment Details:</Text>
+
+                    <View style={{
+                        flexDirection: 'row', justifyContent: 'space-between',
+                        width: width - 140.0,
+                    }}>
+
+                    </View>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Reason: {reason}</Text>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Symptoms: {symptoms}</Text>
                 </View>
@@ -71,6 +140,12 @@ const ApptConfirmation = ({ navigation, route }) => {
 
                 <View style={{ flex: 1 }}>
                     {doctorInfo()}
+                    {divider()}
+                    {dateAndTime()}
+                    {divider()}
+                    {apptInfo()}
+
+                    {imageLinks.length != 0 && images()}
                 </View>
             }
         </ScrollView>
@@ -172,7 +247,12 @@ const styles = StyleSheet.create({
         height: 0.90,
         width: '100%',
         marginBottom: Sizes.fixPadding
-    }
+    },
+    dateAndTimeContainerStyle: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        paddingVertical: Sizes.fixPadding
+    },
 })
 
 export default ApptConfirmation;

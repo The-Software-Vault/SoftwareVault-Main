@@ -1,9 +1,9 @@
 import React from "react";
 import CalendarStrip from 'react-native-calendar-strip';
-import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
+import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, Image, StyleSheet, Dimensions } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import SelectPicker from 'react-native-form-select-picker';
-import moment from "moment";
+import * as ImagePicker from "react-native-image-picker";
 
 const timeSlots = ["8:00 A.M.", "8:30 A.M.", "9:00 A.M.", "9:30 A.M.", "10:00 A.M.", "10:30 A.M.", "11:00 A.M.", "11:30 A.M.", "12:00 P.M.", "12:30 P.M.", "1:00 P.M.", "1:30 P.M.", "2:00 P.M.", "2:30 P.M.", "3:00 P.M.", "3:30 P.M.", "4:00 P.M.", "4:30 P.M.", "5:00 P.M.", "5:30 P.M.", "6:00 P.M.", ]
 
@@ -13,19 +13,45 @@ const { width } = Dimensions.get('screen');
 
 const PatientForm = ({ navigation, route }) => {
 
-    //const image = route.params.image;
     const name = route.params.name;
     const type = route.params.type;
     const image = route.params.image;
-   // const experience = route.params.experience;
-    //const rating = route.params.rating;
 
     const [selectedSlot, setSelectedSlot] = React.useState('');
     const [selectDate, setSelectDate] = React.useState('');
     const [reason, onChangeReason] = React.useState('');
     const [schedule, setSchedule] = React.useState(false);
     const [symptoms, onChangeSymptoms] = React.useState("N/A");
-    const [imageLink, onChangeImage] = React.useState("");
+    const [imageLinks, addUploadImage] = React.useState([]);
+    const [value, setValue] = React.useState(0);
+
+    function images() {
+        const imageList = imageLinks.map((img, index) => 
+            <Image
+                key={index}
+                source={{ uri: img.uri }}
+                style={{ width: 200, height: 200, marginTop: 20}}
+            />
+        )
+        return (
+            <View>{imageList}</View>
+        )
+    }
+
+    function uploadImage() {
+        const options = {
+            noData: true
+        };
+        ImagePicker.launchImageLibrary(options, response => {
+            const newArr = imageLinks;
+            newArr.push(response.assets[0]);
+            addUploadImage(newArr);
+        });
+        setValue(1)
+        return (
+            <View></View>
+        )
+    }
 
     function doctorInfo() {
 
@@ -59,12 +85,13 @@ const PatientForm = ({ navigation, route }) => {
             </View>
         )
     }
+    
 
     function scheduleInfo() {
         return (
                 <View style={styles.scheduleContainer}>
                     <TouchableOpacity onPress={() => navigation.navigate('ApptConfirmation', {
-                        name, type, selectedSlot, selectDate, reason, symptoms
+                        name, type, selectedSlot, selectDate, reason, symptoms, imageLinks, image
                     })}>
                         <View style={styles.scheduleButton}>
                             <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>
@@ -141,40 +168,42 @@ const PatientForm = ({ navigation, route }) => {
 			))}
                     </SelectPicker>
                     <View style={styles.dividerStyle}>
-            </View>
-                    <Text style={{marginBottom: 2}}>Appointment Information</Text>
-                    <View style={styles.inputView}>
-                <TextInput
-                    maxLength={30}
-                    style={styles.inputText}
-                    placeholder="Appointment Reason"
-                    placeholderTextColor="#AFAFAF"
-                    value={reason}
-                    onChangeText={reason => onChangeReason(reason)}/>
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                    maxLength={40}
-                    style={styles.inputText}
-                    placeholder="Symptoms (optional)"
-                    placeholderTextColor="#AFAFAF"
-                    onChangeText={symptom => onChangeSymptoms(symptom)}/>
-            </View>
-            <View style={styles.inputView2}>
-                <TextInput
-                    style={styles.inputText}
-                    placeholder="Image Link (optional)"
-                    placeholderTextColor="#AFAFAF"
-                    onChangeText={image => onChangeImage(image)}/>
-            </View>
-           
-            </View>
-                    
+                </View>
+                        <Text style={{marginBottom: 2}}>Appointment Information</Text>
+                        <View style={styles.inputView}>
+                    <TextInput
+                        maxLength={30}
+                        style={styles.inputText}
+                        placeholder="Appointment Reason"
+                        placeholderTextColor="#AFAFAF"
+                        value={reason}
+                        onChangeText={reason => onChangeReason(reason)}/>
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        maxLength={40}
+                        style={styles.inputText}
+                        placeholder="Symptoms (optional)"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={symptom => onChangeSymptoms(symptom)}/>
+                </View>
+                <View>
+                {images()}
+                </View>
+                <TouchableOpacity onPress={uploadImage}>
+                    <View style={styles.imgView}>
+                        <View>
+                            <Text>Upload Image</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+                </View>
                 </View>
             }
-        </ScrollView>
-        </SafeAreaView>
-        {scheduleInfo()}
+                
+            </ScrollView>
+            </SafeAreaView>
+            {scheduleInfo()}
         </View>
         )
 }
@@ -197,11 +226,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderColor: "#755293",
         borderWidth: 1.0,
+        shadowColor: Colors.primary,
+        shadowOffset: { width: 0, height: 0 },
         marginRight: Sizes.fixPadding,
         marginTop: Sizes.fixPadding,
         marginBottom: Sizes.fixPadding + 3.0,
-        shadowColor: Colors.primary,
-        shadowOffset: { width: 0, height: 0 },
+    
     },
     inputView: {
         width: "80%",
@@ -209,6 +239,15 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         height: 60,
         marginBottom: 20,
+        justifyContent: "center",
+        padding: 20,
+    },
+    imgView: {
+        width: "80%",
+        backgroundColor: "#EAEAEA",
+        borderRadius: 25,
+        height: 60,
+        marginBottom: 80,
         justifyContent: "center",
         padding: 20,
     },
