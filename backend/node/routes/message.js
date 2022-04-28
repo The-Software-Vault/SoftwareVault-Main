@@ -4,7 +4,6 @@ module.exports = function message(app, logger) {
 
     // GET /message/getChat
     app.get('/message/getChat', (req, res) => {
-        console.log("UserID: " + req.query.userId + " DoctorID: " + req.query.doctorId)
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){
             if(err){
@@ -32,7 +31,7 @@ module.exports = function message(app, logger) {
     });
 
 
-    // POST /message/addMessage
+    // POST /user/register
     app.post('/message/addMessage', (req, res) => {
         // obtain a connection from our pool of connections
         pool.getConnection(function (err, connection){

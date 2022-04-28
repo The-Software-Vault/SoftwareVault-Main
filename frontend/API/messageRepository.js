@@ -24,6 +24,7 @@ export class MessageRepository {
         return new Promise((resolve,reject) =>{
             axios.post(`${this.url}/message/addMessage`, msgData)
                 .then(x => {
+                    console.log(x.data);
                     resolve(x.data);
                 })
                 .catch(x => {
