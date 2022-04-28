@@ -94,7 +94,7 @@ const PatientForm = ({ navigation, route }) => {
         return (
                 <View style={styles.scheduleContainer}>
                     <TouchableOpacity onPress={() => navigation.navigate('ApptConfirmation', {
-                        name, type, selectedSlot, selectDate, reason, symptoms
+                        name, type, selectedSlot, selectDate, reason, symptoms, imageLinks
                     })}>
                         <View style={styles.scheduleButton}>
                             <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>

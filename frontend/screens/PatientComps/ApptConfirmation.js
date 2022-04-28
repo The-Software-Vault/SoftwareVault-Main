@@ -15,6 +15,25 @@ const ApptConfirmation = ({ navigation, route }) => {
     const reason = route.params.reason;
     const symptoms = route.params.symptoms;
     const date = route.params.selectDate;
+    const imageLinks = route.params.imageLinks;
+
+    function images() {
+        console.log(imageLinks)
+        const imageList = imageLinks.map((img, index) => 
+            <Image
+                key={index}
+                source={{ uri: img.uri }}
+                style={{ width: 100, height: 100, marginTop: 20}}
+            />
+        )
+        return (
+
+            <View>
+                <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding }}>Images:</Text>
+                {imageList}
+            </View>
+        )
+    }
 
     function doctorInfo() {
 
@@ -71,6 +90,7 @@ const ApptConfirmation = ({ navigation, route }) => {
 
                 <View style={{ flex: 1 }}>
                     {doctorInfo()}
+                    {imageLinks.length != 0 && images()}
                 </View>
             }
         </ScrollView>
