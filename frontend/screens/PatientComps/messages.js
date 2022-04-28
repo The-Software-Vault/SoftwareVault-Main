@@ -3,9 +3,6 @@ import { Fonts, Colors, Sizes } from "../../constants/styles"
 import {StyleSheet, View, FlatList, Text, TextInput, Pressable, TouchableOpacity} from  "react-native";
 import { MessageRepository } from "../../API/messageRepository";
 
-
-
-
 export default function Messages( props ) {
     
     let msgs = new MessageRepository();

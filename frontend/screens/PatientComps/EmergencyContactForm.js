@@ -1,8 +1,6 @@
 import React from "react";
-import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
-import { images } from "../../constants";
+import {StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView} from "react-native";
 import { UserRepository } from "../../API/userRepository";
-import axios from 'axios'
 
 const EmergencyContactForm = ({ navigation, route }) => {
 

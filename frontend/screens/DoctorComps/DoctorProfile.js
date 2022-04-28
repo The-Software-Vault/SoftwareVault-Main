@@ -1,30 +1,19 @@
 import React from "react";
-//import CalendarStrip from 'react-native-calendar-strip';
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
-//import {Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
-//import SelectPicker from 'react-native-form-select-picker';
 import { images } from "../constants";
 
-//const { width } = Dimensions.get('screen');
 
 const DoctorProfile = ({ navigation, route}) => {
 
     const [text, onChangeText] = React.useState("This is a text");
     const [number, onChangeNumber] = React.useState(null);
 
-    //const image = route.params.image;
-   // const {username} = route.params;
-    //const type = route.params.type;
-
-    //const a = route.params.name;//{name} = route.params;
-    //const {name} = route.params;
-
     function doctorDashboard() {
         return (
             <TouchableOpacity style={styles.profileEditBtn} onPress={() => navigation.navigate('DoctorDashboard', {name : username})}>
-               
+
                     <Text style={styles.profileEditText}>Confirm</Text>
-               
+
             </TouchableOpacity>
         )
     }
@@ -34,7 +23,6 @@ const DoctorProfile = ({ navigation, route}) => {
             <SafeAreaView style={styles.container}>
             
             <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30, marginBottom: 30}}>Account Settings</Text>
-
                 
                 <Text style={{alignSelf: "center", color: "black"}}>Username</Text>
                 <View style={styles.inputView}>

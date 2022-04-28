@@ -1,9 +1,7 @@
 import React from "react";
-import CalendarStrip from 'react-native-calendar-strip';
-import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
+import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image, StyleSheet, Dimensions } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import SelectPicker from 'react-native-form-select-picker';
-import { images } from "../../constants";
 
 
 const { width } = Dimensions.get('screen');
@@ -86,7 +84,7 @@ const ApptConfirmation = ({ navigation, route }) => {
                     <Image source={images.calendar}></Image> {date}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  
+
                     <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding }}>
                         <Image source={images.clock}></Image> {time}</Text>
                 </View>
@@ -105,13 +103,12 @@ const ApptConfirmation = ({ navigation, route }) => {
                 <View style={{ justifyContent: 'center', marginTop: Sizes.fixPadding, }}>
                 <Text style={{ ...Fonts.black20Bold, marginTop: Sizes.fixPadding, marginLeft: 75}}>Appointment Confirmed!</Text>
                 <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding, marginBottom: 5 }}>Appointment Details:</Text>
-                       
+
                     <View style={{
                         flexDirection: 'row', justifyContent: 'space-between',
                         width: width - 140.0,
                     }}>
-                       
-                     
+
                     </View>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Reason: {reason}</Text>
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding - 7.0 }}>Symptoms: {symptoms}</Text>

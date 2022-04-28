@@ -1,9 +1,8 @@
 import React from "react";
 import CalendarStrip from 'react-native-calendar-strip';
-import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, Button, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
+import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, Image, StyleSheet, Dimensions } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import SelectPicker from 'react-native-form-select-picker';
-import moment from "moment";
 import * as ImagePicker from "react-native-image-picker";
 
 const timeSlots = ["8:00 A.M.", "8:30 A.M.", "9:00 A.M.", "9:30 A.M.", "10:00 A.M.", "10:30 A.M.", "11:00 A.M.", "11:30 A.M.", "12:00 P.M.", "12:30 P.M.", "1:00 P.M.", "1:30 P.M.", "2:00 P.M.", "2:30 P.M.", "3:00 P.M.", "3:30 P.M.", "4:00 P.M.", "4:30 P.M.", "5:00 P.M.", "5:30 P.M.", "6:00 P.M.", ]
@@ -14,12 +13,9 @@ const { width } = Dimensions.get('screen');
 
 const PatientForm = ({ navigation, route }) => {
 
-    //const image = route.params.image;
     const name = route.params.name;
     const type = route.params.type;
     const image = route.params.image;
-   // const experience = route.params.experience;
-    //const rating = route.params.rating;
 
     const [selectedSlot, setSelectedSlot] = React.useState('');
     const [selectDate, setSelectDate] = React.useState('');

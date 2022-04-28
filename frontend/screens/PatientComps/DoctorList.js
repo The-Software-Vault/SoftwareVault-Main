@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Text, View, StyleSheet, TextInput, Image, FlatList, StatusBar, TouchableOpacity, SafeAreaView, Dimensions } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
-import { LolosSearch } from "react-icons/io";
 
 const { width } = Dimensions.get('screen');
 

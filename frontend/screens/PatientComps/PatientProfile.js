@@ -1,30 +1,19 @@
 import React from "react";
-//import CalendarStrip from 'react-native-calendar-strip';
-import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
-//import {Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
-//import SelectPicker from 'react-native-form-select-picker';
-import { images } from "../../constants";
-
-//const { width } = Dimensions.get('screen');
+import {StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView} from "react-native";
 
 const PatientProfile = ({ navigation, route}) => {
 
     const [text, onChangeText] = React.useState("This is a text");
     const [number, onChangeNumber] = React.useState(null);
 
-    //const image = route.params.image;
     const {username} = route.params;
-    //const type = route.params.type;
-
-    //const a = route.params.name;//{name} = route.params;
-    //const {name} = route.params;
 
     function patientDashboard() {
         return (
             <TouchableOpacity style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientDashboard', {name : username})}>
-               
+
                     <Text style={styles.profileEditText}>Confirm</Text>
-               
+
             </TouchableOpacity>
         )
     }

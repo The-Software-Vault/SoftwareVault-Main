@@ -19,7 +19,7 @@ export class UserRepository {
         })
     }
 
-    // POST Verify User : http://64.156.23.43:8000/user/login
+    // POST Verify User : http://54.156.23.43:8000/user/login
     verifyUser(loginData){
         return new Promise((resolve,reject) =>{
             axios.post(`${this.url}/user/login`, loginData)

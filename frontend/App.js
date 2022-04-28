@@ -9,31 +9,31 @@
 import React from 'react';
 import type {Node} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
-  View,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    useColorScheme,
+    View,
 } from 'react-native';
 import {NavigationContainer, DefaultTheme } from '@react-navigation/native';
 //Import react-native-splash-screen.
 import SplashScreen from  'react-native-splash-screen';
 
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
+    Colors,
+    DebugInstructions,
+    Header,
+    LearnMoreLinks,
+    ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Login, Register, DoctorDashboard, PatientDashboard, Messages,
 PatientForm, ApptConfirmation, PatientProfile, DoctorList, Appointments, Chat,
- DrAppointments, ApptSettings, SpecificSettings, GeneralSettings, 
- MedicalHistoryForm, Insurance, EmergencyContactForm, Notifications, DoctorProfile, DoctorInfo} from "./screens";
+DrAppointments, ApptSettings, SpecificSettings, GeneralSettings, MedicalHistoryForm,
+Insurance, EmergencyContactForm, Notifications, DoctorProfile, DoctorInfo} from "./screens";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();

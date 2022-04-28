@@ -1,9 +1,6 @@
 import React from "react";
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
-import { images } from "../../constants";
 import { UserRepository } from "../../API/userRepository";
-import axios from 'axios'
-
 
 const Insurance = ({ navigation, route }) => {
 

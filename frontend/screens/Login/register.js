@@ -1,12 +1,10 @@
 import React from "react";
-import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
-import { images } from "../../constants";
+import {StyleSheet, View, Text, TextInput, TouchableOpacity, Pressable, SafeAreaView} from "react-native";
 
 const Register = ({ navigation }) => {
 
     const [username, onChangeUsername] = React.useState('');
     const [text, onChangeText] = React.useState("This is a text");
-    const [number, onChangeNumber] = React.useState(null);
 
     return (
         <View style={{flex: 1, backgroundColor: 'white'}}>

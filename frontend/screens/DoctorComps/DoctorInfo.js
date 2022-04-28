@@ -16,7 +16,7 @@ const MedicalHistoryForm = ({ navigation, route }) => {
    // const {name, id} = route.params;
 
     function submit() {
-      //  updates.updateMH(({id: id, age: age, weight: weight, height: height, med: med, allergies: allergies}).value);
+        // updates.updateMH(({id: id, age: age, weight: weight, height: height, med: med, allergies: allergies}).value);
         navigation.navigate('DoctorDashboard');
     }
 
