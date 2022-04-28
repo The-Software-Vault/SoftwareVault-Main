@@ -2,7 +2,7 @@ const pool = require('../connection')
 
 module.exports = function message(app, logger) {
 
-    // GET /message/getChat
+    // GET /doctor/getDoctors
     app.get('/doctor/getDoctors', (req, res) => {
        // console.log("UserID: " + req.query.userId + " DoctorID: " + req.query.doctorId)
         // obtain a connection from our pool of connections
