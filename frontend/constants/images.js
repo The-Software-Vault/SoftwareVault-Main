@@ -13,6 +13,7 @@ const info = require("../assets/icons/info.png");
 const doctor = require("../assets/icons/doctor.png");
 const logout = require("../assets/icons/logout.png");
 const doctorProf = require("../assets/doctors/doctor-1.png");
+const calendar = require("../assets/icons/calendar.png");
 
 export default {
     logo,
@@ -29,5 +30,6 @@ export default {
     info,
     doctor,
     logout,
-    doctorProf
+    doctorProf,
+    calendar
 }
