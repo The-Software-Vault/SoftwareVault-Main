@@ -197,11 +197,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderColor: "#755293",
         borderWidth: 1.0,
+        shadowColor: Colors.primary,
+        shadowOffset: { width: 0, height: 0 },
         marginRight: Sizes.fixPadding,
         marginTop: Sizes.fixPadding,
         marginBottom: Sizes.fixPadding + 3.0,
-        shadowColor: Colors.primary,
-        shadowOffset: { width: 0, height: 0 },
+    
     },
     inputView: {
         width: "80%",

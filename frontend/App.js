@@ -87,6 +87,16 @@ const App  = () => {
                         fontWeight: 'bold'
                     },
                 }} />
+                <Stack.Screen name="Chat" component={Chat} options={{
+                    title: "Messages",
+                    headerStyle: {
+                        backgroundColor: "#755293",
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold'
+                    },
+                }} />
                 <Stack.Screen name="DoctorDashboard" component={DoctorDashboard} options={{
                     title: "Doctor Dashboard",
                     headerShown: false,

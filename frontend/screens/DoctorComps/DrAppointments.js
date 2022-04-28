@@ -107,7 +107,7 @@ export default function DrAppointments (props) {
                         borderBottomColor: 'gray', borderBottomWidth: 0.50, width: '100%',
                     }}>
                         <TextInput
-                            value={prescription} //need an API to call specific appt notes
+                            value={prescription} 
                             style={{ ...Fonts.black18Regular, paddingBottom: Sizes.fixPadding }}
                             placeholder='Prescription'
                         />
@@ -303,7 +303,6 @@ export default function DrAppointments (props) {
                     <View style={{ marginLeft: Sizes.fixPadding }}>
                         <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
                         <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>Patient: {item.patient}</Text>
-                        <Text style={{ ...Fonts.black16Regular }}>Cancellation Reason: {item.cancelReason}</Text>
                     </View>
                 </View>
                 <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>

@@ -3,7 +3,7 @@ import axios from 'axios'
 export class UserRepository {
 
     // Leave this here : true (AWS) , false (local)
-    url = false ? 'http://54.156.23.43:8000' : 'http://localhost:8000';
+    url = true ? 'http://54.156.23.43:8000' : 'http://localhost:8000';
 
     // POST Create User : http://54.156.23.43:8000/user/register
     registerUser(loginData){

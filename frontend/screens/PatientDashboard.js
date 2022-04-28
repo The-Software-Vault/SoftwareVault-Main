@@ -92,7 +92,7 @@ const PatientDashboard =  ({ navigation, route}) => {
                     </View>
 
                     <View style={styles.card_template}>
-                        <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
+                        <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('Chat')}>
                             <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
                             <Text style={styles.text_container}>Messages</Text>
                         </TouchableOpacity>
