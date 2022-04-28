@@ -230,20 +230,37 @@ export default function DrAppointments (props) {
                             <Text style={{ textAlign: 'center', color: Colors.primary, fontSize: 18, }}>{item.date}</Text>
                         </View>
                         <View style={{ marginLeft: Sizes.fixPadding }}>
-                            <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                            <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.patient}</Text>
-                            <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
-                        <Text style = {styles.detailsButtonTxt}>Details</Text>
+                        <View style={{flexDirection: "row"}}>
+                    <Image source={images.clock}/>
+                    <Text style={{ ...Fonts.black18Bold }}> {item.time}</Text>      
+                    </View>  
+                    <View style={{flexDirection: "row", marginVertical: 4.0,}}>
+                    <Image source={images.doctor}/>
+                    <Text style={{  ...Fonts.black16Regular, marginBottom: 15 }}> {item.patient}</Text>    
+                    </View>  
+                    <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
+                            <View style={{flexDirection: "row"}}>
+                    <Image source={images.info}/>
+                    <Text style = {styles.messageButtonTxt}> Details</Text>      
+                    </View> 
                         {showDetailBox()}
                     </TouchableOpacity>
 
                     <View style={{flexDirection: "row", justifyContent: "space-between"}}>
 
                     <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
-                        <Text style = {styles.messageButtonTxt}>Message</Text>
-                    </TouchableOpacity>          
+                        <View style={{flexDirection: "row"}}>
+                    <Image source={images.message}/>
+                    <Text style = {styles.messageButtonTxt}> Message</Text>      
+                    </View>            
+                    </TouchableOpacity>
+                
                     </View>
+
+            
+
                         </View>
+                        
                     </View>
 
                     <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
@@ -255,15 +272,6 @@ export default function DrAppointments (props) {
                     </TouchableOpacity>
 
                 </View>
-                <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                <View style={{flexDirection: "row", justifyContent: "flex-start",}}>
-                <TouchableOpacity style = {styles.patientButton} onPress={() => { setShowPatient(true);  }}>
-                        <Text style = {styles.completeButtonTxt}>Patient Information</Text>
-                        {showPatientInfo()}
-                    </TouchableOpacity>
-                    </View>
-                    
-                    </View>
                    
                 <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
                 </View>
