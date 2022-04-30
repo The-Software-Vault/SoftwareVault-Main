@@ -1,39 +1,30 @@
 import React from "react";
-//import CalendarStrip from 'react-native-calendar-strip';
-import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
-//import {Text, View, SafeAreaView, ScrollView, TouchableOpacity, TextInput, StatusBar, Image, FlatList, StyleSheet, Dimensions } from "react-native";
-//import { Fonts, Colors, Sizes } from "../../constants/styles";
-//import SelectPicker from 'react-native-form-select-picker';
-import { images } from "../../constants";
-
-//const { width } = Dimensions.get('screen');
+import {StyleSheet, View, Text, TextInput, TouchableOpacity, SafeAreaView} from "react-native";
 
 const PatientProfile = ({ navigation, route}) => {
 
     const [text, onChangeText] = React.useState("This is a text");
     const [number, onChangeNumber] = React.useState(null);
 
-    //const image = route.params.image;
     const {username} = route.params;
-    //const type = route.params.type;
-
-    //const a = route.params.name;//{name} = route.params;
-    //const {name} = route.params;
 
     function patientDashboard() {
         return (
-            <Pressable style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientDashboard', {name : username})}>
-                <TouchableOpacity>
-                    <Text style={styles.profileEditText}>Return to Dashboard</Text>
-                </TouchableOpacity>
-            </Pressable>
+            <TouchableOpacity style={styles.profileEditBtn} onPress={() => navigation.navigate('PatientDashboard', {name : username})}>
+
+                    <Text style={styles.profileEditText}>Confirm</Text>
+
+            </TouchableOpacity>
         )
     }
 
     return (
         <View style={{flex: 1}}>
             <SafeAreaView style={styles.container}>
-                <View style={{height: "10%"}}></View>
+
+            <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30, marginBottom: 30}}>Account Settings</Text>
+
+                
                 <Text style={{alignSelf: "center", color: "black"}}>Username</Text>
                 <View style={styles.inputView}>
                     <TextInput
@@ -66,7 +57,7 @@ const PatientProfile = ({ navigation, route}) => {
                         placeholderTextColor="#AFAFAF"
                         onChangeText={text => onChangeText(text)}/>
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Password</Text>
+                <Text style={{alignSelf: "center", color: "black"}}>Change Password</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         secureTextEntry={true}
@@ -75,7 +66,7 @@ const PatientProfile = ({ navigation, route}) => {
                         placeholderTextColor="#AFAFAF"
                         onChangeText={text => onChangeText(text)}/>
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Confirm Password</Text>
+                <Text style={{alignSelf: "center", color: "black"}}>Confirm New Password</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         secureTextEntry={true}
@@ -144,7 +135,7 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 40,
+        marginTop: 30,
         marginBottom: 30,
     },
     profileEditText: {

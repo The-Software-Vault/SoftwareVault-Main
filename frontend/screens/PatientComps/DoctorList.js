@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Text, View, StyleSheet, TextInput, Image, FlatList, StatusBar, TouchableOpacity, SafeAreaView, Dimensions } from "react-native";
 import { Fonts, Colors, Sizes } from "../../constants/styles";
-import { LolosSearch } from "react-icons/io";
 
 const { width } = Dimensions.get('screen');
 
@@ -87,14 +86,7 @@ export default function DoctorList (props){
                             <Text style={{ ...Fonts.primaryColor16Regular, marginTop: Sizes.fixPadding - 7.0 }}>
                                 {item.yearsOfExperience} Years Experience
                             </Text>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: Sizes.fixPadding - 7.0 }}>
-                                <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding, marginRight: Sizes.fixPadding * 2.0 }}>
-                                    {"Rating: " + item.rating}
-                                </Text>
-                                <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding }}>
-                                    {item.reviews} Reviews
-                                </Text>
-                            </View>
+                            
                         </View>
                     </View>
 

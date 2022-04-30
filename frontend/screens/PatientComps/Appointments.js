@@ -3,6 +3,7 @@ import { Text, View, useWindowDimensions, FlatList, Dimensions, Image, Touchable
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import Dialog from "react-native-dialog";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { images } from "../../constants";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -15,7 +16,6 @@ export default function Appointments (props) {
     const [showDetails, setShowDetails] = React.useState(false);
     const [currItem, setCurrItem] = React.useState([]);
     const [showNotes, setShowNotes] = React.useState(false);
-    const [showDoctor, setShowDoctor] = React.useState(false);
 
     const scheduleButton = () => {
         return (
@@ -35,13 +35,21 @@ export default function Appointments (props) {
                     <Text style={{ textAlign: 'center', ...Fonts.black16Bold }}>Appointment Details</Text>
                     <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
                 </View>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Date: {currItem.date}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Time: {currItem.time}</Text>
+                <View style={{flexDirection: "row"}}>
+                    <Image source={images.date}/>
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}> {currItem.date}</Text>      
+                    </View>  
+                        <View style={{flexDirection: "row"}}>
+                    <Image source={images.clock}/>
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}> {currItem.time}</Text>      
+                    </View>  
+                    <View style={{flexDirection: "row"}}>
+                    <Image source={images.link}/>
+                    <Text style={{ ...Fonts.primaryColor14Regular, marginTop: 5 }} onPress={() => Linking.openURL(link)}>{link}</Text>     
+                    </View>  
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>{instructions}</Text> 
                         <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Reason: {currItem.reason}</Text>
                         <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Symptoms: {currItem.symptoms}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>{instructions}</Text> 
-                        <Text style={{ ...Fonts.primaryColor14Regular, marginTop: 5 }} onPress={() => Linking.openURL(link)}>{link}</Text>
-                       
                     <View style={{ flex: 1, flexDirection: 'row', marginTop: Sizes.fixPadding, justifyContent: "center" }}>
                         <TouchableOpacity
                             activeOpacity={0.9}
@@ -70,15 +78,6 @@ export default function Appointments (props) {
                             }}
                             style={styles.dialogNoButtonStyle}>
                             <Text style={{ ...Fonts.primaryColor17Bold }}>Close</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            activeOpacity={0.9}
-                            onPress={() => {
-                                setShowNotes(false);
-                               // getNotes(id);
-                            }}
-                            style={styles.dialogYesButtonStyle}>
-                            <Text style={{ ...Fonts.white17Bold }}>Confirm</Text>
                         </TouchableOpacity>
                     </View>
                 </ View>
@@ -163,38 +162,45 @@ export default function Appointments (props) {
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", marginVertical: Sizes.fixPadding * 2.0 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={styles.pastCircleStyle}>
-                            <Text style={{ textAlign: 'center', color: Colors.primary, fontSize: 18, }}>{item.date}</Text>
+                            <Text style={{ textAlign: 'center', color: '#8ECC90', fontSize: 18, }}>{item.date}</Text>
                         </View>
                         <View style={{ marginLeft: Sizes.fixPadding }}>
-                            <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                            <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
+                            <View style={{flexDirection: "row"}}>
+                                <Image source={images.clock}/>
+                                <Text style={{ ...Fonts.black18Bold }}> {item.time}</Text>
+                            </View>
+                            <View style={{flexDirection: "row", marginVertical: 4.0,}}>
+                                <Image source={images.doctor}/>
+                                <Text style={{  ...Fonts.black16Regular, marginBottom: 15 }}> {item.doctor}</Text>    
+                            </View>
                             <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
-                        <Text style = {styles.detailsButtonTxt}>Details</Text>
-                        {showDetailBox()}
-                    </TouchableOpacity>
+                                <View style={{flexDirection: "row"}}>
+                                    <Image source={images.info}/>
+                                    <Text style = {styles.messageButtonTxt}> Details</Text>      
+                                </View> 
+                                {showDetailBox()}
+                            </TouchableOpacity>
 
-                    <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-
-                    <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
-                        <Text style = {styles.messageButtonTxt}>Message</Text>
-                    </TouchableOpacity>          
-                    </View>
+                            <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
+                                <View style={{flexDirection: "row"}}>
+                                    <Image source={images.message}/>
+                                    <Text style = {styles.messageButtonTxt}> Message</Text>      
+                                </View>            
+                            </TouchableOpacity>
                         </View>
                     </View>
-
                     <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
-                        <Text style = {styles.messageButtonTxt}>View Notes</Text>
+                        <View style={{flexDirection: "row"}}>
+                            <Image source={images.notes}/>
+                            <Text style = {styles.messageButtonTxt}> Doctor Notes</Text>      
+                        </View>  
                         {showNotesBox()}
                     </TouchableOpacity>
-
                 </View>
-                
-                   
                 <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
                 </View>
             </View>
         )
-    
         return (
             pastDataList.length === 0 ?
             <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -202,7 +208,7 @@ export default function Appointments (props) {
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Past Appointments</Text>
                 </View>  
                 {scheduleButton()}
-                </View>
+            </View>
                 :
             <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList
@@ -213,7 +219,6 @@ export default function Appointments (props) {
                 {scheduleButton()}
             </View>
         )
-    
     }
     
     //should be able to view the doctors profile by clicking on the doctors name
@@ -243,7 +248,7 @@ export default function Appointments (props) {
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Canceled Appointments</Text>
                 </View>  
                 {scheduleButton()}
-                </View>
+            </View>
                 :
             <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <FlatList
@@ -257,7 +262,7 @@ export default function Appointments (props) {
     }
 
     //link will be specific to the doctor
-    const instructions = "Please click the link below when it is time for the appointment!";
+    const instructions = "Please click the link above when it is time for the appointment!";
     const link = "https://smu.zoom.us/s/99521176990";
 
     const [activeDataList, setActiveDataList] = React.useState([
@@ -325,7 +330,6 @@ export default function Appointments (props) {
     }
 
     //if canceled by doctor, show the reason for the cancellation 
-
     const showDialog = () => {
         return (
             <Dialog.Container visible={showModal} contentStyle={styles.dialogContainerStyle}>
@@ -364,34 +368,47 @@ export default function Appointments (props) {
                             <Text style={{ textAlign: 'center', color: '#8ECC90', fontSize: 18, }}>{item.date}</Text>
                         </View>
                         <View style={{ marginLeft: Sizes.fixPadding }}>
-                            <Text style={{ ...Fonts.black18Bold }}>{item.time}</Text>
-                            <Text style={{ marginVertical: 8.0, ...Fonts.black16Regular }}>{item.doctor}</Text>
+                            <View style={{flexDirection: "row"}}>
+                                <Image source={images.clock}/>
+                                <Text style={{ ...Fonts.black18Bold }}> {item.time}</Text>      
+                            </View>  
+                            
+                            <View style={{flexDirection: "row", marginVertical: 4.0,}}>
+                                <Image source={images.doctor}/>
+                                <Text style={{  ...Fonts.black16Regular, marginBottom: 15 }}> {item.doctor}</Text>    
+                            </View>  
+                            
                             <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
-                        <Text style = {styles.detailsButtonTxt}>Details</Text>
-                        {showDetailBox()}
-                    </TouchableOpacity>
+                                <View style={{flexDirection: "row"}}>
+                                    <Image source={images.info}/>
+                                    <Text style = {styles.messageButtonTxt}> Details</Text>      
+                                </View> 
+                                {showDetailBox()}
+                            </TouchableOpacity>
 
-                    <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
-                        <Text style = {styles.messageButtonTxt}>Message</Text>
-                    </TouchableOpacity>
+                            <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
+                                <View style={{flexDirection: "row"}}>
+                                    <Image source={images.message}/>
+                                    <Text style = {styles.messageButtonTxt}> Message</Text>      
+                                </View>            
+                            </TouchableOpacity>
 
-                    <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
-                        <Text style = {styles.messageButtonTxt}>View Notes</Text>
-                        {showNotesBox()}
-                    </TouchableOpacity>
+                            <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
+                                <View style={{flexDirection: "row"}}>
+                                    <Image source={images.notes}/>
+                                    <Text style = {styles.messageButtonTxt}> Doctor Notes</Text>      
+                                </View>  
+                                {showNotesBox()}
+                            </TouchableOpacity>
                         </View>
-
                     </View>
                     <TouchableOpacity style = {styles.button} onPress={() => { setShowModal(true); setId(item.id); }}>
                         <Text style = {styles.buttonTxt}>Cancel</Text>
                         {showDialog()}
                     </TouchableOpacity>
-                   
                 </View>
                 <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
                 </View>
-                
-        
             </View>
         )
 
@@ -402,25 +419,25 @@ export default function Appointments (props) {
                     <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Upcoming Appointments</Text>
                 </View>  
                 {scheduleButton()}
-                </View>
+            </View>
                 :
-                <View style={{ flex: 1, backgroundColor: 'white' }}>
-                    <FlatList
-                        data={activeDataList} //change to grab the appointments made by this user
-                        keyExtractor={(item) => `${item.id}`}
-                        renderItem={renderItem}
-                    />
-                    {scheduleButton()}
-                </View>
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
+                <FlatList
+                    data={activeDataList} //change to grab the appointments made by this user
+                    keyExtractor={(item) => `${item.id}`}
+                    renderItem={renderItem}
+                />
+            {scheduleButton()}
+            </View>
         )
     }
 
     return (
         <Tab.Navigator>
-      <Tab.Screen name="Upcoming" component={UpcomingScreen} />
-      <Tab.Screen name="Past" component={PastScreen} />
-      <Tab.Screen name="Canceled" component={CanceledScreen} />
-     </Tab.Navigator>
+            <Tab.Screen name="Upcoming" component={UpcomingScreen} />
+            <Tab.Screen name="Past" component={PastScreen} />
+            <Tab.Screen name="Canceled" component={CanceledScreen} />
+        </Tab.Navigator>
     );
 }
 
@@ -432,7 +449,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     messageButtonTxt: {
-        color: "blue"
+        color: "blue",
+        marginTop: 1,
+        ...Fonts.primaryColor16Regular
     },
     pastCircleStyle: {
         height: 90.0,
@@ -472,7 +491,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end"
     },
     buttonDetails: {
-        width: 50,
+        width: 70,
         height: 20,
         justifyContent: "flex-end"
     },

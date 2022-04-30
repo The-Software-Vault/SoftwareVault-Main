@@ -1,5 +1,8 @@
 import React from "react";
-import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, Pressable} from  "react-native";
+import {StyleSheet, View, ScrollView, SafeAreaView, Image, Text, TouchableOpacity} from  "react-native";
+import { images } from "../constants";
+import { Fonts, Colors, Sizes } from "../constants/styles";
+
 
 const DoctorDashboard =  ({ navigation, route }) => {
 
@@ -22,40 +25,61 @@ const DoctorDashboard =  ({ navigation, route }) => {
     return(
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
+                
+            <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 3}}>
+                <TouchableOpacity  onPress={() => navigation.navigate('DoctorProfile')}>
+                            <Image source={images.setting} resizeMode="contain" style={styles.topBar}/>
+                            </TouchableOpacity>
+            <View style={{alignItems: "flex-end", justifyContent: "flex-end"}}>
+                <TouchableOpacity  onPress={() => navigation.navigate('Login')}>
+                            <Image source={images.logout} resizeMode="contain" style={styles.topBar}/>
+                            </TouchableOpacity>
+                            </View>
+                            
+            
+                            
+                </View>
                 <View style={styles.container}>
+                
                     <View style={styles.profileSection}>
-                        <Pressable style={styles.profileImg}>
-                            <Image style={styles.profileImg} source={{uri: 'https://via.placeholder.com/150'}}/>
-                            {/*<Text style={{alignSelf: "center"}}>Dr. John Doe</Text>*/}
-                            <Text style={{alignSelf: "center"}}>Welcome, {route.params.name}</Text>
-                        </Pressable>
+
+                   
+                    <TouchableOpacity  onPress={() => navigation.navigate('DoctorProfile')}>
+                            
+                            </TouchableOpacity>
+                        
+                            <View style={styles.profileImgContainer}>
+                            <Image style={styles.profileImg} source={images.doctorProf}/>
+                            </View>
+                            <Text style={{alignSelf: "center", color: "black"}}>Welcome, {route.params.id}</Text>
                     </View>
-                    <View style={styles.card_template}>
-                        <Pressable style={styles.card_image}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+
+                    <View style={styles.rowContainer}>
+                        
+                            <TouchableOpacity  onPress={() => navigation.navigate('DoctorInfo')}>
+                            <Image source={images.medical} resizeMode="contain" style={styles.logo}/>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.card_template}>
+                        <TouchableOpacity style={styles.card_image}>
+                            <Image style={styles.card_image} source={require('../assets/backgrounds/notifications_background.png')}/>
                             <Text style={styles.text_container}>Notifications</Text>
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
-                            <Text style={styles.text_container}>Calendar</Text>
-                        </Pressable>
-                    </View>
-
-                    <View style={styles.card_template}>
-                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('DrAppointments', appointments)}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                        <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('DrAppointments', appointments)}>
+                            <Image style={styles.card_image} source={{uri: 'https://wraltechwire.com/wp-content/uploads/2021/01/Triangle-Headliners-banner.png'}}/>
                             <Text style={styles.text_container}>Appointments</Text>
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
-                        <Pressable style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
-                            <Image style={styles.card_image} source={{uri: 'https://via.placeholder.com/150'}}/>
+                        <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
+                            <Image style={styles.card_image} source={require('../assets/backgrounds/messages_background.png')}/>
                             <Text style={styles.text_container}>Messages</Text>
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>
@@ -70,27 +94,104 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    safe: {
+        flex: 1,
+        color: "#fff",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    topBar: {
+        height: 35, 
+        width: 35,    
+    },
+    logo: {
+        height: 60, 
+        width: 60,  
+        borderColor: "blue"
+    },
+    shield: {
+        height: 60, 
+        width: 60,  
+        marginEnd: 8
+    },
+    rowContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor:"F3E03F", 
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
+    profileEditBtn1: {
+        backgroundColor: 'green',
+        width: '15%',
+        height: '15%'
+    },
+    medHistoryBtn: {
+        backgroundColor: 'red',
+        width: '15%',
+        height: '15%'
+    },
+    insurnaceBtn: {
+        backgroundColor: 'yellow',
+        width: '15%',
+        height: '15%'
+    },
+    emcBtn: {
+        backgroundColor: 'blue',
+        width: '15%',
+        height: '15%'
+    },
     profileImgContainer: {
-        marginLeft: 8,
-        height: 80,
-        width: 80,
-        borderRadius: 40,
+        height: 100,
+        width: 100,
+        borderRadius: 60,
+        borderColor:"#755293",
+        borderWidth: 1.0,
+        shadowOpacity: 0.5,
+        shadowRadius: Sizes.fixPadding,
+        elevation: 20.0,
+        overflow: 'hidden',
+        backgroundColor: 'white',
+        shadowColor: Colors.primary,
+        shadowOffset: { width: 0, height: 0 },
     },
     profileImg: {
-        height: 80,
-        width: 80,
-        borderRadius: 40,
+        height: 100,
+        width: 100,
+        borderRadius: 60,
+        marginBottom: 10
+    },
+    profileEditBtn: {
+        width: "80%",
+        backgroundColor: "#755293",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 50,
+        marginBottom: 20,
+    },
+    profileEditText: {
+        color: "#ffffff",
+        fontWeight: "800",
     },
     profileSection: {
         width: '100%',
-        height: 250,
-        marginBottom: 5,
+        height: 125,
+        marginBottom: 20,
         marginTop: 10,
         boxShadow: "10x 10px 17px -12px rgba(0,0,0,0.75)",
         alignItems: 'center',
     },
     card_template: {
         width: '100%',
+        height: 250,
+        marginBottom: 5,
+        marginTop: 10,
+        boxShadow: "10x 10px 17px -12px rgba(0,0,0,0.75)",
+    },
+    card_template2: {
+        width: '50%',
         height: 250,
         marginBottom: 5,
         marginTop: 10,

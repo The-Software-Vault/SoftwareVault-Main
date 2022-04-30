@@ -36,16 +36,12 @@ const Login = ({ navigation }) => {
         else {
             return 'PatientDashboard';
         }
-
-        //invalidLogin()
-        //return 'Login'
     }
 
     function invalidLogin() {
         alert("Wrong Username/Password");
         username.length = 0;
         password.length = 0;
-        //this.setState({status : false})
     }
 
     return(

@@ -6,15 +6,16 @@ import { MessageRepository } from "../../API/messageRepository";
 export default function Messages( props ) {
     
     let msgs = new MessageRepository();
-
     const {route, navigation} = props;
-    const [messagesList, setMessagesList] = React.useState(['']);
+    const [messagesList, setMessagesList] = useState([]);
 
     useEffect(() => { 
-        console.log("Messages List:", messagesList)
-        //let msgs = new MessageRepository();
-        //setMessagesList(msgs.getChatHistory(1,4));
-        console.log("CHAT LOG:", msgs.getChatHistory(1,4));
+        
+        msgs.getChatHistory({userId: 1, doctorId: 4}).then(res => {
+            console.log("Messages + Details: ", res)
+            setMessagesList(res);
+        })
+
     }, []);
 
     function messages() {
