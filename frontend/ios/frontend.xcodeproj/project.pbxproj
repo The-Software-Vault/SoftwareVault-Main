@@ -13,11 +13,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8C84EC1FCCB3418902DB928B /* libPods-frontend-frontendTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0CD09BA9518CB69ACE0E685 /* libPods-frontend-frontendTests.a */; };
-		A0713092281FF1A3009AD93E /* NotoSans_Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0713091281FF1A3009AD93E /* NotoSans_Black.ttf */; };
 		A0713094281FF1AF009AD93E /* NotoSans_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0713093281FF1AF009AD93E /* NotoSans_Bold.ttf */; };
 		A0713096281FF458009AD93E /* NotoSans_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0713095281FF458009AD93E /* NotoSans_Regular.ttf */; };
 		A0713097281FF4F9009AD93E /* NotoSans_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0713093281FF1AF009AD93E /* NotoSans_Bold.ttf */; };
-		A0713098281FF4FD009AD93E /* NotoSans_Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0713091281FF1A3009AD93E /* NotoSans_Black.ttf */; };
 		A0713099281FF500009AD93E /* NotoSans_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0713095281FF458009AD93E /* NotoSans_Regular.ttf */; };
 		F4A2E231F47B98F9015C7232 /* libPods-frontend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F723901BA58EA3E42FABCA42 /* libPods-frontend.a */; };
 /* End PBXBuildFile section */
@@ -44,7 +42,6 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = frontend/main.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = frontend/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C401F634A0B09C53AA0E6FC /* Pods-frontend-frontendTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frontend-frontendTests.debug.xcconfig"; path = "Target Support Files/Pods-frontend-frontendTests/Pods-frontend-frontendTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A0713091281FF1A3009AD93E /* NotoSans_Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NotoSans_Black.ttf; sourceTree = "<group>"; };
 		A0713093281FF1AF009AD93E /* NotoSans_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NotoSans_Bold.ttf; sourceTree = "<group>"; };
 		A0713095281FF458009AD93E /* NotoSans_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NotoSans_Regular.ttf; sourceTree = "<group>"; };
 		A59036A3E9CEB6C7F7A88349 /* Pods-frontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frontend.debug.xcconfig"; path = "Target Support Files/Pods-frontend/Pods-frontend.debug.xcconfig"; sourceTree = "<group>"; };
@@ -163,7 +160,6 @@
 			children = (
 				A0713095281FF458009AD93E /* NotoSans_Regular.ttf */,
 				A0713093281FF1AF009AD93E /* NotoSans_Bold.ttf */,
-				A0713091281FF1A3009AD93E /* NotoSans_Black.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -257,7 +253,6 @@
 			files = (
 				A0713097281FF4F9009AD93E /* NotoSans_Bold.ttf in Resources */,
 				A0713099281FF500009AD93E /* NotoSans_Regular.ttf in Resources */,
-				A0713098281FF4FD009AD93E /* NotoSans_Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +260,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0713092281FF1A3009AD93E /* NotoSans_Black.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				A0713096281FF458009AD93E /* NotoSans_Regular.ttf in Resources */,
 				A0713094281FF1AF009AD93E /* NotoSans_Bold.ttf in Resources */,
