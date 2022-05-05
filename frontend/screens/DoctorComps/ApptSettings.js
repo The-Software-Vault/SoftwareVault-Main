@@ -23,70 +23,69 @@ const ApptSettings = ({ navigation }) => {
     //need to make it to where the doctor can select a date, then say what times they are unavailable on that date
 
     return (
-        <View style={{flex: 1, backgroundColor: 'white'}}>
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
             <SafeAreaView style={styles.container}>
-            
-                <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black"}}>Appointment Settings</Text>
-                <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 30.0, marginBottom: 20}}>Appointment Availability</Text>
-                
+                <Text style={{ fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black" }}>Appointment Settings</Text>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 30.0, marginBottom: 20 }}>Appointment Availability</Text>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('GeneralSettings', {
-                       //pass in currently saved availability
+                        //pass in currently saved availability
                     })}
-                    style={{ width: '80%',
-                    backgroundColor: "#EAEAEA",
-                    borderRadius: 25,
-                    height: 60,
-                    justifyContent: 'center',
-                    padding: 20,
-                    marginBottom: 20}}
+                    style={{
+                        width: '80%',
+                        backgroundColor: "#EAEAEA",
+                        borderRadius: 25,
+                        height: 60,
+                        justifyContent: 'center',
+                        padding: 20,
+                        marginBottom: 20
+                    }}
                 >
-                    <Text style={{color: "#777777", fontWeight: "800",}}>Set General Unavailability</Text>
+                    <Text style={{ color: "#777777", fontWeight: "800", }}>Set General Unavailability</Text>
                 </TouchableOpacity>
-                
-
                 <TouchableOpacity
                     onPress={() => navigation.navigate('SpecificSettings', {
-                       //pass in currently saved availability
+                        //pass in currently saved availability
                     })}
-                    style={{ width: '80%',
-                    backgroundColor: "#EAEAEA",
-                    borderRadius: 25,
-                    height: 60,
-                    justifyContent: 'center',
-                    padding: 20,}}
+                    style={{
+                        width: '80%',
+                        backgroundColor: "#EAEAEA",
+                        borderRadius: 25,
+                        height: 60,
+                        justifyContent: 'center',
+                        padding: 20,
+                    }}
                 >
-                    <Text style={{color: "#777777", fontWeight: "800",}}>Set Specific Unavailability</Text>
+                    <Text style={{ color: "#777777", fontWeight: "800", }}>Set Specific Unavailability</Text>
                 </TouchableOpacity>
-                <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 20.0, marginBottom: 20}}>Appointment Information</Text>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 20.0, marginBottom: 20 }}>Appointment Information</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Meeting Link"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={links => onChangeLink(links)}/>
+                        onChangeText={links => onChangeLink(links)} />
                 </View>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Meeting Password"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={pass => onChangePassword(pass)}/>
+                        onChangeText={pass => onChangePassword(pass)} />
                 </View>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Patient Instructions"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={instr => onChangeInstructions(instr)}/>
+                        onChangeText={instr => onChangeInstructions(instr)} />
                 </View>
                 <Pressable style={styles.confirmBtn} onPress={() => navigation.navigate('DrAppointments')}>
                     <TouchableOpacity>
                         <Text style={styles.confirmText}>Confirm</Text>
                     </TouchableOpacity>
                 </Pressable>
-               
-            </SafeAreaView> 
+            </SafeAreaView>
         </View>
     )
 }
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
     },
-   inputText: {
+    inputText: {
         height: 50,
         color: "#777777",
         fontWeight: "800",

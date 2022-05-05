@@ -10,60 +10,58 @@ const Insurance = ({ navigation, route }) => {
     const [memberID, onChangeMemberID] = React.useState('');
     const [groupID, onChangeGroupID] = React.useState('');
     const [relation, onChangeRelation] = React.useState('');
-    const {name, id:id} = route.params;
+    const { name, id: id } = route.params;
 
     function submit() {
-        updates.updateInsurance(({id:id, healthPlan: healthPlan, memberID: memberID, groupID: groupID, relation: relation}).value);
-        navigation.navigate('PatientDashboard', {name: name});
+        updates.updateInsurance(({ id: id, healthPlan: healthPlan, memberID: memberID, groupID: groupID, relation: relation }).value);
+        navigation.navigate('PatientDashboard', { name: name });
     }
 
-    return(
-        <View style={{flex: 1}}>
+    return (
+        <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
 
-            <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black"}}>Insurance Information</Text>
-            <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20, marginBottom: 40}}>Please fill out this form if you have health insurance.</Text>
-                
-                
-                <Text style={{alignSelf: "center", color: "black"}}>Health Plan</Text>
+                <Text style={{ fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black" }}>Insurance Information</Text>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20, marginBottom: 40 }}>Please fill out this form if you have health insurance.</Text>
+
+                <Text style={{ alignSelf: "center", color: "black" }}>Health Plan</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Name of Health Plan"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={healthPlan => onChangeHealthPlan(healthPlan)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Name of Health Plan"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={healthPlan => onChangeHealthPlan(healthPlan)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Member ID</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Member ID</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Member ID"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={memID => onChangeMemberID(memID)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Member ID"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={memID => onChangeMemberID(memID)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Group ID (Optional)</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Group ID (Optional)</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Group ID (Optional)"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={groupID => onChangeGroupID(groupID)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Group ID (Optional)"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={groupID => onChangeGroupID(groupID)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Relation to Plan Holder</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Relation to Plan Holder</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Relation to Plan Holder"
-							placeholderTextColor="#AFAFAF"
-                            onChangeText={planHolder => onChangeRelation(planHolder)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Relation to Plan Holder"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={planHolder => onChangeRelation(planHolder)} />
                 </View>
                 <TouchableOpacity style={styles.createBtn} onPress={() => submit()}>
-                        
-                            <Text style={styles.createText}>Confirm</Text>
-                        
-                    </TouchableOpacity>
-                </SafeAreaView>    
-    
+
+                    <Text style={styles.createText}>Confirm</Text>
+
+                </TouchableOpacity>
+            </SafeAreaView>
         </View>
     )
 }

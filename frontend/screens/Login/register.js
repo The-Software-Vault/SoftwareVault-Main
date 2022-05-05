@@ -7,37 +7,37 @@ const Register = ({ navigation }) => {
     const [text, onChangeText] = React.useState("This is a text");
 
     return (
-        <View style={{flex: 1, backgroundColor: 'white'}}>
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
             <SafeAreaView style={styles.container}>
-                <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black"}}>Register</Text>
-                <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 10.0, marginBottom: 40}}>Create account</Text>
+                <Text style={{ fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black" }}>Register</Text>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 10.0, marginBottom: 40 }}>Create account</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Username"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={username => onChangeUsername(username)}/>
+                        onChangeText={username => onChangeUsername(username)} />
                 </View>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="First Name"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Last Name"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Email Address"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
                 <View style={styles.inputView}>
                     <TextInput
@@ -45,7 +45,7 @@ const Register = ({ navigation }) => {
                         style={styles.inputText}
                         placeholder="Password"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
                 <View style={styles.inputView}>
                     <TextInput
@@ -53,14 +53,14 @@ const Register = ({ navigation }) => {
                         style={styles.inputText}
                         placeholder="Confirm Password"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
-                <Pressable style={styles.createBtn} onPress={() => navigation.navigate('PatientDashboard', {name: username})}>
+                <Pressable style={styles.createBtn} onPress={() => navigation.navigate('PatientDashboard', { name: username })}>
                     <TouchableOpacity>
                         <Text style={styles.createText}>Create Account</Text>
                     </TouchableOpacity>
                 </Pressable>
-            </SafeAreaView> 
+            </SafeAreaView>
         </View>
     )
 }

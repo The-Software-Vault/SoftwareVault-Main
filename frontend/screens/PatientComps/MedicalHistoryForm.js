@@ -11,68 +11,65 @@ const MedicalHistoryForm = ({ navigation, route }) => {
     const [height, onChangeHeight] = React.useState('');
     const [med, onChangeMed] = React.useState('');
     const [allergies, onChangeAllergies] = React.useState('');
-    const {name, id} = route.params;
+    const { name, id } = route.params;
 
     function submit() {
-        updates.updateMH(({id: id, age: age, weight: weight, height: height, med: med, allergies: allergies}).value);
-        navigation.navigate('PatientDashboard', {name: name});
+        updates.updateMH(({ id: id, age: age, weight: weight, height: height, med: med, allergies: allergies }).value);
+        navigation.navigate('PatientDashboard', { name: name });
     }
 
-    return(
-        <View style={{flex: 1}}>
+    return (
+        <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
 
-            <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30}}>Medical Information</Text>
-            <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20, marginBottom: 40}}>Please fill out this form to share with your doctor.</Text>
-                
-                
-                <Text style={{alignSelf: "center", color: "black"}}>Age</Text>
+                <Text style={{ fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30 }}>Medical Information</Text>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20, marginBottom: 40 }}>Please fill out this form to share with your doctor.</Text>
+
+                <Text style={{ alignSelf: "center", color: "black" }}>Age</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Age"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={age => onChangeAge(age)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Age"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={age => onChangeAge(age)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Weight (lbs)</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Weight (lbs)</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Weight (lbs)"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={weight => onChangeWeight(weight)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Weight (lbs)"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={weight => onChangeWeight(weight)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Height (Ft, In)</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Height (Ft, In)</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Height (Ft, In)"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={height => onChangeHeight(height)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Height (Ft, In)"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={height => onChangeHeight(height)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Current Medication</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Current Medication</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Current Medication"
-							placeholderTextColor="#AFAFAF"
-                            onChangeText={med => onChangeMed(med)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Current Medication"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={med => onChangeMed(med)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Known Allergies</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Known Allergies</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Known Allergies"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={allergies => onChangeAllergies(allergies)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Known Allergies"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={allergies => onChangeAllergies(allergies)} />
                 </View>
                 <TouchableOpacity style={styles.createBtn} onPress={() => submit()}>
-                        
-                            <Text style={styles.createText}>Confirm</Text>
-                       
-                    </TouchableOpacity>
-                </SafeAreaView>    
-    
+
+                    <Text style={styles.createText}>Confirm</Text>
+                </TouchableOpacity>
+            </SafeAreaView>
         </View>
     )
 }

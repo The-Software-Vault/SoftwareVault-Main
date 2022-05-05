@@ -26,11 +26,11 @@ const PatientForm = ({ navigation, route }) => {
     const [value, setValue] = React.useState(0);
 
     function images() {
-        const imageList = imageLinks.map((img, index) => 
+        const imageList = imageLinks.map((img, index) =>
             <Image
                 key={index}
                 source={{ uri: img.uri }}
-                style={{ width: 200, height: 200, marginTop: 20}}
+                style={{ width: 200, height: 200, marginTop: 20 }}
             />
         )
         return (
@@ -59,7 +59,6 @@ const PatientForm = ({ navigation, route }) => {
             <View style={{
                 flexDirection: 'row',
                 marginHorizontal: Sizes.fixPadding * 1.5,
-                
             }}>
                 <View style={styles.doctorImageContainer}>
                     <Image
@@ -85,19 +84,18 @@ const PatientForm = ({ navigation, route }) => {
             </View>
         )
     }
-    
 
     function scheduleInfo() {
         return (
-                <View style={styles.scheduleContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('ApptConfirmation', {
-                        name, type, selectedSlot, selectDate, reason, symptoms, imageLinks, image
-                    })}>
-                        <View style={styles.scheduleButton}>
-                            <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.scheduleContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('ApptConfirmation', {
+                    name, type, selectedSlot, selectDate, reason, symptoms, imageLinks, image
+                })}>
+                    <View style={styles.scheduleButton}>
+                        <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         )
     }
 
@@ -109,7 +107,7 @@ const PatientForm = ({ navigation, route }) => {
     //have to double tap the date to get it to highlight for some reason - but the date does get selected on a single tap still 
     function calendar() {
         return (
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
                 <View>
                     <CalendarStrip
                         style={{ height: 100, paddingTop: Sizes.fixPadding * 2.0, paddingBottom: Sizes.fixPadding, }}
@@ -117,7 +115,7 @@ const PatientForm = ({ navigation, route }) => {
                             backgroundColor: "#755293",
                             alignItems: 'center',
                             justifyContent: 'center'
-                        }}   
+                        }}
                         dateNumberStyle={{ color: 'black', fontSize: 17.0 }}
                         dateNameStyle={{ color: 'black', fontSize: 15.0 }}
                         highlightDateNameStyle={{ color: 'white', fontSize: 15.0 }}
@@ -132,8 +130,8 @@ const PatientForm = ({ navigation, route }) => {
                         useIsoWeekday={false}
                         onDateSelected={(date) =>
                             setSelectDate(date.format('MM-DD-YYYY'))
-                       }      
-                      // selectedDate={selectDate} 
+                        }
+                    // selectedDate={selectDate} 
                     />
                 </View>
             </View>
@@ -141,71 +139,66 @@ const PatientForm = ({ navigation, route }) => {
     }
 
     return (
-        
         <View style={styles.container}>
             <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-            
-            {
-
-                <View style={{ flex: 1 }}>
-                    {doctorInfo()}
-                    {calendar()}
-                    <View style={styles.dividerStyle}>
-                     </View>
-                   
-                    <View style={styles.container}>
-                   {/*<Text>Appointment Date: {selectDate}</Text>*/}
-                    <Text style={{marginBottom: 2}}>Appointment Time</Text>
-                    <SelectPicker style={styles.selectView} onValueChange={(value) => {
-                        setSelectedSlot(value);
-                    }}
-                    placeholder="Select an appointment time"
-                    selected = {selectedSlot}
-                    ><Text style={styles.inputText}>Select a Time</Text>
-                    {Object.values(timeSlots).map((val, index) => (
-				<SelectPicker.Item style={styles.inputText} label={val} value={val} key={index} />
-			))}
-                    </SelectPicker>
-                    <View style={styles.dividerStyle}>
-                </View>
-                        <Text style={{marginBottom: 2}}>Appointment Information</Text>
-                        <View style={styles.inputView}>
-                    <TextInput
-                        maxLength={30}
-                        style={styles.inputText}
-                        placeholder="Appointment Reason"
-                        placeholderTextColor="#AFAFAF"
-                        value={reason}
-                        onChangeText={reason => onChangeReason(reason)}/>
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        maxLength={40}
-                        style={styles.inputText}
-                        placeholder="Symptoms (optional)"
-                        placeholderTextColor="#AFAFAF"
-                        onChangeText={symptom => onChangeSymptoms(symptom)}/>
-                </View>
-                <View>
-                {images()}
-                </View>
-                <TouchableOpacity onPress={uploadImage}>
-                    <View style={styles.imgView}>
-                        <View>
-                            <Text>Upload Image</Text>
+                <ScrollView style={styles.scrollView}>
+                    {
+                        <View style={{ flex: 1 }}>
+                            {doctorInfo()}
+                            {calendar()}
+                            <View style={styles.dividerStyle}>
+                            </View>
+                            <View style={styles.container}>
+                                {/*<Text>Appointment Date: {selectDate}</Text>*/}
+                                <Text style={{ marginBottom: 2 }}>Appointment Time</Text>
+                                <SelectPicker style={styles.selectView} onValueChange={(value) => {
+                                    setSelectedSlot(value);
+                                }}
+                                    placeholder="Select an appointment time"
+                                    selected={selectedSlot}
+                                ><Text style={styles.inputText}>Select a Time</Text>
+                                    {Object.values(timeSlots).map((val, index) => (
+                                        <SelectPicker.Item style={styles.inputText} label={val} value={val} key={index} />
+                                    ))}
+                                </SelectPicker>
+                                <View style={styles.dividerStyle}>
+                                </View>
+                                <Text style={{ marginBottom: 2 }}>Appointment Information</Text>
+                                <View style={styles.inputView}>
+                                    <TextInput
+                                        maxLength={30}
+                                        style={styles.inputText}
+                                        placeholder="Appointment Reason"
+                                        placeholderTextColor="#AFAFAF"
+                                        value={reason}
+                                        onChangeText={reason => onChangeReason(reason)} />
+                                </View>
+                                <View style={styles.inputView}>
+                                    <TextInput
+                                        maxLength={40}
+                                        style={styles.inputText}
+                                        placeholder="Symptoms (optional)"
+                                        placeholderTextColor="#AFAFAF"
+                                        onChangeText={symptom => onChangeSymptoms(symptom)} />
+                                </View>
+                                <View>
+                                    {images()}
+                                </View>
+                                <TouchableOpacity onPress={uploadImage}>
+                                    <View style={styles.imgView}>
+                                        <View>
+                                            <Text>Upload Image</Text>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
-                </TouchableOpacity>
-                </View>
-                </View>
-            }
-                
-            </ScrollView>
+                    }
+                </ScrollView>
             </SafeAreaView>
             {scheduleInfo()}
         </View>
-        )
+    )
 }
 
 const styles = StyleSheet.create({

@@ -53,7 +53,7 @@ Primary Repository for The Software Vault Project
 
   - [_AWS RDS MySQL DB_] Login & open the RDS MySQL DB using any of the various MySQL programs: DataGrip, DBeaver, VSCode, or even a raw terminal.
     
-    - Paste the contents of `backend/sql/init.sql` & `backend/sql/swvault_schema.sql` files into the console and execute the queries. Feel free to edit the username & password values within the _backend/sql/init.sql_ file. <br>**_What does the database look like?_ [➡ Checkout the Database Diagram here!](https://github.com/The-Software-Vault/SoftwareVault-Main/tree/main/backend/sql/SWVault_Database_Diagram.png)
+    - Paste the contents of `backend/sql/init.sql` & `backend/sql/swvault_schema.sql` files into the console and execute the queries. Feel free to edit the username & password values within the _backend/sql/init.sql_ file. <br>**_What does the database look like?_ [➡ Checkout the Database Diagram here!](https://raw.githubusercontent.com/The-Software-Vault/SoftwareVault-Main/main/backend/sql/SWVault_DB-Diagram.png)
 
 1.) Open `backend/node/connection.js` file
 

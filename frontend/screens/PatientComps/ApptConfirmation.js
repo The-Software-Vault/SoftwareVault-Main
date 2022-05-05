@@ -3,7 +3,6 @@ import { Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image, StyleShe
 import { Fonts, Colors, Sizes } from "../../constants/styles";
 import SelectPicker from 'react-native-form-select-picker';
 
-
 const { width } = Dimensions.get('screen');
 
 const ApptConfirmation = ({ navigation, route }) => {
@@ -20,15 +19,14 @@ const ApptConfirmation = ({ navigation, route }) => {
 
     function images() {
         console.log(imageLinks)
-        const imageList = imageLinks.map((img, index) => 
+        const imageList = imageLinks.map((img, index) =>
             <Image
                 key={index}
                 source={{ uri: img.uri }}
-                style={{ width: 100, height: 100, marginTop: 20}}
+                style={{ width: 100, height: 100, marginTop: 20 }}
             />
         )
         return (
-
             <View>
                 <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding }}>Images:</Text>
                 {imageList}
@@ -37,12 +35,10 @@ const ApptConfirmation = ({ navigation, route }) => {
     }
 
     function doctorInfo() {
-
         return (
             <View style={{
                 flexDirection: 'row',
                 marginHorizontal: Sizes.fixPadding * 1.5,
-                
             }}>
                 <View style={styles.doctorImageContainer}>
                     <Image
@@ -78,13 +74,11 @@ const ApptConfirmation = ({ navigation, route }) => {
     function dateAndTime() {
         return (
             <View style={styles.dateAndTimeContainerStyle}>
-                <View style={{ flexDirection: 'row', alignItems: 'center'}}>
-                    
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding + 5.0 }}>
-                    <Image source={images.calendar}></Image> {date}</Text>
+                        <Image source={images.calendar}></Image> {date}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-
                     <Text style={{ ...Fonts.black16Regular, marginLeft: Sizes.fixPadding }}>
                         <Image source={images.clock}></Image> {time}</Text>
                 </View>
@@ -98,11 +92,10 @@ const ApptConfirmation = ({ navigation, route }) => {
             <View style={{
                 flexDirection: 'row',
                 marginHorizontal: Sizes.fixPadding * 1.5,
-                
             }}>
                 <View style={{ justifyContent: 'center', marginTop: Sizes.fixPadding, }}>
-                <Text style={{ ...Fonts.black20Bold, marginTop: Sizes.fixPadding, marginLeft: 75}}>Appointment Confirmed!</Text>
-                <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding, marginBottom: 5 }}>Appointment Details:</Text>
+                    <Text style={{ ...Fonts.black20Bold, marginTop: Sizes.fixPadding, marginLeft: 75 }}>Appointment Confirmed!</Text>
+                    <Text style={{ ...Fonts.black18Bold, marginTop: Sizes.fixPadding, marginBottom: 5 }}>Appointment Details:</Text>
 
                     <View style={{
                         flexDirection: 'row', justifyContent: 'space-between',
@@ -119,40 +112,36 @@ const ApptConfirmation = ({ navigation, route }) => {
 
     function scheduleInfo() {
         return (
-                <View style={styles.scheduleContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('PatientDashboard', {
-                    })}>
-                        <View style={styles.scheduleButton}>
-                            <Text style={{ ...Fonts.white20Regular }}>Return to your dashboard</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.scheduleContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('PatientDashboard', {
+                })}>
+                    <View style={styles.scheduleButton}>
+                        <Text style={{ ...Fonts.white20Regular }}>Return to your dashboard</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         )
     }
 
     return (
-        
         <View style={styles.container}>
             <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-            
-            {
-
-                <View style={{ flex: 1 }}>
-                    {doctorInfo()}
-                    {divider()}
-                    {dateAndTime()}
-                    {divider()}
-                    {apptInfo()}
-
-                    {imageLinks.length != 0 && images()}
-                </View>
-            }
-        </ScrollView>
-        </SafeAreaView>
-        {scheduleInfo()}
+                <ScrollView style={styles.scrollView}>
+                    {
+                        <View style={{ flex: 1 }}>
+                            {doctorInfo()}
+                            {divider()}
+                            {dateAndTime()}
+                            {divider()}
+                            {apptInfo()}
+                            {imageLinks.length != 0 && images()}
+                        </View>
+                    }
+                </ScrollView>
+            </SafeAreaView>
+            {scheduleInfo()}
         </View>
-        )
+    )
 }
 
 const styles = StyleSheet.create({

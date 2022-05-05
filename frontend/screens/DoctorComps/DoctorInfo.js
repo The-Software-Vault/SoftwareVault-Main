@@ -2,7 +2,6 @@ import React from "react";
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
 import { images } from "../../constants";
 import { UserRepository } from "../../API/userRepository";
-import axios from 'axios'
 
 const MedicalHistoryForm = ({ navigation, route }) => {
 
@@ -20,53 +19,47 @@ const MedicalHistoryForm = ({ navigation, route }) => {
         navigation.navigate('DoctorDashboard');
     }
 
-    return(
-        <View style={{flex: 1}}>
+    return (
+        <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
-
-            <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30}}>Extra Information</Text>
-            <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20, marginBottom: 40}}>Please let your patients know more about yourself.</Text>
-                
-                
-                <Text style={{alignSelf: "center", color: "black"}}>Gender</Text>
+                <Text style={{ fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30 }}>Extra Information</Text>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20, marginBottom: 40 }}>Please let your patients know more about yourself.</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Gender</Text>
                 <View style={styles.inputView}>
-                <TextInput
-                            style={styles.inputText}
-                            placeholder="Gender"
-                            placeholderTextColor="#AFAFAF"
-                            onChangeText={age => onChangeAge(age)}/>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Gender"
+                        placeholderTextColor="#AFAFAF"
+                        onChangeText={age => onChangeAge(age)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Specialty</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Specialty</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Specialty"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Years of Experience</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Years of Experience</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Years of Experience"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>About Me</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>About Me</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="About Me"
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
                 <TouchableOpacity style={styles.createBtn} onPress={() => submit()}>
-                        
-                            <Text style={styles.createText}>Confirm</Text>
-                       
-                    </TouchableOpacity>
-                </SafeAreaView>    
-    
+                    <Text style={styles.createText}>Confirm</Text>
+                </TouchableOpacity>
+            </SafeAreaView>
         </View>
     )
 }

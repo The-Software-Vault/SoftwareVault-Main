@@ -5,11 +5,9 @@ import { Fonts, Colors, Sizes } from "../../constants/styles";
 import SelectPicker from 'react-native-form-select-picker';
 import SelectMultiple from 'react-native-select-multiple'
 
+//const { width } = Dimensions.get('screen');
+
 const timeSlots = ["Completely unavailable", "8:00 A.M.", "8:30 A.M.", "9:00 A.M.", "9:30 A.M.", "10:00 A.M.", "10:30 A.M.", "11:00 A.M.", "11:30 A.M.", "12:00 P.M.", "12:30 P.M.", "1:00 P.M.", "1:30 P.M.", "2:00 P.M.", "2:30 P.M.", "3:00 P.M.", "3:30 P.M.", "4:00 P.M.", "4:30 P.M.", "5:00 P.M.", "5:30 P.M.", "6:00 P.M.", "placeholder" ]
-
-//add open dates & times set by doctor on their profile - disable unopen ones
-
-const { width } = Dimensions.get('screen');
 
 const SpecificSettings = ({ navigation, route }) => {
 
@@ -27,29 +25,23 @@ const SpecificSettings = ({ navigation, route }) => {
 
     function scheduleInfo() {
         return (
-            
-                <View style={styles.scheduleContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('ApptSettings', {
-                        //pass in selected data
-                        //save data for this particular date to the DB
-                    })}>
-                       
-                        <View style={styles.scheduleButton}>
-                            <Text style={{ ...Fonts.white20Regular }}>Save</Text>
-                        </View>
-                                                  
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => navigation.navigate('ApptSettings', {
-                        //cancel selected data for this date
-                    })}>
-                       
-                       <View style={styles.scheduleButton}>
-                            <Text style={{ ...Fonts.white20Regular }}>Back</Text>
-                        </View>
-                                               
-                    </TouchableOpacity>                    
-                </View>              
+            <View style={styles.scheduleContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('ApptSettings', {
+                    //pass in selected data
+                    //save data for this particular date to the DB
+                })}>
+                    <View style={styles.scheduleButton}>
+                        <Text style={{ ...Fonts.white20Regular }}>Save</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ApptSettings', {
+                    //cancel selected data for this date
+                })}>
+                    <View style={styles.scheduleButton}>
+                        <Text style={{ ...Fonts.white20Regular }}>Back</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         )
     }
 
@@ -59,54 +51,49 @@ const SpecificSettings = ({ navigation, route }) => {
     }
 
     return (
-        
-        <View style={{flex: 1, backgroundColor: "white"}}>
-            <View style={{justifyContent: "center", alignItems: "center"}}>
-                <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 20.0}}>Date Availability</Text>
-                </View>
-        <CalendarStrip
-                        style={{ height: 100, paddingTop: Sizes.fixPadding, paddingBottom: Sizes.fixPadding, }}
-                        highlightDateContainerStyle={{
-                            backgroundColor: "#755293",
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}   
-                        dateNumberStyle={{ color: 'black', fontSize: 17.0 }}
-                        dateNameStyle={{ color: 'black', fontSize: 15.0 }}
-                        highlightDateNameStyle={{ color: 'white', fontSize: 15.0 }}
-                        highlightDateNumberStyle={{ color: 'white', fontSize: 17.0 }}
-                        //datesBlacklist={datesBlacklistFunc} 
-                        disabledDateOpacity={0.6}
-                        scrollable={true}
-                        upperCaseDays={false}
-                        styleWeekend={true}
-                        disabledDateNameStyle={{ color: 'gray', fontSize: 15.0 }}
-                        disabledDateNumberStyle={{ color: 'gray', fontSize: 17.0, }}
-                        useIsoWeekday={false}
-                        onDateSelected={(date) =>
-                            setSelectDate(date.format('MM-DD-YYYY'))
-                       }      
-                      // selectedDate={selectDate} 
-                    />
-        <View style={styles.dividerStyle}>
-        </View>
-        <View style={{justifyContent: "center", alignItems: "center"}}>
-                <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 10.0}}>Time Availability</Text>
-                </View>
-        <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20.0, marginBottom: 5, marginStart: 5, marginEnd: 5}}>Select the times you are unavailable for on your selected day:</Text>
+        <View style={{ flex: 1, backgroundColor: "white" }}>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 20.0 }}>Date Availability</Text>
+            </View>
+            <CalendarStrip
+                style={{ height: 100, paddingTop: Sizes.fixPadding, paddingBottom: Sizes.fixPadding, }}
+                highlightDateContainerStyle={{
+                    backgroundColor: "#755293",
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+                dateNumberStyle={{ color: 'black', fontSize: 17.0 }}
+                dateNameStyle={{ color: 'black', fontSize: 15.0 }}
+                highlightDateNameStyle={{ color: 'white', fontSize: 15.0 }}
+                highlightDateNumberStyle={{ color: 'white', fontSize: 17.0 }}
+                //datesBlacklist={datesBlacklistFunc} 
+                disabledDateOpacity={0.6}
+                scrollable={true}
+                upperCaseDays={false}
+                styleWeekend={true}
+                disabledDateNameStyle={{ color: 'gray', fontSize: 15.0 }}
+                disabledDateNumberStyle={{ color: 'gray', fontSize: 17.0, }}
+                useIsoWeekday={false}
+                onDateSelected={(date) =>
+                    setSelectDate(date.format('MM-DD-YYYY'))
+                }
+            // selectedDate={selectDate} 
+            />
+            <View style={styles.dividerStyle}>
+            </View>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 10.0 }}>Time Availability</Text>
+            </View>
+            <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20.0, marginBottom: 5, marginStart: 5, marginEnd: 5 }}>Select the times you are unavailable for on your selected day:</Text>
 
-        <SelectMultiple
-                contentContainerStyle= {styles.selectView}
+            <SelectMultiple
+                contentContainerStyle={styles.selectView}
                 items={timeSlots}
                 selectedItems={selectedSlot}
                 onSelectionsChange={time => setSelectedSlot(time)} />
-
-        {scheduleInfo()}
-      </View>
-
-       
-        )
-        
+            {scheduleInfo()}
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({

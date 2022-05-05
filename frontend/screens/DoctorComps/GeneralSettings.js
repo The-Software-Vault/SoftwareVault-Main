@@ -8,9 +8,7 @@ import SelectMultiple from 'react-native-select-multiple'
 const timeSlots = ["8:00 A.M.", "8:30 A.M.", "9:00 A.M.", "9:30 A.M.", "10:00 A.M.", "10:30 A.M.", "11:00 A.M.", "11:30 A.M.", "12:00 P.M.", "12:30 P.M.", "1:00 P.M.", "1:30 P.M.", "2:00 P.M.", "2:30 P.M.", "3:00 P.M.", "3:30 P.M.", "4:00 P.M.", "4:30 P.M.", "5:00 P.M.", "5:30 P.M.", "6:00 P.M.", "placeholder" ]
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",]
 
-//add open dates & times set by doctor on their profile - disable unopen ones
-
-const { width } = Dimensions.get('screen');
+//const { width } = Dimensions.get('screen');
 
 const GeneralSettings = ({ navigation, route }) => {
 
@@ -28,29 +26,23 @@ const GeneralSettings = ({ navigation, route }) => {
 
     function scheduleInfo() {
         return (
-            
-                <View style={styles.scheduleContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('ApptSettings', {
-                        //pass in selected data
-                        //save data for this particular date to the DB
-                    })}>
-                       
-                        <View style={styles.scheduleButton}>
-                            <Text style={{ ...Fonts.white20Regular }}>Confirm</Text>
-                        </View>
-                                                  
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => navigation.navigate('ApptSettings', {
-                        //cancel selected data for this date
-                    })}>
-                       
-                       <View style={styles.scheduleButton}>
-                            <Text style={{ ...Fonts.white20Regular }}>Back</Text>
-                        </View>
-                                               
-                    </TouchableOpacity>                    
-                </View>              
+            <View style={styles.scheduleContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('ApptSettings', {
+                    //pass in selected data
+                    //save data for this particular date to the DB
+                })}>
+                    <View style={styles.scheduleButton}>
+                        <Text style={{ ...Fonts.white20Regular }}>Confirm</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ApptSettings', {
+                    //cancel selected data for this date
+                })}>
+                    <View style={styles.scheduleButton}>
+                        <Text style={{ ...Fonts.white20Regular }}>Back</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         )
     }
 
@@ -60,35 +52,30 @@ const GeneralSettings = ({ navigation, route }) => {
     }
 
     return (
-        
-        <View style={{flex: 1, backgroundColor: "white"}}>
-            <View style={{justifyContent: "center", alignItems: "center"}}>
-                <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 20.0}}>Unavailable Days</Text>
-                </View>
-                <SelectMultiple
-                contentContainerStyle= {styles.selectView}
+        <View style={{ flex: 1, backgroundColor: "white" }}>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 20.0 }}>Unavailable Days</Text>
+            </View>
+            <SelectMultiple
+                contentContainerStyle={styles.selectView}
                 items={days}
                 selectedItems={selectDay}
                 onSelectionsChange={day => setSelectDay(day)} />
-        <View style={styles.dividerStyle}>
-        </View>
-        <View style={{justifyContent: "center", alignItems: "center"}}>
-                <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 10.0}}>Time Availability</Text>
-                </View>
-        <Text style={{fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20.0, marginBottom: 5, marginStart: 5, marginEnd: 5}}>Select the times you are generally unavailable for every day:</Text>
+            <View style={styles.dividerStyle}>
+            </View>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+                <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 16.0, marginTop: 10.0 }}>Time Availability</Text>
+            </View>
+            <Text style={{ fontFamily: 'NotoSans_Regular', color: 'black', fontSize: 14.0, marginTop: 20.0, marginBottom: 5, marginStart: 5, marginEnd: 5 }}>Select the times you are generally unavailable for every day:</Text>
 
-        <SelectMultiple
-                contentContainerStyle= {styles.selectView}
+            <SelectMultiple
+                contentContainerStyle={styles.selectView}
                 items={timeSlots}
                 selectedItems={selectedSlot}
                 onSelectionsChange={time => setSelectedSlot(time)} />
-
-        {scheduleInfo()}
-      </View>
-
-       
-        )
-        
+            {scheduleInfo()}
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({

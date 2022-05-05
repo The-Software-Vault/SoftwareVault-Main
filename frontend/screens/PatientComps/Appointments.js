@@ -9,9 +9,9 @@ const Tab = createMaterialTopTabNavigator();
 
 const { width } = Dimensions.get('screen');
 
-export default function Appointments (props) {
+export default function Appointments(props) {
 
-    const {route, navigation} = props;
+    const { route, navigation } = props;
 
     const [showDetails, setShowDetails] = React.useState(false);
     const [currItem, setCurrItem] = React.useState([]);
@@ -19,12 +19,12 @@ export default function Appointments (props) {
 
     const scheduleButton = () => {
         return (
-        <View style = {{marginBottom: 4}}>
-            
-            <Pressable style={styles.scheduleButton} onPress={() => navigation.navigate('DoctorList', route.params)}>
-                        <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>
-                    </Pressable>
-        </View>
+            <View style={{ marginBottom: 4 }}>
+
+                <Pressable style={styles.scheduleButton} onPress={() => navigation.navigate('DoctorList', route.params)}>
+                    <Text style={{ ...Fonts.white20Regular }}>Schedule Appointment</Text>
+                </Pressable>
+            </View>
         )
     }
 
@@ -34,22 +34,22 @@ export default function Appointments (props) {
                 <View style={styles.detailsStyle}>
                     <Text style={{ textAlign: 'center', ...Fonts.black16Bold }}>Appointment Details</Text>
                     <View style={{ backgroundColor: Colors.lightGray, height: 0.50, }}>
-                </View>
-                <View style={{flexDirection: "row"}}>
-                    <Image source={images.date}/>
-                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}> {currItem.date}</Text>      
-                    </View>  
-                        <View style={{flexDirection: "row"}}>
-                    <Image source={images.clock}/>
-                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}> {currItem.time}</Text>      
-                    </View>  
-                    <View style={{flexDirection: "row"}}>
-                    <Image source={images.link}/>
-                    <Text style={{ ...Fonts.primaryColor14Regular, marginTop: 5 }} onPress={() => Linking.openURL(link)}>{link}</Text>     
-                    </View>  
-                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>{instructions}</Text> 
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Reason: {currItem.reason}</Text>
-                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Symptoms: {currItem.symptoms}</Text>
+                    </View>
+                    <View style={{ flexDirection: "row" }}>
+                        <Image source={images.date} />
+                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}> {currItem.date}</Text>
+                    </View>
+                    <View style={{ flexDirection: "row" }}>
+                        <Image source={images.clock} />
+                        <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}> {currItem.time}</Text>
+                    </View>
+                    <View style={{ flexDirection: "row" }}>
+                        <Image source={images.link} />
+                        <Text style={{ ...Fonts.primaryColor14Regular, marginTop: 5 }} onPress={() => Linking.openURL(link)}>{link}</Text>
+                    </View>
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>{instructions}</Text>
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Reason: {currItem.reason}</Text>
+                    <Text style={{ ...Fonts.black14Regular, marginTop: 5 }}>Symptoms: {currItem.symptoms}</Text>
                     <View style={{ flex: 1, flexDirection: 'row', marginTop: Sizes.fixPadding, justifyContent: "center" }}>
                         <TouchableOpacity
                             activeOpacity={0.9}
@@ -135,7 +135,7 @@ export default function Appointments (props) {
             type: 'Nutritian'
         },
     ];
-    
+
     const canceledDataList = [
         //will need to store canceled appointments
         {
@@ -153,47 +153,47 @@ export default function Appointments (props) {
             type: 'Cough & Fever'
         },
     ];
-    
+
     //add option to view details/doctor notes from previous appointment?
     //also should be able to choose to message the doctor or view their profile
     const PastScreen = () => {
         const renderItem = ({ item }) => (
-            <View style = {{marginHorizontal: 20}}>
+            <View style={{ marginHorizontal: 20 }}>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", marginVertical: Sizes.fixPadding * 2.0 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={styles.pastCircleStyle}>
                             <Text style={{ textAlign: 'center', color: '#8ECC90', fontSize: 18, }}>{item.date}</Text>
                         </View>
                         <View style={{ marginLeft: Sizes.fixPadding }}>
-                            <View style={{flexDirection: "row"}}>
-                                <Image source={images.clock}/>
+                            <View style={{ flexDirection: "row" }}>
+                                <Image source={images.clock} />
                                 <Text style={{ ...Fonts.black18Bold }}> {item.time}</Text>
                             </View>
-                            <View style={{flexDirection: "row", marginVertical: 4.0,}}>
-                                <Image source={images.doctor}/>
-                                <Text style={{  ...Fonts.black16Regular, marginBottom: 15 }}> {item.doctor}</Text>    
+                            <View style={{ flexDirection: "row", marginVertical: 4.0, }}>
+                                <Image source={images.doctor} />
+                                <Text style={{ ...Fonts.black16Regular, marginBottom: 15 }}> {item.doctor}</Text>
                             </View>
-                            <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
-                                <View style={{flexDirection: "row"}}>
-                                    <Image source={images.info}/>
-                                    <Text style = {styles.messageButtonTxt}> Details</Text>      
-                                </View> 
+                            <TouchableOpacity style={styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item); }}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <Image source={images.info} />
+                                    <Text style={styles.messageButtonTxt}> Details</Text>
+                                </View>
                                 {showDetailBox()}
                             </TouchableOpacity>
 
-                            <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
-                                <View style={{flexDirection: "row"}}>
-                                    <Image source={images.message}/>
-                                    <Text style = {styles.messageButtonTxt}> Message</Text>      
-                                </View>            
+                            <TouchableOpacity style={styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <Image source={images.message} />
+                                    <Text style={styles.messageButtonTxt}> Message</Text>
+                                </View>
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
-                        <View style={{flexDirection: "row"}}>
-                            <Image source={images.notes}/>
-                            <Text style = {styles.messageButtonTxt}> Doctor Notes</Text>      
-                        </View>  
+                    <TouchableOpacity style={styles.messageButton} onPress={() => { setShowNotes(true); }}>
+                        <View style={{ flexDirection: "row" }}>
+                            <Image source={images.notes} />
+                            <Text style={styles.messageButtonTxt}> Doctor Notes</Text>
+                        </View>
                         {showNotesBox()}
                     </TouchableOpacity>
                 </View>
@@ -203,24 +203,24 @@ export default function Appointments (props) {
         )
         return (
             pastDataList.length === 0 ?
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <View style={styles.noActiveDataContainerStyle}>
-                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Past Appointments</Text>
-                </View>  
-                {scheduleButton()}
-            </View>
+                <View style={{ flex: 1, backgroundColor: 'white' }}>
+                    <View style={styles.noActiveDataContainerStyle}>
+                        <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Past Appointments</Text>
+                    </View>
+                    {scheduleButton()}
+                </View>
                 :
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <FlatList
-                    data={pastDataList}
-                    keyExtractor={(item) => `${item.id}`}
-                    renderItem={renderItem}
-                />
-                {scheduleButton()}
-            </View>
+                <View style={{ flex: 1, backgroundColor: 'white' }}>
+                    <FlatList
+                        data={pastDataList}
+                        keyExtractor={(item) => `${item.id}`}
+                        renderItem={renderItem}
+                    />
+                    {scheduleButton()}
+                </View>
         )
     }
-    
+
     //should be able to view the doctors profile by clicking on the doctors name
     //provide reason for cancellation perhaps?
     const CanceledScreen = () => {
@@ -240,24 +240,24 @@ export default function Appointments (props) {
                 </View>
             </View>
         )
-    
+
         return (
             canceledDataList.length === 0 ?
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <View style={styles.noActiveDataContainerStyle}>
-                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Canceled Appointments</Text>
-                </View>  
-                {scheduleButton()}
-            </View>
+                <View style={{ flex: 1, backgroundColor: 'white' }}>
+                    <View style={styles.noActiveDataContainerStyle}>
+                        <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Canceled Appointments</Text>
+                    </View>
+                    {scheduleButton()}
+                </View>
                 :
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <FlatList
-                    data={canceledDataList}
-                    keyExtractor={(item) => `${item.id}`}
-                    renderItem={renderItem}
-                />
-                {scheduleButton()}
-            </View>
+                <View style={{ flex: 1, backgroundColor: 'white' }}>
+                    <FlatList
+                        data={canceledDataList}
+                        keyExtractor={(item) => `${item.id}`}
+                        renderItem={renderItem}
+                    />
+                    {scheduleButton()}
+                </View>
         )
     }
 
@@ -361,49 +361,49 @@ export default function Appointments (props) {
 
     const UpcomingScreen = () => {
         const renderItem = ({ item }) => (
-            <View style = {{marginHorizontal: 20}}>
+            <View style={{ marginHorizontal: 20 }}>
                 <View style={{ flexDirection: 'row', justifyContent: "space-between", marginVertical: Sizes.fixPadding * 2.0 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={styles.activeCircleStyle}>
                             <Text style={{ textAlign: 'center', color: '#8ECC90', fontSize: 18, }}>{item.date}</Text>
                         </View>
                         <View style={{ marginLeft: Sizes.fixPadding }}>
-                            <View style={{flexDirection: "row"}}>
-                                <Image source={images.clock}/>
-                                <Text style={{ ...Fonts.black18Bold }}> {item.time}</Text>      
-                            </View>  
-                            
-                            <View style={{flexDirection: "row", marginVertical: 4.0,}}>
-                                <Image source={images.doctor}/>
-                                <Text style={{  ...Fonts.black16Regular, marginBottom: 15 }}> {item.doctor}</Text>    
-                            </View>  
-                            
-                            <TouchableOpacity style = {styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item);}}>
-                                <View style={{flexDirection: "row"}}>
-                                    <Image source={images.info}/>
-                                    <Text style = {styles.messageButtonTxt}> Details</Text>      
-                                </View> 
+                            <View style={{ flexDirection: "row" }}>
+                                <Image source={images.clock} />
+                                <Text style={{ ...Fonts.black18Bold }}> {item.time}</Text>
+                            </View>
+
+                            <View style={{ flexDirection: "row", marginVertical: 4.0, }}>
+                                <Image source={images.doctor} />
+                                <Text style={{ ...Fonts.black16Regular, marginBottom: 15 }}> {item.doctor}</Text>
+                            </View>
+
+                            <TouchableOpacity style={styles.buttonDetails} onPress={() => { setShowDetails(true); setCurrItem(item); }}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <Image source={images.info} />
+                                    <Text style={styles.messageButtonTxt}> Details</Text>
+                                </View>
                                 {showDetailBox()}
                             </TouchableOpacity>
 
-                            <TouchableOpacity style = {styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
-                                <View style={{flexDirection: "row"}}>
-                                    <Image source={images.message}/>
-                                    <Text style = {styles.messageButtonTxt}> Message</Text>      
-                                </View>            
+                            <TouchableOpacity style={styles.messageButton} onPress={() => { navigation.navigate('messages') }}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <Image source={images.message} />
+                                    <Text style={styles.messageButtonTxt}> Message</Text>
+                                </View>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style = {styles.messageButton} onPress={() => { setShowNotes(true); }}>
-                                <View style={{flexDirection: "row"}}>
-                                    <Image source={images.notes}/>
-                                    <Text style = {styles.messageButtonTxt}> Doctor Notes</Text>      
-                                </View>  
+                            <TouchableOpacity style={styles.messageButton} onPress={() => { setShowNotes(true); }}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <Image source={images.notes} />
+                                    <Text style={styles.messageButtonTxt}> Doctor Notes</Text>
+                                </View>
                                 {showNotesBox()}
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style = {styles.button} onPress={() => { setShowModal(true); setId(item.id); }}>
-                        <Text style = {styles.buttonTxt}>Cancel</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => { setShowModal(true); setId(item.id); }}>
+                        <Text style={styles.buttonTxt}>Cancel</Text>
                         {showDialog()}
                     </TouchableOpacity>
                 </View>
@@ -414,21 +414,21 @@ export default function Appointments (props) {
 
         return (
             activeDataList.length === 0 ?
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <View style={styles.noActiveDataContainerStyle}>
-                    <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Upcoming Appointments</Text>
-                </View>  
-                {scheduleButton()}
-            </View>
+                <View style={{ flex: 1, backgroundColor: 'white' }}>
+                    <View style={styles.noActiveDataContainerStyle}>
+                        <Text style={{ ...Fonts.gray17Regular, marginTop: Sizes.fixPadding * 2.0 }}>No Upcoming Appointments</Text>
+                    </View>
+                    {scheduleButton()}
+                </View>
                 :
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <FlatList
-                    data={activeDataList} //change to grab the appointments made by this user
-                    keyExtractor={(item) => `${item.id}`}
-                    renderItem={renderItem}
-                />
-            {scheduleButton()}
-            </View>
+                <View style={{ flex: 1, backgroundColor: 'white' }}>
+                    <FlatList
+                        data={activeDataList} //change to grab the appointments made by this user
+                        keyExtractor={(item) => `${item.id}`}
+                        renderItem={renderItem}
+                    />
+                    {scheduleButton()}
+                </View>
         )
     }
 

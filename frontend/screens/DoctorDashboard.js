@@ -4,80 +4,72 @@ import { images } from "../constants";
 import { Fonts, Colors, Sizes } from "../constants/styles";
 
 
-const DoctorDashboard =  ({ navigation, route }) => {
+const DoctorDashboard = ({ navigation, route }) => {
 
-    const {name} = route.params;
+    const { name } = route.params;
 
-    const [user, newUser] = React.useState([
-        {name: 'Dr. Kyle Booth', username: 'Doctor', appointments: ['Wednesday 1pm, Monday 4pm'], messages: ['Hello!', 'The images are great!'], messageSender: ['Dr. Bob Smith, Dr. Alice Smith']},
-    ]);
+    //const [user, newUser] = React.useState([
+    //    {name: 'Dr. Kyle Booth', username: 'Doctor', appointments: ['Wednesday 1pm, Monday 4pm'], messages: ['Hello!', 'The images are great!'], messageSender: ['Dr. Bob Smith, Dr. Alice Smith']},
+    //]);
 
     const [appointments, newAppointment] = React.useState([
-        {date: '2/22/2022', time: '5:00 p.m.', patient: 'Bob Smith', duration: '30 minutes'},
-        {date: '3/2/2022', time: '3:00 p.m.', patient: 'Alice Smith', duration: '30 minutes'},
+        { date: '2/22/2022', time: '5:00 p.m.', patient: 'Bob Smith', duration: '30 minutes' },
+        { date: '3/2/2022', time: '3:00 p.m.', patient: 'Alice Smith', duration: '30 minutes' },
     ]);
 
     const [messages, newMessage] = React.useState([
-        {received: '2/2/2022', time: '5:11 p.m.', sender: 'Dr. Bob Smith', content: 'Everything looks good!'},
-        {received: '2/2/2022', time: '6:40 p.m.', sender: 'Dr. Alice Smith', content: 'Images are great!'},
+        { received: '2/2/2022', time: '5:11 p.m.', sender: 'Dr. Bob Smith', content: 'Everything looks good!' },
+        { received: '2/2/2022', time: '6:40 p.m.', sender: 'Dr. Alice Smith', content: 'Images are great!' },
     ]);
 
-    return(
+    return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-                
-            <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 3}}>
-                <TouchableOpacity  onPress={() => navigation.navigate('DoctorProfile')}>
-                            <Image source={images.setting} resizeMode="contain" style={styles.topBar}/>
-                            </TouchableOpacity>
-            <View style={{alignItems: "flex-end", justifyContent: "flex-end"}}>
-                <TouchableOpacity  onPress={() => navigation.navigate('Login')}>
-                            <Image source={images.logout} resizeMode="contain" style={styles.topBar}/>
-                            </TouchableOpacity>
-                            </View>
-                            
-            
-                            
-                </View>
-                <View style={styles.container}>
-                
-                    <View style={styles.profileSection}>
 
-                   
-                    <TouchableOpacity  onPress={() => navigation.navigate('DoctorProfile')}>
-                            
-                            </TouchableOpacity>
-                        
-                            <View style={styles.profileImgContainer}>
-                            <Image style={styles.profileImg} source={images.doctorProf}/>
-                            </View>
-                            <Text style={{alignSelf: "center", color: "black"}}>Welcome, {route.params.id}</Text>
+                <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 3 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('DoctorProfile')}>
+                        <Image source={images.setting} resizeMode="contain" style={styles.topBar} />
+                    </TouchableOpacity>
+                    <View style={{ alignItems: "flex-end", justifyContent: "flex-end" }}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                            <Image source={images.logout} resizeMode="contain" style={styles.topBar} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <View style={styles.container}>
+                    <View style={styles.profileSection}>
+                        <TouchableOpacity onPress={() => navigation.navigate('DoctorProfile')}>
+                        </TouchableOpacity>
+                        <View style={styles.profileImgContainer}>
+                            <Image style={styles.profileImg} source={images.doctorProf} />
+                        </View>
+                        <Text style={{ alignSelf: "center", color: "black" }}>Welcome, {route.params.id}</Text>
                     </View>
 
                     <View style={styles.rowContainer}>
-                        
-                            <TouchableOpacity  onPress={() => navigation.navigate('DoctorInfo')}>
-                            <Image source={images.medical} resizeMode="contain" style={styles.logo}/>
-                            </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity onPress={() => navigation.navigate('DoctorInfo')}>
+                            <Image source={images.medical} resizeMode="contain" style={styles.logo} />
+                        </TouchableOpacity>
+                    </View>
 
-                        <View style={styles.card_template}>
+                    <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image}>
-                            <Image style={styles.card_image} source={require('../assets/backgrounds/notifications_background.png')}/>
+                            <Image style={styles.card_image} source={require('../assets/backgrounds/notifications_background.png')} />
                             <Text style={styles.text_container}>Notifications</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('DrAppointments', appointments)}>
-                            <Image style={styles.card_image} source={{uri: 'https://wraltechwire.com/wp-content/uploads/2021/01/Triangle-Headliners-banner.png'}}/>
+                            <Image style={styles.card_image} source={{ uri: 'https://wraltechwire.com/wp-content/uploads/2021/01/Triangle-Headliners-banner.png' }} />
                             <Text style={styles.text_container}>Appointments</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.card_template}>
                         <TouchableOpacity style={styles.card_image} onPress={() => navigation.navigate('messages', messages)}>
-                            <Image style={styles.card_image} source={require('../assets/backgrounds/messages_background.png')}/>
+                            <Image style={styles.card_image} source={require('../assets/backgrounds/messages_background.png')} />
                             <Text style={styles.text_container}>Messages</Text>
                         </TouchableOpacity>
                     </View>

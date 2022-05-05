@@ -12,25 +12,25 @@ const Login = ({ navigation }) => {
     const [username, onChangeUsername] = React.useState('');
     const [password, onChangePassword] = React.useState('');
 
-    function checkUserType(){
-        console.log("Login/Verify: ", logins.verifyUser({username: username, hashpass: password}).value)
+    function checkUserType() {
+        console.log("Login/Verify: ", logins.verifyUser({ username: username, hashpass: password }).value)
 
-        axios.post(`${logins.url}/user/login`, {username: username, hashpass : password})
+        axios.post(`${logins.url}/user/login`, { username: username, hashpass: password })
             .then(response => {
                 console.log("response: ", response.data)
-                if(response.data === 0) {
+                if (response.data === 0) {
                     invalidLogin()
                 }
                 else {
                     console.log("Username:", username, "  Password:", password)
                     console.log("UserID:", response.data)
                     id = response.data
-                    {id => setId(id)}
+                    { id => setId(id) }
                     // validLogin(response.data)
                 }
             })
 
-        if(username === "Doctor"){
+        if (username === "Doctor") {
             return 'DoctorDashboard'
         }
         else {
@@ -44,10 +44,10 @@ const Login = ({ navigation }) => {
         password.length = 0;
     }
 
-    return(
+    return (
         <View style={styles.container}>
             <View style={styles.logoView}>
-                <Image source={images.logo} resizeMode="contain" style={styles.logo}/>
+                <Image source={images.logo} resizeMode="contain" style={styles.logo} />
             </View>
             <View style={styles.inputView}>
                 <TextInput
@@ -55,7 +55,7 @@ const Login = ({ navigation }) => {
                     placeholder="username"
                     placeholderTextColor="#AFAFAF"
                     value={username}
-                    onChangeText={username => onChangeUsername(username)}/>
+                    onChangeText={username => onChangeUsername(username)} />
             </View>
             <View style={styles.inputView}>
                 <TextInput
@@ -64,16 +64,16 @@ const Login = ({ navigation }) => {
                     placeholder="password"
                     placeholderTextColor="#AFAFAF"
                     value={password}
-                    onChangeText={password => onChangePassword(password)}/>
+                    onChangeText={password => onChangePassword(password)} />
             </View>
-            <Pressable style={styles.loginBtn} onPress={() => navigation.navigate(checkUserType(), {name: username})}>
+            <Pressable style={styles.loginBtn} onPress={() => navigation.navigate(checkUserType(), { name: username })}>
                 <TouchableOpacity>
                     <Text style={styles.loginText}>Login</Text>
                 </TouchableOpacity>
             </Pressable>
 
             <View style={styles.actions}>
-                <TouchableOpacity style={{marginHorizontal: 15}}>
+                <TouchableOpacity style={{ marginHorizontal: 15 }}>
                     <Text style={styles.forgot}>Forgot Password?</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>

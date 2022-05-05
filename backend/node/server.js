@@ -9,7 +9,7 @@ var path = require('path');
 
 // Set up some configs for express.
 const config = {
-  name: 'API',
+  name: 'SWVault API',
   port: 8000,
   host: '0.0.0.0',
 };
@@ -19,14 +19,6 @@ var app = express();
 // Create a logger object.  Using logger is preferable to simply writing to the console.
 const logger = log({ console: true, file: false, label: config.name });
 
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Specify middleware to use
 app.use(express.json());
 app.use(cors({
@@ -35,13 +27,15 @@ app.use(cors({
 app.use(ExpressAPILogMiddleware(logger, { request: true }));
 
 const user = require('./routes/user')
+const doctor = require('./routes/doctors')
 const message = require('./routes/message')
+const appointment = require('./routes/appointments')
 
 user(app, logger);
 message(app, logger);
 
 app.get('/', (req, res) => {
-  res.status(200).send('Go to 0.0.0.0:3000.');
+  res.status(200).send(`SWVault API - ${config.host}:${config.port}.`);
 });
 
 // connecting the express object to listen on a particular port as defined in the config object.

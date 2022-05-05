@@ -1,6 +1,6 @@
 const pool = require('../connection')
 
-module.exports = function message(app, logger) {
+module.exports = function doctor(app, logger) {
 
     // GET /doctor/getDoctors
     app.get('/doctor/getDoctors', (req, res) => {

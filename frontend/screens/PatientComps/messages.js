@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from "react";
 import { Fonts, Colors, Sizes } from "../../constants/styles"
-import {StyleSheet, View, FlatList, Text, TextInput, Pressable, TouchableOpacity} from  "react-native";
+import { StyleSheet, View, FlatList, Text, TextInput, Pressable, TouchableOpacity} from  "react-native";
 import { MessageRepository } from "../../API/messageRepository";
 
-export default function Messages( props ) {
-    
+export default function Messages(props) {
+
     let msgs = new MessageRepository();
-    const {route, navigation} = props;
+    const { route, navigation } = props;
     const [messagesList, setMessagesList] = useState([]);
 
-    useEffect(() => { 
-        
-        msgs.getChatHistory({userId: 1, doctorId: 4}).then(res => {
+    useEffect(() => {
+
+        msgs.getChatHistory({ userId: 1, doctorId: 4 }).then(res => {
             console.log("Messages + Details: ", res)
             setMessagesList(res);
         })
@@ -37,11 +37,11 @@ export default function Messages( props ) {
                     <View style={{ flexDirection: 'row' }}>
                         {item.isSender == true ?
                             item.isSeen == true ?
-                            /*
-                                <Ionicons name="checkmark-done-sharp" size={18} color='#2497F3' style={{ marginTop: Sizes.fixPadding }} />
-                                :
-                                <Ionicons name="checkmark-sharp" size={18} color='#2497F3' style={{ marginTop: Sizes.fixPadding }} />
-                            */
+                                /*
+                                    <Ionicons name="checkmark-done-sharp" size={18} color='#2497F3' style={{ marginTop: Sizes.fixPadding }} />
+                                    :
+                                    <Ionicons name="checkmark-sharp" size={18} color='#2497F3' style={{ marginTop: Sizes.fixPadding }} />
+                                */
                                 <TouchableOpacity size={18} color='#2497F3' style={{ marginTop: Sizes.fixPadding }} />
                                 :
                                 <TouchableOpacity size={18} color='#2497F3' style={{ marginTop: Sizes.fixPadding }} />
@@ -104,29 +104,29 @@ export default function Messages( props ) {
                             addMessage({ message: message })
                             setMessage('');
                         }
-                    }}/>
+                    }} />
                 </View>
             </View>
         )
     }
     return <View style={{ flex: 1, backgroundColor: 'white' }}>
-            {messages()}
-            {typeMessage()}
-        </View>
-        /*
-        <View style={styles.container}>
-            <FlatList
-                data = {route.params}
-                renderItem={({ item }) => (
-                    <Pressable style={styles.msgBtn} onPress={() => navigation.navigate('messages', item)}>
-                        <TouchableOpacity>
-                            <Text >{item.content}</Text>
-                        </TouchableOpacity>
-                    </Pressable>
-                )}
-            />
-        </View>
-        */
+        {messages()}
+        {typeMessage()}
+    </View>
+    /*
+    <View style={styles.container}>
+        <FlatList
+            data = {route.params}
+            renderItem={({ item }) => (
+                <Pressable style={styles.msgBtn} onPress={() => navigation.navigate('messages', item)}>
+                    <TouchableOpacity>
+                        <Text >{item.content}</Text>
+                    </TouchableOpacity>
+                </Pressable>
+            )}
+        />
+    </View>
+    */
 }
 
 const styles = StyleSheet.create({

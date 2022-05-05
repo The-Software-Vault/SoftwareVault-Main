@@ -2,7 +2,6 @@ import React from "react";
 import {StyleSheet, View, Image, Text, TextInput, TouchableOpacity, Pressable, ScrollView, SafeAreaView} from "react-native";
 import { images } from "../constants";
 
-
 const DoctorProfile = ({ navigation, route}) => {
 
     const [text, onChangeText] = React.useState("This is a text");
@@ -10,69 +9,65 @@ const DoctorProfile = ({ navigation, route}) => {
 
     function doctorDashboard() {
         return (
-            <TouchableOpacity style={styles.profileEditBtn} onPress={() => navigation.navigate('DoctorDashboard', {name : username})}>
-
-                    <Text style={styles.profileEditText}>Confirm</Text>
-
+            <TouchableOpacity style={styles.profileEditBtn} onPress={() => navigation.navigate('DoctorDashboard', { name: username })}>
+                <Text style={styles.profileEditText}>Confirm</Text>
             </TouchableOpacity>
         )
     }
 
     return (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
             <SafeAreaView style={styles.container}>
-            
-            <Text style={{fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30, marginBottom: 30}}>Account Settings</Text>
-                
-                <Text style={{alignSelf: "center", color: "black"}}>Username</Text>
+                <Text style={{ fontFamily: 'NotoSans_Bold', fontSize: 30.0, color: "black", marginTop: 30, marginBottom: 30 }}>Account Settings</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Username</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder=""
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>First Name</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>First Name</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder=""
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Last Name</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Last Name</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder=""
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>E-mail Address</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>E-mail Address</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder=""
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Change Password</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Change Password</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         secureTextEntry={true}
                         style={styles.inputText}
                         placeholder=""
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
-                <Text style={{alignSelf: "center", color: "black"}}>Confirm New Password</Text>
+                <Text style={{ alignSelf: "center", color: "black" }}>Confirm New Password</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         secureTextEntry={true}
                         style={styles.inputText}
                         placeholder=""
                         placeholderTextColor="#AFAFAF"
-                        onChangeText={text => onChangeText(text)}/>
+                        onChangeText={text => onChangeText(text)} />
                 </View>
                 {doctorDashboard()}
             </SafeAreaView>
@@ -116,7 +111,6 @@ const styles = StyleSheet.create({
         height: 75.0,
         position: 'absolute', bottom: 15.0, width: '100%',
         alignItems: 'center',
-        //paddingHorizontal: Sizes.fixPadding * 2.0,
         justifyContent: 'center',
     },
     signUp: {
