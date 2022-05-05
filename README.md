@@ -7,26 +7,28 @@ Primary Repository for The Software Vault Project
 
 ## Development
 
+<u>**Checkout**</u>: [Software Vault - API Routes](https://documenter.getpostman.com/view/10544294/Uyr4LLUZ)<br></br>
+
 #### Pre-requisites
 [Environment Setup](https://reactnative.dev/docs/environment-setup) : Follow instructions for <u>**React Native CLI**</u> (_*NOT*_ Expo CLI)
 
 ## Instructions
 
-## Running **Frontend** (Local Vs. AWS EC2)
+## Running **Frontend** (Local Vs. AWS EC2) via android
 
 0.) If using AWS _(ignore this step if you are running locally)_, login to the EC2 instance via ssh using the private key file (_swvault.pem_):
 
-    $ssh -i "swvault.pem" ec2-user@ec2-54-156-23-43.compute-1.amazonaws.com
+    $ssh -i key.pem ec2-user@YOUR-AWS-EC2-HOSTIP.compute-1.amazonaws.com
 
-1.) Open `frontend/API/userRepository.js`
+1.) Open the API files (`frontend/API/userRepository.js`, `frontend/API/messageRepository.js`, `frontend/API/appRepository.js`):
 
-  - [LOCAL] In line 6, make sure `url = false ? ...` (if necessary, change http://localhost:8000, to match your local WiFi IP address)
-  - [AWS EC2] In line 6, make sure `url = true ? ...`
+  - [_LOCAL_] In line 6, make sure `url = false ? ...` (if necessary, change http://localhost:8000, to match your local WiFi IP address)
+  - [_AWS EC2_] In line 6, make sure `url = true ? ...`
 
 
 2.) Install packages! (`$yarn install`)
 
-  - [LOCAL] Run the following commands within the __*SoftwareVault-Main/frontend*__ directory, in seperate terminals<br>
+  - [_LOCAL_] Run the following commands within the __*SoftwareVault-Main/frontend*__ directory, in seperate terminals<br>
       (PS: __**Linux**__ users, run `$chmod 755 android/gradlew`):
     
     - Start Metro Bundler: `$yarn react-native start`
@@ -38,28 +40,28 @@ Primary Repository for The Software Vault Project
 
 0.) Opening MySQL console:
 
-  - [LOCAL] :
+  - [_LOCAL_] :
     
-    - [Windows] [Install MySQL](https://phoenixnap.com/kb/install-mysql-on-windows), then import initial database & tables
+    - [_Windows_] [Install MySQL](https://phoenixnap.com/kb/install-mysql-on-windows), then import initial database & tables
   
           "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" "--defaults-file=C:\ProgramData\MySQL\MySQL Server 8.0\my.ini" "-uroot" "-p" < backend/sql/init.sql             "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" "--defaults-file=C:\ProgramData\MySQL\MySQL Server 8.0\my.ini" "-uroot" "-p" < backend/sql/swvault_schema.sql
         
-    - [Linux] Install MySQL Server (`$sudo apt install mysql-server`), then import initial database & tables
+    - [_Linux_] Install MySQL Server (`$sudo apt install mysql-server`), then import initial database & tables
     
           $ mysql -u root -p < backend/sql/init.sql
           $ mysql -u root -p < backend/sql/swvault_schema.sql
 
-  - [AWS RDS MySQL DB] Login & open the RDS MySQL DB using any of the various MySQL programs: DataGrip, DBeaver, VSCode, or even a raw terminal.
+  - [_AWS RDS MySQL DB_] Login & open the RDS MySQL DB using any of the various MySQL programs: DataGrip, DBeaver, VSCode, or even a raw terminal.
     
-    - Paste the contents of `backend/sql/init.sql` & `backend/sql/swvault_schema.sql` files into the console and execute the queries.
+    - Paste the contents of `backend/sql/init.sql` & `backend/sql/swvault_schema.sql` files into the console and execute the queries. Feel free to edit the username & password values within the _backend/sql/init.sql_ file. <br>**_What does the database look like?_ [➡ Checkout the Database Diagram here!](https://github.com/The-Software-Vault/SoftwareVault-Main/tree/main/backend/sql/SWVault_Database_Diagram.png)
 
 1.) Open `backend/node/connection.js` file
 
-  - [LOCAL] Comment out lines 14-19, & uncomment lines 6-11.
-  - [AWS RDS] Comment out lines 6-11, & uncomment lines 14-19.
+  - [_LOCAL_] Comment out lines 14-19, & uncomment lines 6-11.
+  - [_AWS RDS_] Comment out lines 6-11, & uncomment lines 14-19.
 
 2.) Navigate to the _backend/node_ folder, and create a file called **.env**.
 
-  - Paste the code shown [here](https://github.com/luisegarduno/FullStack-Template/blob/master/backend/node/.env) into your file & make changes to the parameters accordingly.     
+  - Paste the code shown [here](https://github.com/luisegarduno/FullStack-Template/blob/master/backend/node/.env) into your file & make changes to the parameters accordingly ([local db] lines: 8,10,12, [cloud db] lines: 15,17,19)--> Note: Your username & password values should be the same as the ones included within your _/backend/sql/init.sql_ file.      
 
     ** Or feel free to contact any of the developers for a copy of their .env file.
